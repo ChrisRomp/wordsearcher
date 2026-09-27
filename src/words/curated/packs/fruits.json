@@ -1,0 +1,259 @@
+{
+  "id": "fruits",
+  "name": "Fruits",
+  "emoji": "🍓",
+  "category": "Food",
+  "description": "Sweet and colorful foods that grow on plants",
+  "words": [
+    {
+      "w": "Apple",
+      "level": 1,
+      "clue": "Crunchy round snack that can be red or green"
+    },
+    {
+      "w": "Banana",
+      "level": 1,
+      "clue": "Long yellow snack with a peel"
+    },
+    {
+      "w": "Orange",
+      "level": 1,
+      "clue": "Round citrus snack with a bright peel"
+    },
+    {
+      "w": "Peach",
+      "level": 1,
+      "clue": "Soft fuzzy snack with a pit"
+    },
+    {
+      "w": "Pear",
+      "level": 1,
+      "clue": "Sweet snack with a narrow top and wide bottom"
+    },
+    {
+      "w": "Plum",
+      "level": 1,
+      "clue": "Small juicy snack with smooth skin"
+    },
+    {
+      "w": "Grape",
+      "level": 1,
+      "clue": "Tiny round snack that grows in bunches"
+    },
+    {
+      "w": "Melon",
+      "level": 1,
+      "clue": "Large juicy food with many seeds inside"
+    },
+    {
+      "w": "Kiwi",
+      "level": 1,
+      "clue": "Brown fuzzy food with bright green inside"
+    },
+    {
+      "w": "Mango",
+      "level": 1,
+      "clue": "Tropical sweet food with a large flat pit"
+    },
+    {
+      "w": "Lemon",
+      "level": 1,
+      "clue": "Sour yellow citrus food"
+    },
+    {
+      "w": "Lime",
+      "level": 1,
+      "clue": "Small green citrus food with a tart taste"
+    },
+    {
+      "w": "Cherry",
+      "level": 1,
+      "clue": "Small red snack with a stem and pit"
+    },
+    {
+      "w": "Apricot",
+      "level": 1,
+      "clue": "Small orange food related to peaches"
+    },
+    {
+      "w": "Avocado",
+      "level": 1,
+      "clue": "Creamy green food with a large pit"
+    },
+    {
+      "w": "Coconut",
+      "level": 1,
+      "clue": "Hard tropical food with white inside"
+    },
+    {
+      "w": "Papaya",
+      "level": 1,
+      "clue": "Orange tropical food with black seeds"
+    },
+    {
+      "w": "Guava",
+      "level": 1,
+      "clue": "Tropical food with a sweet pink or white center"
+    },
+    {
+      "w": "Fig",
+      "level": 1,
+      "clue": "Soft sweet food full of tiny seeds"
+    },
+    {
+      "w": "Date",
+      "level": 1,
+      "clue": "Chewy sweet food from a palm tree"
+    },
+    {
+      "w": "Strawberry",
+      "level": 2,
+      "clue": "Red heart-shaped snack with tiny outside seeds"
+    },
+    {
+      "w": "Blueberry",
+      "level": 2,
+      "clue": "Small round snack often used in muffins"
+    },
+    {
+      "w": "Blackberry",
+      "level": 2,
+      "clue": "Dark bumpy snack picked from canes"
+    },
+    {
+      "w": "Raspberry",
+      "level": 2,
+      "clue": "Soft red bumpy snack with a hollow center"
+    },
+    {
+      "w": "Cranberry",
+      "level": 2,
+      "clue": "Tart red snack often cooked into sauce"
+    },
+    {
+      "w": "Tangerine",
+      "level": 2,
+      "clue": "Small easy-peel citrus snack"
+    },
+    {
+      "w": "Nectarine",
+      "level": 2,
+      "clue": "Smooth-skinned sweet food related to peaches"
+    },
+    {
+      "w": "Cantaloupe",
+      "level": 2,
+      "clue": "Orange melon with a netted rind"
+    },
+    {
+      "w": "Honeydew",
+      "level": 2,
+      "clue": "Pale green melon with a sweet taste"
+    },
+    {
+      "w": "Pomegranate",
+      "level": 2,
+      "clue": "Round food filled with jewel-like seeds"
+    },
+    {
+      "w": "Persimmon",
+      "level": 2,
+      "clue": "Orange food that can taste honey-sweet when ripe"
+    },
+    {
+      "w": "Mandarin",
+      "level": 2,
+      "clue": "Small sweet citrus food that peels easily"
+    },
+    {
+      "w": "Plantain",
+      "level": 2,
+      "clue": "Starchy banana relative often cooked"
+    },
+    {
+      "w": "Currant",
+      "level": 2,
+      "clue": "Tiny tart food used in jams and baked treats"
+    },
+    {
+      "w": "Kumquat",
+      "level": 2,
+      "clue": "Tiny citrus food eaten with its peel"
+    },
+    {
+      "w": "Quince",
+      "level": 2,
+      "clue": "Firm yellow food often cooked into jelly"
+    },
+    {
+      "w": "Lychee",
+      "level": 2,
+      "clue": "Small tropical food with bumpy red skin"
+    },
+    {
+      "w": "Pomelo",
+      "level": 2,
+      "clue": "Large mild citrus food with thick rind"
+    },
+    {
+      "w": "Dragon Fruit",
+      "level": 3,
+      "clue": "Bright cactus food with speckled flesh"
+    },
+    {
+      "w": "Passion Fruit",
+      "level": 3,
+      "clue": "Round tropical food with tangy pulp"
+    },
+    {
+      "w": "Starfruit",
+      "level": 3,
+      "clue": "Yellow food that slices into points"
+    },
+    {
+      "w": "Jackfruit",
+      "level": 3,
+      "clue": "Huge tropical food with sweet yellow pods"
+    },
+    {
+      "w": "Breadfruit",
+      "level": 3,
+      "clue": "Starchy tropical food often cooked like a vegetable"
+    },
+    {
+      "w": "Rambutan",
+      "level": 3,
+      "clue": "Hairy red tropical food with juicy white flesh"
+    },
+    {
+      "w": "Durian",
+      "level": 3,
+      "clue": "Large spiky tropical food with a strong smell"
+    },
+    {
+      "w": "Longan",
+      "level": 3,
+      "clue": "Small round tropical food with clear sweet flesh"
+    },
+    {
+      "w": "Soursop",
+      "level": 3,
+      "clue": "Green spiky tropical food with creamy white pulp"
+    },
+    {
+      "w": "Cherimoya",
+      "level": 3,
+      "clue": "Green custard-like food with large dark seeds"
+    },
+    {
+      "w": "Elderberry",
+      "level": 3,
+      "clue": "Small dark clusters often used in syrups"
+    },
+    {
+      "w": "Mulberry",
+      "level": 3,
+      "clue": "Small dark tree crop often used in jams"
+    }
+  ]
+}

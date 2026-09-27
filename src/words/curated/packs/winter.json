@@ -1,0 +1,234 @@
+{
+  "id": "winter",
+  "name": "Winter",
+  "emoji": "❄️",
+  "category": "Seasons & Holidays",
+  "description": "Cold-weather words for frosty days and cozy nights",
+  "words": [
+    {
+      "w": "Snow",
+      "level": 1,
+      "clue": "Soft white crystals that fall from clouds"
+    },
+    {
+      "w": "Ice",
+      "level": 1,
+      "clue": "Frozen water that feels hard and slippery"
+    },
+    {
+      "w": "Cold",
+      "level": 1,
+      "clue": "Not warm, like a chilly day"
+    },
+    {
+      "w": "Coat",
+      "level": 1,
+      "clue": "A warm outer layer for going outside"
+    },
+    {
+      "w": "Hat",
+      "level": 1,
+      "clue": "A warm cover worn on your head"
+    },
+    {
+      "w": "Mittens",
+      "level": 1,
+      "clue": "Hand covers with one space for fingers together"
+    },
+    {
+      "w": "Boots",
+      "level": 1,
+      "clue": "Sturdy footwear for slush or deep drifts"
+    },
+    {
+      "w": "Sled",
+      "level": 1,
+      "clue": "A low rider that slides down hills"
+    },
+    {
+      "w": "Skates",
+      "level": 1,
+      "clue": "Boots with blades for gliding on frozen water"
+    },
+    {
+      "w": "Scarf",
+      "level": 1,
+      "clue": "A long warm cloth worn around the neck"
+    },
+    {
+      "w": "Frost",
+      "level": 1,
+      "clue": "Tiny icy crystals on grass or windows"
+    },
+    {
+      "w": "Gale",
+      "level": 1,
+      "clue": "A very strong blast of moving air"
+    },
+    {
+      "w": "Soup",
+      "level": 1,
+      "clue": "A warm bowl of broth with tasty ingredients"
+    },
+    {
+      "w": "Cocoa",
+      "level": 1,
+      "clue": "A warm chocolate drink"
+    },
+    {
+      "w": "Quilt",
+      "level": 1,
+      "clue": "A thick stitched bed cover"
+    },
+    {
+      "w": "Fire",
+      "level": 1,
+      "clue": "A warm glow from burning wood or gas"
+    },
+    {
+      "w": "Hill",
+      "level": 1,
+      "clue": "A raised place that is fun for sliding"
+    },
+    {
+      "w": "Ski",
+      "level": 1,
+      "clue": "A long runner worn on each foot for gliding"
+    },
+    {
+      "w": "Blizzard",
+      "level": 2,
+      "clue": "A storm with lots of blowing white flakes"
+    },
+    {
+      "w": "Flurry",
+      "level": 2,
+      "clue": "A brief swirl of falling white flakes"
+    },
+    {
+      "w": "Glacier",
+      "level": 2,
+      "clue": "A huge slow-moving river of frozen water"
+    },
+    {
+      "w": "Penguin",
+      "level": 2,
+      "clue": "A black-and-white bird that waddles and swims"
+    },
+    {
+      "w": "Arctic",
+      "level": 2,
+      "clue": "The far northern region around the pole"
+    },
+    {
+      "w": "Igloo",
+      "level": 2,
+      "clue": "A dome shelter built from blocks of hard white crystals"
+    },
+    {
+      "w": "Sweater",
+      "level": 2,
+      "clue": "A cozy knitted top for chilly weather"
+    },
+    {
+      "w": "Thermal",
+      "level": 2,
+      "clue": "Made to hold warmth close to your body"
+    },
+    {
+      "w": "Freezing",
+      "level": 2,
+      "clue": "Cold enough for water to turn solid"
+    },
+    {
+      "w": "Shovel",
+      "level": 2,
+      "clue": "A tool for scooping paths clear"
+    },
+    {
+      "w": "Toboggan",
+      "level": 2,
+      "clue": "A long narrow sled without runners"
+    },
+    {
+      "w": "Evergreen",
+      "level": 2,
+      "clue": "A tree that keeps needles all year"
+    },
+    {
+      "w": "December",
+      "level": 2,
+      "clue": "The last month of the year"
+    },
+    {
+      "w": "January",
+      "level": 2,
+      "clue": "The first month of the year"
+    },
+    {
+      "w": "Huddle",
+      "level": 2,
+      "clue": "To gather close together for warmth"
+    },
+    {
+      "w": "Hearth",
+      "level": 2,
+      "clue": "The floor area in front of a fireplace"
+    },
+    {
+      "w": "Midwinter",
+      "level": 3,
+      "clue": "The middle of the cold season"
+    },
+    {
+      "w": "Insulate",
+      "level": 3,
+      "clue": "To keep warmth from escaping"
+    },
+    {
+      "w": "Hibernate",
+      "level": 3,
+      "clue": "To sleep deeply through the cold season"
+    },
+    {
+      "w": "Crystal",
+      "level": 3,
+      "clue": "A tiny solid shape with flat sides"
+    },
+    {
+      "w": "Barometer",
+      "level": 3,
+      "clue": "An instrument that measures air pressure"
+    },
+    {
+      "w": "Celsius",
+      "level": 3,
+      "clue": "A temperature scale used in many countries"
+    },
+    {
+      "w": "Condense",
+      "level": 3,
+      "clue": "To change from vapor into tiny drops"
+    },
+    {
+      "w": "Fahrenheit",
+      "level": 3,
+      "clue": "A temperature scale used in the United States"
+    },
+    {
+      "w": "Alpenglow",
+      "level": 3,
+      "clue": "Pink light seen on mountains near sunrise or sunset"
+    },
+    {
+      "w": "Anorak",
+      "level": 3,
+      "clue": "A warm hooded jacket for cold weather"
+    },
+    {
+      "w": "Glisten",
+      "level": 3,
+      "clue": "To shine with tiny bright points"
+    }
+  ]
+}

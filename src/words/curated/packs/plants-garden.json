@@ -1,0 +1,259 @@
+{
+  "id": "plants-garden",
+  "name": "Plants & Gardening",
+  "emoji": "🌱",
+  "category": "Science",
+  "description": "Plant parts, garden tools, and growing words",
+  "words": [
+    {
+      "w": "Seed",
+      "level": 1,
+      "clue": "Tiny start that can grow into a plant"
+    },
+    {
+      "w": "Leaf",
+      "level": 1,
+      "clue": "Flat green plant part that catches energy"
+    },
+    {
+      "w": "Root",
+      "level": 1,
+      "clue": "Underground part that takes in water"
+    },
+    {
+      "w": "Stem",
+      "level": 1,
+      "clue": "Plant part that holds leaves up"
+    },
+    {
+      "w": "Bloom",
+      "level": 1,
+      "clue": "Colorful opening on a plant"
+    },
+    {
+      "w": "Soil",
+      "level": 1,
+      "clue": "Ground mix where many plants grow"
+    },
+    {
+      "w": "Water",
+      "level": 1,
+      "clue": "Liquid plants need to live"
+    },
+    {
+      "w": "Sunlight",
+      "level": 1,
+      "clue": "Energy from the sky that helps plants grow"
+    },
+    {
+      "w": "Pot",
+      "level": 1,
+      "clue": "Container for a plant"
+    },
+    {
+      "w": "Rake",
+      "level": 1,
+      "clue": "Tool with teeth for gathering leaves"
+    },
+    {
+      "w": "Hoe",
+      "level": 1,
+      "clue": "Long-handled tool for loosening soil"
+    },
+    {
+      "w": "Shovel",
+      "level": 1,
+      "clue": "Tool for digging and moving dirt"
+    },
+    {
+      "w": "Garden",
+      "level": 1,
+      "clue": "Place where people grow plants"
+    },
+    {
+      "w": "Grass",
+      "level": 1,
+      "clue": "Green blades that cover many lawns"
+    },
+    {
+      "w": "Weed",
+      "level": 1,
+      "clue": "Plant growing where it is not wanted"
+    },
+    {
+      "w": "Vine",
+      "level": 1,
+      "clue": "Climbing plant that needs support"
+    },
+    {
+      "w": "Moss",
+      "level": 1,
+      "clue": "Soft green plant in damp shady places"
+    },
+    {
+      "w": "Fern",
+      "level": 1,
+      "clue": "Plant with feathery fronds"
+    },
+    {
+      "w": "Rose",
+      "level": 1,
+      "clue": "Thorny plant with fragrant blossoms"
+    },
+    {
+      "w": "Tulip",
+      "level": 1,
+      "clue": "Spring bulb plant with cup-shaped blossoms"
+    },
+    {
+      "w": "Petal",
+      "level": 2,
+      "clue": "Colorful part around the center of a blossom"
+    },
+    {
+      "w": "Pollen",
+      "level": 2,
+      "clue": "Fine powder that helps make new seeds"
+    },
+    {
+      "w": "Sprout",
+      "level": 2,
+      "clue": "Young plant just starting to grow"
+    },
+    {
+      "w": "Compost",
+      "level": 2,
+      "clue": "Decayed scraps that enrich soil"
+    },
+    {
+      "w": "Mulch",
+      "level": 2,
+      "clue": "Covering that helps soil stay moist"
+    },
+    {
+      "w": "Trowel",
+      "level": 2,
+      "clue": "Small hand tool for digging"
+    },
+    {
+      "w": "Planter",
+      "level": 2,
+      "clue": "Box or container used for growing plants"
+    },
+    {
+      "w": "Sprinkler",
+      "level": 2,
+      "clue": "Device that sprays water over a yard"
+    },
+    {
+      "w": "Greenhouse",
+      "level": 2,
+      "clue": "Warm glass building for growing plants"
+    },
+    {
+      "w": "Wheelbarrow",
+      "level": 2,
+      "clue": "One-wheeled cart for moving garden supplies"
+    },
+    {
+      "w": "Prune",
+      "level": 2,
+      "clue": "Trim branches to help growth"
+    },
+    {
+      "w": "Harvest",
+      "level": 2,
+      "clue": "Gather ripe crops"
+    },
+    {
+      "w": "Pumpkin",
+      "level": 2,
+      "clue": "Large orange vine crop"
+    },
+    {
+      "w": "Carrot",
+      "level": 2,
+      "clue": "Orange root vegetable grown underground"
+    },
+    {
+      "w": "Lettuce",
+      "level": 2,
+      "clue": "Leafy crop often used in salads"
+    },
+    {
+      "w": "Tomato",
+      "level": 2,
+      "clue": "Juicy red crop grown on vines"
+    },
+    {
+      "w": "Marigold",
+      "level": 2,
+      "clue": "Bright garden blossom that can help repel pests"
+    },
+    {
+      "w": "Daffodil",
+      "level": 2,
+      "clue": "Yellow spring blossom grown from a bulb"
+    },
+    {
+      "w": "Photosynthesis",
+      "level": 3,
+      "clue": "How plants use light to make food"
+    },
+    {
+      "w": "Germination",
+      "level": 3,
+      "clue": "Process when a seed starts growing"
+    },
+    {
+      "w": "Chlorophyll",
+      "level": 3,
+      "clue": "Green pigment that helps plants use light"
+    },
+    {
+      "w": "Pollinator",
+      "level": 3,
+      "clue": "Animal that moves powder between blossoms"
+    },
+    {
+      "w": "Perennial",
+      "level": 3,
+      "clue": "Plant that can return year after year"
+    },
+    {
+      "w": "Annual",
+      "level": 3,
+      "clue": "Plant that completes its life in one year"
+    },
+    {
+      "w": "Biennial",
+      "level": 3,
+      "clue": "Plant that takes two years to complete its life"
+    },
+    {
+      "w": "Rhizome",
+      "level": 3,
+      "clue": "Underground stem that spreads sideways"
+    },
+    {
+      "w": "Trellis",
+      "level": 3,
+      "clue": "Frame that supports climbing plants"
+    },
+    {
+      "w": "Terrarium",
+      "level": 3,
+      "clue": "Clear container garden for small plants"
+    },
+    {
+      "w": "Hydroponic",
+      "level": 3,
+      "clue": "Growing plants in water without soil"
+    },
+    {
+      "w": "Botanist",
+      "level": 3,
+      "clue": "Scientist who studies plants"
+    }
+  ]
+}

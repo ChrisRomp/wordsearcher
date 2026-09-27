@@ -1,0 +1,234 @@
+{
+  "id": "autumn",
+  "name": "Autumn",
+  "emoji": "🍂",
+  "category": "Seasons & Holidays",
+  "description": "Crisp days, colorful trees, and harvest-time traditions",
+  "words": [
+    {
+      "w": "Apple",
+      "level": 1,
+      "clue": "A crisp fruit often picked from trees in fall"
+    },
+    {
+      "w": "Leaf",
+      "level": 1,
+      "clue": "A flat green or red part that grows on a tree"
+    },
+    {
+      "w": "Pumpkin",
+      "level": 1,
+      "clue": "A big orange fruit used for pies and decorations"
+    },
+    {
+      "w": "Hay",
+      "level": 1,
+      "clue": "Dried grass fed to farm animals"
+    },
+    {
+      "w": "Sweater",
+      "level": 1,
+      "clue": "A cozy top worn on chilly days"
+    },
+    {
+      "w": "Rake",
+      "level": 1,
+      "clue": "A tool used to gather fallen tree parts"
+    },
+    {
+      "w": "Pie",
+      "level": 1,
+      "clue": "A baked treat with a sweet filling"
+    },
+    {
+      "w": "Wind",
+      "level": 1,
+      "clue": "Moving air that can whoosh through trees"
+    },
+    {
+      "w": "Rain",
+      "level": 1,
+      "clue": "Water drops falling from clouds"
+    },
+    {
+      "w": "Scarf",
+      "level": 1,
+      "clue": "A warm strip of cloth worn around the neck"
+    },
+    {
+      "w": "Coat",
+      "level": 1,
+      "clue": "A warm outer layer for chilly weather"
+    },
+    {
+      "w": "Boots",
+      "level": 1,
+      "clue": "Sturdy shoes for puddles or muddy paths"
+    },
+    {
+      "w": "Barn",
+      "level": 1,
+      "clue": "A farm building for animals or crops"
+    },
+    {
+      "w": "Field",
+      "level": 1,
+      "clue": "Open land where crops may grow"
+    },
+    {
+      "w": "Seed",
+      "level": 1,
+      "clue": "A tiny plant starter with a hard cover"
+    },
+    {
+      "w": "Owl",
+      "level": 1,
+      "clue": "A night bird with big eyes and a soft hoot"
+    },
+    {
+      "w": "Oak",
+      "level": 1,
+      "clue": "A strong tree that makes acorns"
+    },
+    {
+      "w": "Gourd",
+      "level": 1,
+      "clue": "A hard-skinned fruit used for fall decorations"
+    },
+    {
+      "w": "Harvest",
+      "level": 2,
+      "clue": "The time when ripe crops are gathered"
+    },
+    {
+      "w": "Orchard",
+      "level": 2,
+      "clue": "A place where fruit trees grow in rows"
+    },
+    {
+      "w": "Cider",
+      "level": 2,
+      "clue": "A sweet drink often made from pressed fruit"
+    },
+    {
+      "w": "Cranberry",
+      "level": 2,
+      "clue": "A small tart red fruit used in sauces"
+    },
+    {
+      "w": "Chestnut",
+      "level": 2,
+      "clue": "A shiny brown seed inside a prickly case"
+    },
+    {
+      "w": "Foliage",
+      "level": 2,
+      "clue": "All the colorful tree parts seen on branches"
+    },
+    {
+      "w": "Maple",
+      "level": 2,
+      "clue": "A tree known for bright colors and sweet syrup"
+    },
+    {
+      "w": "Maize",
+      "level": 2,
+      "clue": "A tall crop with ears of yellow kernels"
+    },
+    {
+      "w": "Squash",
+      "level": 2,
+      "clue": "A garden vegetable with a hard outer shell"
+    },
+    {
+      "w": "Bonfire",
+      "level": 2,
+      "clue": "A large outdoor blaze for warmth and gathering"
+    },
+    {
+      "w": "Wagon",
+      "level": 2,
+      "clue": "A four-wheeled cart pulled by hand or tractor"
+    },
+    {
+      "w": "Caramel",
+      "level": 2,
+      "clue": "A chewy golden candy made from cooked sugar"
+    },
+    {
+      "w": "Cinnamon",
+      "level": 2,
+      "clue": "A sweet brown spice used in baked treats"
+    },
+    {
+      "w": "November",
+      "level": 2,
+      "clue": "The month after October"
+    },
+    {
+      "w": "Festival",
+      "level": 2,
+      "clue": "A community event with food, music, or games"
+    },
+    {
+      "w": "Lantern",
+      "level": 2,
+      "clue": "A portable light with a handle"
+    },
+    {
+      "w": "Equinox",
+      "level": 3,
+      "clue": "A yearly time when day and night are about equal"
+    },
+    {
+      "w": "Migration",
+      "level": 3,
+      "clue": "Traveling to a new place when seasons change"
+    },
+    {
+      "w": "Dormant",
+      "level": 3,
+      "clue": "Resting quietly until growing weather returns"
+    },
+    {
+      "w": "Deciduous",
+      "level": 3,
+      "clue": "A tree type that sheds its leaves each year"
+    },
+    {
+      "w": "Hibernation",
+      "level": 3,
+      "clue": "A deep winter rest for some animals"
+    },
+    {
+      "w": "Chlorophyll",
+      "level": 3,
+      "clue": "The green plant helper that catches sunlight"
+    },
+    {
+      "w": "Mulch",
+      "level": 3,
+      "clue": "A cover of wood chips around plants"
+    },
+    {
+      "w": "Thermos",
+      "level": 3,
+      "clue": "A container that keeps drinks warm or cool"
+    },
+    {
+      "w": "Aster",
+      "level": 3,
+      "clue": "A purple or white bloom seen late in the year"
+    },
+    {
+      "w": "Compost",
+      "level": 3,
+      "clue": "Rich soil made from old plant bits"
+    },
+    {
+      "w": "Preserve",
+      "level": 3,
+      "clue": "Food saved in jars for later"
+    }
+  ]
+}

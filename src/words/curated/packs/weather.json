@@ -1,0 +1,259 @@
+{
+  "id": "weather",
+  "name": "Weather",
+  "emoji": "⛅",
+  "category": "Science",
+  "description": "Sky conditions, storms, and tools for forecasting",
+  "words": [
+    {
+      "w": "Rain",
+      "level": 1,
+      "clue": "Water drops falling from gray skies"
+    },
+    {
+      "w": "Snow",
+      "level": 1,
+      "clue": "Soft white flakes from cold clouds"
+    },
+    {
+      "w": "Wind",
+      "level": 1,
+      "clue": "Moving air you can feel"
+    },
+    {
+      "w": "Cloud",
+      "level": 1,
+      "clue": "Puffy or flat shape made of tiny water drops"
+    },
+    {
+      "w": "Storm",
+      "level": 1,
+      "clue": "Rough weather with strong sky action"
+    },
+    {
+      "w": "Hail",
+      "level": 1,
+      "clue": "Small balls of ice falling from clouds"
+    },
+    {
+      "w": "Fog",
+      "level": 1,
+      "clue": "Low gray cloud near the ground"
+    },
+    {
+      "w": "Mist",
+      "level": 1,
+      "clue": "Very fine water drops in the air"
+    },
+    {
+      "w": "Sunny",
+      "level": 1,
+      "clue": "Bright with lots of daylight"
+    },
+    {
+      "w": "Cold",
+      "level": 1,
+      "clue": "Low temperature that may make you shiver"
+    },
+    {
+      "w": "Warm",
+      "level": 1,
+      "clue": "Comfortably heated but not too hot"
+    },
+    {
+      "w": "Frost",
+      "level": 1,
+      "clue": "Sparkly ice crystals on cold surfaces"
+    },
+    {
+      "w": "Breeze",
+      "level": 1,
+      "clue": "Gentle moving air"
+    },
+    {
+      "w": "Dew",
+      "level": 1,
+      "clue": "Tiny drops found on grass in the morning"
+    },
+    {
+      "w": "Ice",
+      "level": 1,
+      "clue": "Frozen water"
+    },
+    {
+      "w": "Sleet",
+      "level": 1,
+      "clue": "Frozen pellets mixed with wet weather"
+    },
+    {
+      "w": "Thunder",
+      "level": 1,
+      "clue": "Loud rumble after a bright flash"
+    },
+    {
+      "w": "Lightning",
+      "level": 1,
+      "clue": "Bright flash of electricity in the sky"
+    },
+    {
+      "w": "Drizzle",
+      "level": 1,
+      "clue": "Very light falling water drops"
+    },
+    {
+      "w": "Shower",
+      "level": 1,
+      "clue": "Short period of falling water from clouds"
+    },
+    {
+      "w": "Tornado",
+      "level": 2,
+      "clue": "Spinning funnel of air reaching the ground"
+    },
+    {
+      "w": "Hurricane",
+      "level": 2,
+      "clue": "Huge ocean storm with strong winds"
+    },
+    {
+      "w": "Blizzard",
+      "level": 2,
+      "clue": "Snowstorm with strong winds and low visibility"
+    },
+    {
+      "w": "Cyclone",
+      "level": 2,
+      "clue": "Large rotating storm system"
+    },
+    {
+      "w": "Forecast",
+      "level": 2,
+      "clue": "Prediction of what the sky will do"
+    },
+    {
+      "w": "Climate",
+      "level": 2,
+      "clue": "Usual weather pattern of a place over time"
+    },
+    {
+      "w": "Season",
+      "level": 2,
+      "clue": "Part of the year with typical conditions"
+    },
+    {
+      "w": "Humidity",
+      "level": 2,
+      "clue": "Amount of water vapor in the air"
+    },
+    {
+      "w": "Pressure",
+      "level": 2,
+      "clue": "Weight of air pressing down"
+    },
+    {
+      "w": "Temperature",
+      "level": 2,
+      "clue": "Measure of how hot or cold something is"
+    },
+    {
+      "w": "Drought",
+      "level": 2,
+      "clue": "Long dry time with too little water"
+    },
+    {
+      "w": "Flood",
+      "level": 2,
+      "clue": "Overflow of water onto normally dry land"
+    },
+    {
+      "w": "Overcast",
+      "level": 2,
+      "clue": "Covered by a gray layer overhead"
+    },
+    {
+      "w": "Gust",
+      "level": 2,
+      "clue": "Sudden burst of moving air"
+    },
+    {
+      "w": "Freeze",
+      "level": 2,
+      "clue": "Change into solid ice"
+    },
+    {
+      "w": "Melting",
+      "level": 2,
+      "clue": "Changing from solid to liquid"
+    },
+    {
+      "w": "Puddle",
+      "level": 2,
+      "clue": "Small pool left after wet weather"
+    },
+    {
+      "w": "Monsoon",
+      "level": 2,
+      "clue": "Seasonal winds that bring heavy wet weather"
+    },
+    {
+      "w": "Barometer",
+      "level": 3,
+      "clue": "Tool that measures air pressure"
+    },
+    {
+      "w": "Thermometer",
+      "level": 3,
+      "clue": "Tool that shows temperature"
+    },
+    {
+      "w": "Anemometer",
+      "level": 3,
+      "clue": "Tool that measures wind speed"
+    },
+    {
+      "w": "Atmosphere",
+      "level": 3,
+      "clue": "Layer of gases around Earth"
+    },
+    {
+      "w": "Evaporation",
+      "level": 3,
+      "clue": "Change from liquid into invisible vapor"
+    },
+    {
+      "w": "Condensation",
+      "level": 3,
+      "clue": "Change from vapor into tiny drops"
+    },
+    {
+      "w": "Meteorology",
+      "level": 3,
+      "clue": "Science of studying weather"
+    },
+    {
+      "w": "Convection",
+      "level": 3,
+      "clue": "Movement caused by warm material rising"
+    },
+    {
+      "w": "Jet Stream",
+      "level": 3,
+      "clue": "Fast high river of air that guides systems"
+    },
+    {
+      "w": "Microburst",
+      "level": 3,
+      "clue": "Sudden powerful downward rush of air"
+    },
+    {
+      "w": "Supercell",
+      "level": 3,
+      "clue": "Rotating storm cloud that can become severe"
+    },
+    {
+      "w": "Waterspout",
+      "level": 3,
+      "clue": "Spinning funnel over a lake or ocean"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "id": "beach-summer",
+  "name": "Beach & Summer",
+  "emoji": "🏖️",
+  "category": "Seasons & Holidays",
+  "description": "Sunny days, shore discoveries, and warm-weather fun",
+  "words": [
+    {
+      "w": "Beach",
+      "level": 1,
+      "clue": "A sandy place where land meets the sea or a lake"
+    },
+    {
+      "w": "Sand",
+      "level": 1,
+      "clue": "Tiny grains that cover many shores"
+    },
+    {
+      "w": "Sun",
+      "level": 1,
+      "clue": "The bright star that warms Earth"
+    },
+    {
+      "w": "Wave",
+      "level": 1,
+      "clue": "A moving ridge of water that rolls to shore"
+    },
+    {
+      "w": "Shell",
+      "level": 1,
+      "clue": "A hard curved cover found near the shore"
+    },
+    {
+      "w": "Swim",
+      "level": 1,
+      "clue": "To move through water using arms and legs"
+    },
+    {
+      "w": "Ball",
+      "level": 1,
+      "clue": "A round toy for tossing or kicking"
+    },
+    {
+      "w": "Towel",
+      "level": 1,
+      "clue": "A cloth used to dry off after getting wet"
+    },
+    {
+      "w": "Crab",
+      "level": 1,
+      "clue": "A pinchy shore animal that walks sideways"
+    },
+    {
+      "w": "Fish",
+      "level": 1,
+      "clue": "An animal with fins that lives in water"
+    },
+    {
+      "w": "Boat",
+      "level": 1,
+      "clue": "A vehicle that floats on water"
+    },
+    {
+      "w": "Kite",
+      "level": 1,
+      "clue": "A light toy that flies on a string"
+    },
+    {
+      "w": "Hat",
+      "level": 1,
+      "clue": "A cap with a brim for sunny days"
+    },
+    {
+      "w": "Bucket",
+      "level": 1,
+      "clue": "A pail used to carry water or grains"
+    },
+    {
+      "w": "Pail",
+      "level": 1,
+      "clue": "A small handled container for carrying things"
+    },
+    {
+      "w": "Lake",
+      "level": 1,
+      "clue": "A large area of water surrounded by land"
+    },
+    {
+      "w": "Pool",
+      "level": 1,
+      "clue": "A safe place built for splashing and swimming"
+    },
+    {
+      "w": "Shovel",
+      "level": 1,
+      "clue": "A tool for digging and scooping grains"
+    },
+    {
+      "w": "Lifeguard",
+      "level": 2,
+      "clue": "A trained watcher who helps swimmers stay safe"
+    },
+    {
+      "w": "Snorkel",
+      "level": 2,
+      "clue": "A tube that lets you breathe while face-down in water"
+    },
+    {
+      "w": "Surfboard",
+      "level": 2,
+      "clue": "A long flat ride for ocean waves"
+    },
+    {
+      "w": "Seagull",
+      "level": 2,
+      "clue": "A shore bird with a loud call"
+    },
+    {
+      "w": "Dolphin",
+      "level": 2,
+      "clue": "A smart ocean mammal that often leaps"
+    },
+    {
+      "w": "Pelican",
+      "level": 2,
+      "clue": "A large bird with a pouch under its bill"
+    },
+    {
+      "w": "Lagoon",
+      "level": 2,
+      "clue": "A shallow area of water near the sea"
+    },
+    {
+      "w": "Reef",
+      "level": 2,
+      "clue": "A ridge under the sea where many animals live"
+    },
+    {
+      "w": "Marina",
+      "level": 2,
+      "clue": "A harbor where small boats are kept"
+    },
+    {
+      "w": "Coastline",
+      "level": 2,
+      "clue": "The edge where land meets the sea"
+    },
+    {
+      "w": "Boardwalk",
+      "level": 2,
+      "clue": "A wooden path along a shore"
+    },
+    {
+      "w": "Vacation",
+      "level": 2,
+      "clue": "Time away from school or work for rest and fun"
+    },
+    {
+      "w": "Postcard",
+      "level": 2,
+      "clue": "A small mailed picture from a trip"
+    },
+    {
+      "w": "Lemonade",
+      "level": 2,
+      "clue": "A sweet yellow drink served cold"
+    },
+    {
+      "w": "Picnic",
+      "level": 2,
+      "clue": "A meal eaten outside"
+    },
+    {
+      "w": "Cooler",
+      "level": 2,
+      "clue": "A box that keeps food and drinks chilled"
+    },
+    {
+      "w": "Current",
+      "level": 3,
+      "clue": "Moving water in one direction"
+    },
+    {
+      "w": "Estuary",
+      "level": 3,
+      "clue": "A place where river water meets the sea"
+    },
+    {
+      "w": "Erosion",
+      "level": 3,
+      "clue": "The wearing away of land by water or wind"
+    },
+    {
+      "w": "Dune",
+      "level": 3,
+      "clue": "A hill made by blowing grains"
+    },
+    {
+      "w": "Barrier",
+      "level": 3,
+      "clue": "A natural wall that protects a shore"
+    },
+    {
+      "w": "Equator",
+      "level": 3,
+      "clue": "An imaginary line around Earth's middle"
+    },
+    {
+      "w": "Hydration",
+      "level": 3,
+      "clue": "Having enough water in your body"
+    },
+    {
+      "w": "Ultraviolet",
+      "level": 3,
+      "clue": "A kind of light from our nearest star"
+    },
+    {
+      "w": "Tropic",
+      "level": 3,
+      "clue": "A warm region near Earth's middle"
+    },
+    {
+      "w": "Salinity",
+      "level": 3,
+      "clue": "How salty water is"
+    },
+    {
+      "w": "Plankton",
+      "level": 3,
+      "clue": "Tiny living things that drift in water"
+    }
+  ]
+}

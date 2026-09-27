@@ -1,0 +1,234 @@
+{
+  "id": "sports",
+  "name": "Sports & Games",
+  "emoji": "⚽",
+  "category": "Hobbies & Fun",
+  "description": "Active games, team sports, and fair-play vocabulary",
+  "words": [
+    {
+      "w": "Soccer",
+      "level": 1,
+      "clue": "A game where teams kick a round ball into goals"
+    },
+    {
+      "w": "Tennis",
+      "level": 1,
+      "clue": "A racket game played over a net"
+    },
+    {
+      "w": "Golf",
+      "level": 1,
+      "clue": "A game of hitting a small ball into holes"
+    },
+    {
+      "w": "Swim",
+      "level": 1,
+      "clue": "To move through water using arms and legs"
+    },
+    {
+      "w": "Run",
+      "level": 1,
+      "clue": "To move fast on your feet"
+    },
+    {
+      "w": "Jump",
+      "level": 1,
+      "clue": "To push off the ground into the air"
+    },
+    {
+      "w": "Skate",
+      "level": 1,
+      "clue": "To glide on wheels or blades"
+    },
+    {
+      "w": "Ski",
+      "level": 1,
+      "clue": "To glide on long runners over snow"
+    },
+    {
+      "w": "Dance",
+      "level": 1,
+      "clue": "To move your body to music"
+    },
+    {
+      "w": "Tag",
+      "level": 1,
+      "clue": "A chase game where one player is it"
+    },
+    {
+      "w": "Chess",
+      "level": 1,
+      "clue": "A board game with kings and queens"
+    },
+    {
+      "w": "Checkers",
+      "level": 1,
+      "clue": "A board game with red and black pieces"
+    },
+    {
+      "w": "Bowling",
+      "level": 1,
+      "clue": "A game where players roll a ball at pins"
+    },
+    {
+      "w": "Hockey",
+      "level": 1,
+      "clue": "A team game with sticks and a goal"
+    },
+    {
+      "w": "Karate",
+      "level": 1,
+      "clue": "A martial art that teaches control and focus"
+    },
+    {
+      "w": "Relay",
+      "level": 1,
+      "clue": "A race where teammates take turns"
+    },
+    {
+      "w": "Race",
+      "level": 1,
+      "clue": "A contest to see who finishes first"
+    },
+    {
+      "w": "Yoga",
+      "level": 1,
+      "clue": "A practice with stretches and steady breathing"
+    },
+    {
+      "w": "Baseball",
+      "level": 2,
+      "clue": "A bat-and-glove game with four stops to run around"
+    },
+    {
+      "w": "Softball",
+      "level": 2,
+      "clue": "A bat-and-glove game using a larger yellow sphere"
+    },
+    {
+      "w": "Football",
+      "level": 2,
+      "clue": "A team game with touchdowns and helmets"
+    },
+    {
+      "w": "Basketball",
+      "level": 2,
+      "clue": "A court game with hoops and dribbling"
+    },
+    {
+      "w": "Volleyball",
+      "level": 2,
+      "clue": "A net game where teams bump and spike"
+    },
+    {
+      "w": "Cricket",
+      "level": 2,
+      "clue": "A bat-and-wicket game popular in many countries"
+    },
+    {
+      "w": "Lacrosse",
+      "level": 2,
+      "clue": "A team game using sticks with nets"
+    },
+    {
+      "w": "Rugby",
+      "level": 2,
+      "clue": "A team game with an oval ball and goal lines"
+    },
+    {
+      "w": "Cycling",
+      "level": 2,
+      "clue": "Riding a two-wheeled vehicle for sport"
+    },
+    {
+      "w": "Archery",
+      "level": 2,
+      "clue": "A sport of aiming arrows at a target"
+    },
+    {
+      "w": "Frisbee",
+      "level": 2,
+      "clue": "A flying disc game or toy"
+    },
+    {
+      "w": "Badminton",
+      "level": 2,
+      "clue": "A racket game using a feathered shuttle"
+    },
+    {
+      "w": "Gymnastics",
+      "level": 2,
+      "clue": "A sport with flips, balance, and strength"
+    },
+    {
+      "w": "Pickleball",
+      "level": 2,
+      "clue": "A paddle game on a small court"
+    },
+    {
+      "w": "Handball",
+      "level": 2,
+      "clue": "A wall or court game using quick throws"
+    },
+    {
+      "w": "Kickball",
+      "level": 2,
+      "clue": "A playground game with bases and a rolled sphere"
+    },
+    {
+      "w": "Triathlon",
+      "level": 3,
+      "clue": "A race with swimming, biking, and running"
+    },
+    {
+      "w": "Decathlon",
+      "level": 3,
+      "clue": "A track-and-field contest with ten events"
+    },
+    {
+      "w": "Heptathlon",
+      "level": 3,
+      "clue": "A track-and-field contest with seven events"
+    },
+    {
+      "w": "Marathon",
+      "level": 3,
+      "clue": "A very long running race"
+    },
+    {
+      "w": "Strategy",
+      "level": 3,
+      "clue": "A plan for making smart moves in a game"
+    },
+    {
+      "w": "Tournament",
+      "level": 3,
+      "clue": "A series of games to find a winner"
+    },
+    {
+      "w": "Scoreboard",
+      "level": 3,
+      "clue": "A display that shows points and time"
+    },
+    {
+      "w": "Offense",
+      "level": 3,
+      "clue": "The side trying to score"
+    },
+    {
+      "w": "Defense",
+      "level": 3,
+      "clue": "The side trying to stop a score"
+    },
+    {
+      "w": "Endurance",
+      "level": 3,
+      "clue": "The ability to keep going for a long time"
+    },
+    {
+      "w": "Agility",
+      "level": 3,
+      "clue": "Quick and graceful movement"
+    }
+  ]
+}

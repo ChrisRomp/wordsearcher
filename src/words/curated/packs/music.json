@@ -1,0 +1,234 @@
+{
+  "id": "music",
+  "name": "Music & Instruments",
+  "emoji": "🎺",
+  "category": "Hobbies & Fun",
+  "description": "Instruments, sounds, and words for making music together",
+  "words": [
+    {
+      "w": "Song",
+      "level": 1,
+      "clue": "Music with words to sing"
+    },
+    {
+      "w": "Sing",
+      "level": 1,
+      "clue": "To make musical sounds with your voice"
+    },
+    {
+      "w": "Drum",
+      "level": 1,
+      "clue": "A round instrument you hit for rhythm"
+    },
+    {
+      "w": "Piano",
+      "level": 1,
+      "clue": "A keyboard instrument with black and white keys"
+    },
+    {
+      "w": "Flute",
+      "level": 1,
+      "clue": "A slender instrument played by blowing across a hole"
+    },
+    {
+      "w": "Horn",
+      "level": 1,
+      "clue": "A brass instrument with a bright sound"
+    },
+    {
+      "w": "Harp",
+      "level": 1,
+      "clue": "A string instrument shaped like a tall frame"
+    },
+    {
+      "w": "Bell",
+      "level": 1,
+      "clue": "A ringing instrument with a clear tone"
+    },
+    {
+      "w": "Clap",
+      "level": 1,
+      "clue": "To hit your hands together for sound"
+    },
+    {
+      "w": "Beat",
+      "level": 1,
+      "clue": "The steady pulse in music"
+    },
+    {
+      "w": "Dance",
+      "level": 1,
+      "clue": "To move your body to music"
+    },
+    {
+      "w": "Band",
+      "level": 1,
+      "clue": "A group of people playing music together"
+    },
+    {
+      "w": "Note",
+      "level": 1,
+      "clue": "A written mark for a musical sound"
+    },
+    {
+      "w": "Tune",
+      "level": 1,
+      "clue": "A simple melody you can hum"
+    },
+    {
+      "w": "Violin",
+      "level": 1,
+      "clue": "A small string instrument played with a bow"
+    },
+    {
+      "w": "Guitar",
+      "level": 1,
+      "clue": "A six-string instrument often strummed"
+    },
+    {
+      "w": "Cymbal",
+      "level": 1,
+      "clue": "A shiny metal disc that crashes when struck"
+    },
+    {
+      "w": "Voice",
+      "level": 1,
+      "clue": "The sound made when a person speaks or sings"
+    },
+    {
+      "w": "Trumpet",
+      "level": 2,
+      "clue": "A brass instrument with three valves"
+    },
+    {
+      "w": "Trombone",
+      "level": 2,
+      "clue": "A brass instrument with a long slide"
+    },
+    {
+      "w": "Clarinet",
+      "level": 2,
+      "clue": "A black woodwind instrument with a reed"
+    },
+    {
+      "w": "Saxophone",
+      "level": 2,
+      "clue": "A curved golden woodwind used in jazz"
+    },
+    {
+      "w": "Ukulele",
+      "level": 2,
+      "clue": "A small four-string instrument from Hawaii"
+    },
+    {
+      "w": "Recorder",
+      "level": 2,
+      "clue": "A simple woodwind often learned in school"
+    },
+    {
+      "w": "Mandolin",
+      "level": 2,
+      "clue": "A small string instrument with a rounded body"
+    },
+    {
+      "w": "Cello",
+      "level": 2,
+      "clue": "A large string instrument played while seated"
+    },
+    {
+      "w": "Maraca",
+      "level": 2,
+      "clue": "A shaker instrument held in the hand"
+    },
+    {
+      "w": "Tambourine",
+      "level": 2,
+      "clue": "A hand drum with jingling metal pieces"
+    },
+    {
+      "w": "Harmonica",
+      "level": 2,
+      "clue": "A small mouth instrument with reeds"
+    },
+    {
+      "w": "Accordion",
+      "level": 2,
+      "clue": "A squeeze-box instrument with keys or buttons"
+    },
+    {
+      "w": "Melody",
+      "level": 2,
+      "clue": "The main line of notes in a piece of music"
+    },
+    {
+      "w": "Rhythm",
+      "level": 2,
+      "clue": "The pattern of long and short sounds"
+    },
+    {
+      "w": "Chorus",
+      "level": 2,
+      "clue": "A repeated part of a song, or a singing group"
+    },
+    {
+      "w": "Concert",
+      "level": 2,
+      "clue": "A live performance for listeners"
+    },
+    {
+      "w": "Orchestra",
+      "level": 3,
+      "clue": "A large group of players with many instruments"
+    },
+    {
+      "w": "Symphony",
+      "level": 3,
+      "clue": "A long piece written for a large music group"
+    },
+    {
+      "w": "Percussion",
+      "level": 3,
+      "clue": "Instruments that are hit, shaken, or scraped"
+    },
+    {
+      "w": "Composer",
+      "level": 3,
+      "clue": "A person who writes music"
+    },
+    {
+      "w": "Conductor",
+      "level": 3,
+      "clue": "Leader who guides a large music group"
+    },
+    {
+      "w": "Crescendo",
+      "level": 3,
+      "clue": "A gradual rise in loudness"
+    },
+    {
+      "w": "Metronome",
+      "level": 3,
+      "clue": "A ticking tool that keeps steady time"
+    },
+    {
+      "w": "Harmony",
+      "level": 3,
+      "clue": "Different notes sounding pleasing together"
+    },
+    {
+      "w": "Tempo",
+      "level": 3,
+      "clue": "The speed of a piece of music"
+    },
+    {
+      "w": "Syncopation",
+      "level": 3,
+      "clue": "Rhythms that stress unexpected beats"
+    },
+    {
+      "w": "Resonance",
+      "level": 3,
+      "clue": "A rich sound that continues to vibrate"
+    }
+  ]
+}

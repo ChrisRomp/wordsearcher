@@ -1,0 +1,264 @@
+{
+  "id": "ocean-life",
+  "name": "Ocean Life",
+  "emoji": "🐠",
+  "category": "Animals",
+  "description": "Animals and plants that live in salty water",
+  "words": [
+    {
+      "w": "Shark",
+      "level": 1,
+      "clue": "Fast fish with rows of sharp teeth"
+    },
+    {
+      "w": "Whale",
+      "level": 1,
+      "clue": "Huge ocean mammal that breathes air"
+    },
+    {
+      "w": "Dolphin",
+      "level": 1,
+      "clue": "Smart ocean mammal that clicks and leaps"
+    },
+    {
+      "w": "Crab",
+      "level": 1,
+      "clue": "Sideways walker with pincers"
+    },
+    {
+      "w": "Clam",
+      "level": 1,
+      "clue": "Two-shelled animal that can hide in sand"
+    },
+    {
+      "w": "Seal",
+      "level": 1,
+      "clue": "Playful flippered mammal that rests on rocks"
+    },
+    {
+      "w": "Otter",
+      "level": 1,
+      "clue": "Furry swimmer that may float on its back"
+    },
+    {
+      "w": "Turtle",
+      "level": 1,
+      "clue": "Shelled reptile that paddles through water"
+    },
+    {
+      "w": "Coral",
+      "level": 1,
+      "clue": "Tiny animals that build colorful reefs"
+    },
+    {
+      "w": "Squid",
+      "level": 1,
+      "clue": "Soft swimmer with arms and squirting ink"
+    },
+    {
+      "w": "Octopus",
+      "level": 1,
+      "clue": "Eight-armed animal that can squeeze into small spaces"
+    },
+    {
+      "w": "Shrimp",
+      "level": 1,
+      "clue": "Small swimmer often found in groups"
+    },
+    {
+      "w": "Lobster",
+      "level": 1,
+      "clue": "Clawed animal that walks on the seafloor"
+    },
+    {
+      "w": "Oyster",
+      "level": 1,
+      "clue": "Shell animal that can make a pearl"
+    },
+    {
+      "w": "Urchin",
+      "level": 1,
+      "clue": "Round spiny animal on the seafloor"
+    },
+    {
+      "w": "Ray",
+      "level": 1,
+      "clue": "Flat swimmer that glides like a kite"
+    },
+    {
+      "w": "Eel",
+      "level": 1,
+      "clue": "Long snake-shaped swimmer"
+    },
+    {
+      "w": "Kelp",
+      "level": 1,
+      "clue": "Tall brown sea plant that forms forests"
+    },
+    {
+      "w": "Snail",
+      "level": 1,
+      "clue": "Slow shell animal that slides along rocks"
+    },
+    {
+      "w": "Tuna",
+      "level": 1,
+      "clue": "Fast open-water fish often found in schools"
+    },
+    {
+      "w": "Cod",
+      "level": 2,
+      "clue": "Cold-water fish with flaky white meat"
+    },
+    {
+      "w": "Seahorse",
+      "level": 2,
+      "clue": "Tiny upright swimmer with a curled tail"
+    },
+    {
+      "w": "Jellyfish",
+      "level": 2,
+      "clue": "Soft drifter with stinging tentacles"
+    },
+    {
+      "w": "Starfish",
+      "level": 2,
+      "clue": "Five-armed tide pool animal"
+    },
+    {
+      "w": "Manta",
+      "level": 2,
+      "clue": "Giant flat swimmer with winglike fins"
+    },
+    {
+      "w": "Orca",
+      "level": 2,
+      "clue": "Black-and-white ocean mammal that lives in groups"
+    },
+    {
+      "w": "Walrus",
+      "level": 2,
+      "clue": "Large tusked mammal from icy seas"
+    },
+    {
+      "w": "Manatee",
+      "level": 2,
+      "clue": "Gentle plant-eating mammal from warm water"
+    },
+    {
+      "w": "Penguin",
+      "level": 2,
+      "clue": "Flightless bird that swims with flippers"
+    },
+    {
+      "w": "Puffin",
+      "level": 2,
+      "clue": "Seabird with a bright striped beak"
+    },
+    {
+      "w": "Pelican",
+      "level": 2,
+      "clue": "Big-beaked bird that scoops up fish"
+    },
+    {
+      "w": "Sardine",
+      "level": 2,
+      "clue": "Small schooling fish"
+    },
+    {
+      "w": "Salmon",
+      "level": 2,
+      "clue": "Fish that can swim upriver to spawn"
+    },
+    {
+      "w": "Herring",
+      "level": 2,
+      "clue": "Silvery fish that travels in large schools"
+    },
+    {
+      "w": "Mackerel",
+      "level": 2,
+      "clue": "Striped fast swimmer"
+    },
+    {
+      "w": "Krill",
+      "level": 2,
+      "clue": "Tiny shrimp-like animals eaten by giants"
+    },
+    {
+      "w": "Plankton",
+      "level": 2,
+      "clue": "Tiny drifting life near the surface"
+    },
+    {
+      "w": "Anemone",
+      "level": 2,
+      "clue": "Tentacled animal that looks like a flower"
+    },
+    {
+      "w": "Barnacle",
+      "level": 3,
+      "clue": "Hard-shelled animal that sticks to rocks and boats"
+    },
+    {
+      "w": "Nudibranch",
+      "level": 3,
+      "clue": "Bright sea slug with fancy shapes"
+    },
+    {
+      "w": "Cuttlefish",
+      "level": 3,
+      "clue": "Color-changing relative of squids"
+    },
+    {
+      "w": "Coelacanth",
+      "level": 3,
+      "clue": "Ancient deep-water fish once thought gone"
+    },
+    {
+      "w": "Nautilus",
+      "level": 3,
+      "clue": "Shelled animal with many tentacles"
+    },
+    {
+      "w": "Anglerfish",
+      "level": 3,
+      "clue": "Deep-sea hunter with a glowing lure"
+    },
+    {
+      "w": "Lionfish",
+      "level": 3,
+      "clue": "Striped reef animal with showy spines"
+    },
+    {
+      "w": "Abalone",
+      "level": 3,
+      "clue": "Shell animal with a shiny inner layer"
+    },
+    {
+      "w": "Mollusk",
+      "level": 3,
+      "clue": "Soft-bodied animal group with many shell makers"
+    },
+    {
+      "w": "Cephalopod",
+      "level": 3,
+      "clue": "Group that includes squids and octopuses"
+    },
+    {
+      "w": "Crustacean",
+      "level": 3,
+      "clue": "Animal group with jointed legs and hard shells"
+    },
+    {
+      "w": "Sargassum",
+      "level": 3,
+      "clue": "Floating brown seaweed that shelters small animals"
+    },
+    {
+      "w": "Copepod",
+      "level": 3,
+      "clue": "Tiny drifting animal eaten by many fish"
+    }
+  ]
+}

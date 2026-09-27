@@ -1,0 +1,259 @@
+{
+  "id": "insects-bugs",
+  "name": "Insects & Bugs",
+  "emoji": "🐞",
+  "category": "Animals",
+  "description": "Crawling, flying, and tiny backyard creatures",
+  "words": [
+    {
+      "w": "Wasp",
+      "level": 1,
+      "clue": "Striped flyer that can build papery nests"
+    },
+    {
+      "w": "Moth",
+      "level": 1,
+      "clue": "Night flyer often drawn to porch lights"
+    },
+    {
+      "w": "Ladybug",
+      "level": 1,
+      "clue": "Small red spotted garden helper"
+    },
+    {
+      "w": "Beetle",
+      "level": 1,
+      "clue": "Hard-shelled insect with many shapes"
+    },
+    {
+      "w": "Cricket",
+      "level": 1,
+      "clue": "Chirping jumper heard on warm nights"
+    },
+    {
+      "w": "Flea",
+      "level": 1,
+      "clue": "Tiny jumper that can bother furry pets"
+    },
+    {
+      "w": "Tick",
+      "level": 1,
+      "clue": "Tiny outdoor crawler that should be removed carefully"
+    },
+    {
+      "w": "Aphid",
+      "level": 1,
+      "clue": "Tiny plant-sipping insect"
+    },
+    {
+      "w": "Cicada",
+      "level": 1,
+      "clue": "Loud summer insect that leaves a shell behind"
+    },
+    {
+      "w": "Termite",
+      "level": 1,
+      "clue": "Pale insect that eats dead wood"
+    },
+    {
+      "w": "Earwig",
+      "level": 1,
+      "clue": "Small crawler with pincers on its back end"
+    },
+    {
+      "w": "Weevil",
+      "level": 1,
+      "clue": "Small beetle with a long snout"
+    },
+    {
+      "w": "Gnat",
+      "level": 1,
+      "clue": "Tiny flying insect that gathers in swarms"
+    },
+    {
+      "w": "Mosquito",
+      "level": 1,
+      "clue": "Tiny buzzing insect found near still water"
+    },
+    {
+      "w": "Firefly",
+      "level": 1,
+      "clue": "Blinking insect that glows at dusk"
+    },
+    {
+      "w": "Dragonfly",
+      "level": 1,
+      "clue": "Fast insect with four clear wings"
+    },
+    {
+      "w": "Worm",
+      "level": 1,
+      "clue": "Soft soil crawler that helps gardens"
+    },
+    {
+      "w": "Grub",
+      "level": 1,
+      "clue": "Soft young insect often found in soil"
+    },
+    {
+      "w": "Katydid",
+      "level": 1,
+      "clue": "Green leaflike insect that sings at night"
+    },
+    {
+      "w": "Mantis",
+      "level": 1,
+      "clue": "Long-legged insect that holds its front legs folded"
+    },
+    {
+      "w": "Butterfly",
+      "level": 2,
+      "clue": "Colorful insect that starts as a caterpillar"
+    },
+    {
+      "w": "Cockroach",
+      "level": 2,
+      "clue": "Flat fast insect that likes crumbs and dark places"
+    },
+    {
+      "w": "Damselfly",
+      "level": 2,
+      "clue": "Slim pond insect that rests with wings together"
+    },
+    {
+      "w": "Lacewing",
+      "level": 2,
+      "clue": "Delicate green insect with see-through wings"
+    },
+    {
+      "w": "Mayfly",
+      "level": 2,
+      "clue": "Short-lived insect often seen near rivers"
+    },
+    {
+      "w": "Leafhopper",
+      "level": 2,
+      "clue": "Tiny jumper that springs from plants"
+    },
+    {
+      "w": "Stinkbug",
+      "level": 2,
+      "clue": "Shield-shaped insect with a strong smell"
+    },
+    {
+      "w": "Honeybee",
+      "level": 2,
+      "clue": "Hive insect that makes a sweet golden food"
+    },
+    {
+      "w": "Bumblebee",
+      "level": 2,
+      "clue": "Fuzzy buzzing pollinator"
+    },
+    {
+      "w": "Hornet",
+      "level": 2,
+      "clue": "Large striped insect related to wasps"
+    },
+    {
+      "w": "Yellowjacket",
+      "level": 2,
+      "clue": "Bold striped insect often seen at picnics"
+    },
+    {
+      "w": "Silverfish",
+      "level": 2,
+      "clue": "Silvery indoor insect that wiggles quickly"
+    },
+    {
+      "w": "Dobsonfly",
+      "level": 2,
+      "clue": "Large winged insect found near streams"
+    },
+    {
+      "w": "Stonefly",
+      "level": 2,
+      "clue": "Stream insect that needs clean water"
+    },
+    {
+      "w": "Caddisfly",
+      "level": 2,
+      "clue": "Water insect whose young build tiny cases"
+    },
+    {
+      "w": "Pillbug",
+      "level": 2,
+      "clue": "Gray garden crawler that rolls into a ball"
+    },
+    {
+      "w": "Sowbug",
+      "level": 2,
+      "clue": "Small gray garden crawler that likes damp spots"
+    },
+    {
+      "w": "Spittlebug",
+      "level": 2,
+      "clue": "Plant insect whose young hide in bubbly foam"
+    },
+    {
+      "w": "Monarch",
+      "level": 3,
+      "clue": "Orange-and-black butterfly that migrates far"
+    },
+    {
+      "w": "Swallowtail",
+      "level": 3,
+      "clue": "Butterfly with tail-like tips on its wings"
+    },
+    {
+      "w": "Morpho",
+      "level": 3,
+      "clue": "Tropical butterfly with bright blue wings"
+    },
+    {
+      "w": "Tarantula",
+      "level": 3,
+      "clue": "Large hairy spider kept by some experts"
+    },
+    {
+      "w": "Scorpion",
+      "level": 3,
+      "clue": "Desert arachnid with pincers and a curved tail"
+    },
+    {
+      "w": "Centipede",
+      "level": 3,
+      "clue": "Many-legged hunter with one pair of legs per segment"
+    },
+    {
+      "w": "Millipede",
+      "level": 3,
+      "clue": "Many-legged recycler that curls when bothered"
+    },
+    {
+      "w": "Springtail",
+      "level": 3,
+      "clue": "Tiny jumper that lives in soil and leaf litter"
+    },
+    {
+      "w": "Water Strider",
+      "level": 3,
+      "clue": "Pond insect that skates across the surface"
+    },
+    {
+      "w": "Backswimmer",
+      "level": 3,
+      "clue": "Water insect that swims upside down"
+    },
+    {
+      "w": "Whirligig",
+      "level": 3,
+      "clue": "Shiny beetle that spins on pond surfaces"
+    },
+    {
+      "w": "Assassin Bug",
+      "level": 3,
+      "clue": "Long-beaked insect that hunts other insects"
+    }
+  ]
+}

@@ -1,0 +1,810 @@
+{
+  "version": "oewn2025-scowl2020-1",
+  "generatedAt": "2026-09-27T18:16:48.717Z",
+  "sources": [
+    {
+      "name": "Open English WordNet",
+      "version": "2025 core edition",
+      "license": "CC BY 4.0",
+      "url": "https://github.com/globalwordnet/english-wordnet/releases/tag/2025-edition"
+    },
+    {
+      "name": "SCOWL",
+      "version": "2020.12.07",
+      "license": "Permissive/MIT-like",
+      "url": "https://sourceforge.net/projects/wordlist/files/SCOWL/2020.12.07/"
+    },
+    {
+      "name": "LDNOOBW blocklist",
+      "version": "encoded list stored in src/core/data/blocklist.json",
+      "license": "CC BY 4.0",
+      "url": "https://github.com/LDNOOBW/List-of-Dirty-Naughty-Obscene-and-Otherwise-Bad-Words"
+    }
+  ],
+  "categories": [
+    {
+      "id": "mammals",
+      "name": "Mammals",
+      "emoji": "🐻",
+      "group": "Animals",
+      "keywords": [
+        "animal",
+        "mammal",
+        "wildlife"
+      ],
+      "count": 400,
+      "file": "cat/mammals.json"
+    },
+    {
+      "id": "dog-breeds",
+      "name": "Dog breeds",
+      "emoji": "🐶",
+      "group": "Animals",
+      "keywords": [
+        "dog",
+        "breed",
+        "pet"
+      ],
+      "count": 56,
+      "file": "cat/dog-breeds.json"
+    },
+    {
+      "id": "cats",
+      "name": "Cats",
+      "emoji": "🐱",
+      "group": "Animals",
+      "keywords": [
+        "cat",
+        "feline",
+        "wildcat"
+      ],
+      "count": 37,
+      "file": "cat/cats.json"
+    },
+    {
+      "id": "birds",
+      "name": "Birds",
+      "emoji": "🐦",
+      "group": "Animals",
+      "keywords": [
+        "bird",
+        "avian",
+        "feather"
+      ],
+      "count": 389,
+      "file": "cat/birds.json"
+    },
+    {
+      "id": "birds-of-prey",
+      "name": "Birds of prey",
+      "emoji": "🦅",
+      "group": "Animals",
+      "keywords": [
+        "raptor",
+        "eagle",
+        "hawk",
+        "owl"
+      ],
+      "count": 45,
+      "file": "cat/birds-of-prey.json"
+    },
+    {
+      "id": "fish",
+      "name": "Fish",
+      "emoji": "🐟",
+      "group": "Animals",
+      "keywords": [
+        "fish",
+        "aquatic",
+        "ocean"
+      ],
+      "count": 230,
+      "file": "cat/fish.json"
+    },
+    {
+      "id": "reptiles",
+      "name": "Reptiles",
+      "emoji": "🦎",
+      "group": "Animals",
+      "keywords": [
+        "reptile",
+        "scales",
+        "cold-blooded"
+      ],
+      "count": 136,
+      "file": "cat/reptiles.json"
+    },
+    {
+      "id": "snakes",
+      "name": "Snakes",
+      "emoji": "🐍",
+      "group": "Animals",
+      "keywords": [
+        "snake",
+        "serpent",
+        "reptile"
+      ],
+      "count": 64,
+      "file": "cat/snakes.json"
+    },
+    {
+      "id": "lizards",
+      "name": "Lizards",
+      "emoji": "🦎",
+      "group": "Animals",
+      "keywords": [
+        "lizard",
+        "reptile",
+        "gecko"
+      ],
+      "count": 35,
+      "file": "cat/lizards.json"
+    },
+    {
+      "id": "amphibians",
+      "name": "Amphibians",
+      "emoji": "🐸",
+      "group": "Animals",
+      "keywords": [
+        "frog",
+        "toad",
+        "newt"
+      ],
+      "count": 31,
+      "file": "cat/amphibians.json"
+    },
+    {
+      "id": "insects",
+      "name": "Insects",
+      "emoji": "🐞",
+      "group": "Animals",
+      "keywords": [
+        "insect",
+        "bug",
+        "arthropod"
+      ],
+      "count": 220,
+      "file": "cat/insects.json"
+    },
+    {
+      "id": "butterflies-moths",
+      "name": "Butterflies & moths",
+      "emoji": "🦋",
+      "group": "Animals",
+      "keywords": [
+        "butterfly",
+        "moth",
+        "insect"
+      ],
+      "count": 40,
+      "file": "cat/butterflies-moths.json"
+    },
+    {
+      "id": "spiders-arachnids",
+      "name": "Spiders & arachnids",
+      "emoji": "🕷️",
+      "group": "Animals",
+      "keywords": [
+        "spider",
+        "arachnid",
+        "scorpion"
+      ],
+      "count": 25,
+      "file": "cat/spiders-arachnids.json"
+    },
+    {
+      "id": "crustaceans-shellfish",
+      "name": "Crustaceans & shellfish",
+      "emoji": "🦀",
+      "group": "Animals",
+      "keywords": [
+        "crab",
+        "lobster",
+        "mollusk",
+        "shellfish"
+      ],
+      "count": 94,
+      "file": "cat/crustaceans-shellfish.json"
+    },
+    {
+      "id": "dinosaurs",
+      "name": "Dinosaurs",
+      "emoji": "🦖",
+      "group": "Animals",
+      "keywords": [
+        "dinosaur",
+        "prehistoric",
+        "fossil"
+      ],
+      "count": 9,
+      "file": "cat/dinosaurs.json"
+    },
+    {
+      "id": "trees",
+      "name": "Trees",
+      "emoji": "🌳",
+      "group": "Plants",
+      "keywords": [
+        "tree",
+        "forest",
+        "wood"
+      ],
+      "count": 400,
+      "file": "cat/trees.json"
+    },
+    {
+      "id": "flowers",
+      "name": "Flowers",
+      "emoji": "🌸",
+      "group": "Plants",
+      "keywords": [
+        "flower",
+        "bloom",
+        "garden"
+      ],
+      "count": 167,
+      "file": "cat/flowers.json"
+    },
+    {
+      "id": "herbs-spices",
+      "name": "Herbs & spices",
+      "emoji": "🌿",
+      "group": "Plants",
+      "keywords": [
+        "herb",
+        "spice",
+        "seasoning"
+      ],
+      "count": 36,
+      "file": "cat/herbs-spices.json"
+    },
+    {
+      "id": "fruits",
+      "name": "Fruits",
+      "emoji": "🍎",
+      "group": "Food & Drink",
+      "keywords": [
+        "fruit",
+        "produce",
+        "sweet"
+      ],
+      "count": 111,
+      "file": "cat/fruits.json"
+    },
+    {
+      "id": "berries",
+      "name": "Berries",
+      "emoji": "🫐",
+      "group": "Food & Drink",
+      "keywords": [
+        "berry",
+        "fruit",
+        "jam"
+      ],
+      "count": 17,
+      "file": "cat/berries.json"
+    },
+    {
+      "id": "vegetables",
+      "name": "Vegetables",
+      "emoji": "🥕",
+      "group": "Food & Drink",
+      "keywords": [
+        "vegetable",
+        "produce",
+        "garden"
+      ],
+      "count": 157,
+      "file": "cat/vegetables.json"
+    },
+    {
+      "id": "nuts",
+      "name": "Nuts",
+      "emoji": "🥜",
+      "group": "Food & Drink",
+      "keywords": [
+        "nut",
+        "seed",
+        "snack"
+      ],
+      "count": 20,
+      "file": "cat/nuts.json"
+    },
+    {
+      "id": "grains-cereals",
+      "name": "Grains & cereals",
+      "emoji": "🌾",
+      "group": "Food & Drink",
+      "keywords": [
+        "grain",
+        "cereal",
+        "wheat",
+        "rice"
+      ],
+      "count": 22,
+      "file": "cat/grains-cereals.json"
+    },
+    {
+      "id": "breads",
+      "name": "Breads",
+      "emoji": "🍞",
+      "group": "Food & Drink",
+      "keywords": [
+        "bread",
+        "baking",
+        "loaf"
+      ],
+      "count": 88,
+      "file": "cat/breads.json"
+    },
+    {
+      "id": "cheeses",
+      "name": "Cheeses",
+      "emoji": "🧀",
+      "group": "Food & Drink",
+      "keywords": [
+        "cheese",
+        "dairy",
+        "food"
+      ],
+      "count": 22,
+      "file": "cat/cheeses.json"
+    },
+    {
+      "id": "desserts-sweets",
+      "name": "Desserts & sweets",
+      "emoji": "🍰",
+      "group": "Food & Drink",
+      "keywords": [
+        "dessert",
+        "sweet",
+        "treat"
+      ],
+      "count": 117,
+      "file": "cat/desserts-sweets.json"
+    },
+    {
+      "id": "candy",
+      "name": "Candy",
+      "emoji": "🍬",
+      "group": "Food & Drink",
+      "keywords": [
+        "candy",
+        "confection",
+        "sweet"
+      ],
+      "count": 55,
+      "file": "cat/candy.json"
+    },
+    {
+      "id": "beverages",
+      "name": "Beverages",
+      "emoji": "🥤",
+      "group": "Food & Drink",
+      "keywords": [
+        "drink",
+        "beverage",
+        "juice"
+      ],
+      "count": 84,
+      "file": "cat/beverages.json"
+    },
+    {
+      "id": "pasta",
+      "name": "Pasta",
+      "emoji": "🍝",
+      "group": "Food & Drink",
+      "keywords": [
+        "pasta",
+        "noodle",
+        "food"
+      ],
+      "count": 11,
+      "file": "cat/pasta.json"
+    },
+    {
+      "id": "musical-instruments",
+      "name": "Musical instruments",
+      "emoji": "🎺",
+      "group": "Things & Tools",
+      "keywords": [
+        "music",
+        "instrument",
+        "sound"
+      ],
+      "count": 156,
+      "file": "cat/musical-instruments.json"
+    },
+    {
+      "id": "tools",
+      "name": "Tools",
+      "emoji": "🛠️",
+      "group": "Things & Tools",
+      "keywords": [
+        "tool",
+        "workshop",
+        "implement"
+      ],
+      "count": 289,
+      "file": "cat/tools.json"
+    },
+    {
+      "id": "kitchen-utensils",
+      "name": "Kitchen utensils",
+      "emoji": "🍴",
+      "group": "Things & Tools",
+      "keywords": [
+        "kitchen",
+        "utensil",
+        "cooking"
+      ],
+      "count": 86,
+      "file": "cat/kitchen-utensils.json"
+    },
+    {
+      "id": "containers",
+      "name": "Containers",
+      "emoji": "📦",
+      "group": "Things & Tools",
+      "keywords": [
+        "container",
+        "box",
+        "holder"
+      ],
+      "count": 400,
+      "file": "cat/containers.json"
+    },
+    {
+      "id": "furniture",
+      "name": "Furniture",
+      "emoji": "🪑",
+      "group": "Things & Tools",
+      "keywords": [
+        "furniture",
+        "chair",
+        "table"
+      ],
+      "count": 183,
+      "file": "cat/furniture.json"
+    },
+    {
+      "id": "vehicles",
+      "name": "Vehicles",
+      "emoji": "🚗",
+      "group": "Things & Tools",
+      "keywords": [
+        "vehicle",
+        "transport",
+        "car"
+      ],
+      "count": 400,
+      "file": "cat/vehicles.json"
+    },
+    {
+      "id": "boats-ships",
+      "name": "Boats & ships",
+      "emoji": "⛵",
+      "group": "Things & Tools",
+      "keywords": [
+        "boat",
+        "ship",
+        "watercraft"
+      ],
+      "count": 141,
+      "file": "cat/boats-ships.json"
+    },
+    {
+      "id": "aircraft",
+      "name": "Aircraft",
+      "emoji": "✈️",
+      "group": "Things & Tools",
+      "keywords": [
+        "aircraft",
+        "plane",
+        "flying"
+      ],
+      "count": 49,
+      "file": "cat/aircraft.json"
+    },
+    {
+      "id": "buildings",
+      "name": "Buildings",
+      "emoji": "🏫",
+      "group": "Things & Tools",
+      "keywords": [
+        "building",
+        "structure",
+        "place"
+      ],
+      "count": 266,
+      "file": "cat/buildings.json"
+    },
+    {
+      "id": "clothing",
+      "name": "Clothing",
+      "emoji": "👕",
+      "group": "Things & Tools",
+      "keywords": [
+        "clothing",
+        "clothes",
+        "wear"
+      ],
+      "count": 400,
+      "file": "cat/clothing.json"
+    },
+    {
+      "id": "footwear",
+      "name": "Footwear",
+      "emoji": "👟",
+      "group": "Things & Tools",
+      "keywords": [
+        "footwear",
+        "shoe",
+        "boot"
+      ],
+      "count": 21,
+      "file": "cat/footwear.json"
+    },
+    {
+      "id": "hats",
+      "name": "Hats",
+      "emoji": "🎩",
+      "group": "Things & Tools",
+      "keywords": [
+        "hat",
+        "cap",
+        "headwear"
+      ],
+      "count": 40,
+      "file": "cat/hats.json"
+    },
+    {
+      "id": "fabrics",
+      "name": "Fabrics",
+      "emoji": "🧵",
+      "group": "Things & Tools",
+      "keywords": [
+        "fabric",
+        "cloth",
+        "textile"
+      ],
+      "count": 217,
+      "file": "cat/fabrics.json"
+    },
+    {
+      "id": "toys",
+      "name": "Toys",
+      "emoji": "🧸",
+      "group": "Things & Tools",
+      "keywords": [
+        "toy",
+        "plaything",
+        "game"
+      ],
+      "count": 56,
+      "file": "cat/toys.json"
+    },
+    {
+      "id": "games",
+      "name": "Games",
+      "emoji": "🎲",
+      "group": "Things & Tools",
+      "keywords": [
+        "game",
+        "contest",
+        "play"
+      ],
+      "count": 72,
+      "file": "cat/games.json"
+    },
+    {
+      "id": "sports",
+      "name": "Sports",
+      "emoji": "⚽",
+      "group": "People & Activities",
+      "keywords": [
+        "sport",
+        "athletics",
+        "competition"
+      ],
+      "count": 158,
+      "file": "cat/sports.json"
+    },
+    {
+      "id": "dances",
+      "name": "Dances",
+      "emoji": "💃",
+      "group": "People & Activities",
+      "keywords": [
+        "dance",
+        "movement",
+        "music"
+      ],
+      "count": 91,
+      "file": "cat/dances.json"
+    },
+    {
+      "id": "occupations",
+      "name": "Occupations",
+      "emoji": "👩‍🏫",
+      "group": "People & Activities",
+      "keywords": [
+        "job",
+        "worker",
+        "career"
+      ],
+      "count": 400,
+      "file": "cat/occupations.json"
+    },
+    {
+      "id": "family-relatives",
+      "name": "Family relatives",
+      "emoji": "👪",
+      "group": "People & Activities",
+      "keywords": [
+        "family",
+        "relative",
+        "relation"
+      ],
+      "count": 137,
+      "file": "cat/family-relatives.json"
+    },
+    {
+      "id": "body-parts",
+      "name": "Body parts",
+      "emoji": "🖐️",
+      "group": "Science & Nature",
+      "keywords": [
+        "body",
+        "anatomy",
+        "part"
+      ],
+      "count": 400,
+      "file": "cat/body-parts.json"
+    },
+    {
+      "id": "bones",
+      "name": "Bones",
+      "emoji": "🦴",
+      "group": "Science & Nature",
+      "keywords": [
+        "bone",
+        "skeleton",
+        "anatomy"
+      ],
+      "count": 99,
+      "file": "cat/bones.json"
+    },
+    {
+      "id": "gemstones",
+      "name": "Gemstones",
+      "emoji": "💎",
+      "group": "Science & Nature",
+      "keywords": [
+        "gem",
+        "gemstone",
+        "jewel"
+      ],
+      "count": 35,
+      "file": "cat/gemstones.json"
+    },
+    {
+      "id": "minerals",
+      "name": "Minerals",
+      "emoji": "🔬",
+      "group": "Science & Nature",
+      "keywords": [
+        "mineral",
+        "crystal",
+        "geology"
+      ],
+      "count": 82,
+      "file": "cat/minerals.json"
+    },
+    {
+      "id": "rocks",
+      "name": "Rocks",
+      "emoji": "🪨",
+      "group": "Science & Nature",
+      "keywords": [
+        "rock",
+        "stone",
+        "geology"
+      ],
+      "count": 58,
+      "file": "cat/rocks.json"
+    },
+    {
+      "id": "metals-elements",
+      "name": "Metals & elements",
+      "emoji": "⚗️",
+      "group": "Science & Nature",
+      "keywords": [
+        "metal",
+        "element",
+        "chemistry"
+      ],
+      "count": 124,
+      "file": "cat/metals-elements.json"
+    },
+    {
+      "id": "colors",
+      "name": "Colors",
+      "emoji": "🎨",
+      "group": "Science & Nature",
+      "keywords": [
+        "color",
+        "colour",
+        "hue"
+      ],
+      "count": 156,
+      "file": "cat/colors.json"
+    },
+    {
+      "id": "geometric-shapes",
+      "name": "Geometric shapes",
+      "emoji": "🔷",
+      "group": "Science & Nature",
+      "keywords": [
+        "shape",
+        "geometry",
+        "figure"
+      ],
+      "count": 87,
+      "file": "cat/geometric-shapes.json"
+    },
+    {
+      "id": "weather-phenomena",
+      "name": "Weather phenomena",
+      "emoji": "🌦️",
+      "group": "Science & Nature",
+      "keywords": [
+        "weather",
+        "storm",
+        "cloud"
+      ],
+      "count": 123,
+      "file": "cat/weather-phenomena.json"
+    },
+    {
+      "id": "bodies-of-water",
+      "name": "Bodies of water",
+      "emoji": "🌊",
+      "group": "Science & Nature",
+      "keywords": [
+        "water",
+        "river",
+        "lake",
+        "ocean"
+      ],
+      "count": 63,
+      "file": "cat/bodies-of-water.json"
+    },
+    {
+      "id": "landforms",
+      "name": "Landforms",
+      "emoji": "⛰️",
+      "group": "Science & Nature",
+      "keywords": [
+        "landform",
+        "geology",
+        "mountain"
+      ],
+      "count": 182,
+      "file": "cat/landforms.json"
+    },
+    {
+      "id": "school-subjects",
+      "name": "School subjects",
+      "emoji": "📚",
+      "group": "Science & Nature",
+      "keywords": [
+        "school",
+        "subject",
+        "discipline"
+      ],
+      "count": 205,
+      "file": "cat/school-subjects.json"
+    }
+  ]
+}

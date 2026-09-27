@@ -1,0 +1,259 @@
+{
+  "id": "human-body",
+  "name": "Human Body",
+  "emoji": "🫀",
+  "category": "Science",
+  "description": "Body parts, organs, and senses",
+  "words": [
+    {
+      "w": "Eye",
+      "level": 1,
+      "clue": "Sees colors, shapes, and light"
+    },
+    {
+      "w": "Nose",
+      "level": 1,
+      "clue": "Smells flowers, food, and fresh air"
+    },
+    {
+      "w": "Mouth",
+      "level": 1,
+      "clue": "Opening used for eating and speaking"
+    },
+    {
+      "w": "Hand",
+      "level": 1,
+      "clue": "Part with fingers for holding things"
+    },
+    {
+      "w": "Foot",
+      "level": 1,
+      "clue": "Part that fits inside a shoe"
+    },
+    {
+      "w": "Leg",
+      "level": 1,
+      "clue": "Limb used for standing and walking"
+    },
+    {
+      "w": "Arm",
+      "level": 1,
+      "clue": "Limb used for reaching and lifting"
+    },
+    {
+      "w": "Knee",
+      "level": 1,
+      "clue": "Bending joint in the middle of a leg"
+    },
+    {
+      "w": "Elbow",
+      "level": 1,
+      "clue": "Bending joint in the middle of an arm"
+    },
+    {
+      "w": "Hair",
+      "level": 1,
+      "clue": "Strands that grow from the head"
+    },
+    {
+      "w": "Skin",
+      "level": 1,
+      "clue": "Outer covering that helps protect the body"
+    },
+    {
+      "w": "Tooth",
+      "level": 1,
+      "clue": "Hard white part used for biting food"
+    },
+    {
+      "w": "Tongue",
+      "level": 1,
+      "clue": "Muscle that helps taste and move food"
+    },
+    {
+      "w": "Brain",
+      "level": 1,
+      "clue": "Organ that helps you think and remember"
+    },
+    {
+      "w": "Heart",
+      "level": 1,
+      "clue": "Organ that pumps blood"
+    },
+    {
+      "w": "Lung",
+      "level": 1,
+      "clue": "Organ that helps you breathe"
+    },
+    {
+      "w": "Bone",
+      "level": 1,
+      "clue": "Hard part that helps support the body"
+    },
+    {
+      "w": "Rib",
+      "level": 1,
+      "clue": "Curved chest bone that helps protect organs"
+    },
+    {
+      "w": "Neck",
+      "level": 1,
+      "clue": "Part that holds up the head"
+    },
+    {
+      "w": "Back",
+      "level": 1,
+      "clue": "Rear side of the body from shoulders to hips"
+    },
+    {
+      "w": "Shoulder",
+      "level": 2,
+      "clue": "Joint where an arm meets the body"
+    },
+    {
+      "w": "Finger",
+      "level": 2,
+      "clue": "One of five wiggly parts on a hand"
+    },
+    {
+      "w": "Thumb",
+      "level": 2,
+      "clue": "Short strong digit that helps grip"
+    },
+    {
+      "w": "Wrist",
+      "level": 2,
+      "clue": "Joint between a hand and an arm"
+    },
+    {
+      "w": "Ankle",
+      "level": 2,
+      "clue": "Joint between a foot and a leg"
+    },
+    {
+      "w": "Heel",
+      "level": 2,
+      "clue": "Back part of a foot"
+    },
+    {
+      "w": "Cheek",
+      "level": 2,
+      "clue": "Soft side of the face"
+    },
+    {
+      "w": "Chin",
+      "level": 2,
+      "clue": "Lower front part of the face"
+    },
+    {
+      "w": "Forehead",
+      "level": 2,
+      "clue": "Area above the eyes"
+    },
+    {
+      "w": "Muscle",
+      "level": 2,
+      "clue": "Tissue that tightens to move the body"
+    },
+    {
+      "w": "Skeleton",
+      "level": 2,
+      "clue": "Full frame of bones inside the body"
+    },
+    {
+      "w": "Stomach",
+      "level": 2,
+      "clue": "Organ that churns food after you swallow"
+    },
+    {
+      "w": "Liver",
+      "level": 2,
+      "clue": "Organ that helps clean blood and store energy"
+    },
+    {
+      "w": "Kidney",
+      "level": 2,
+      "clue": "Organ that filters blood and makes urine"
+    },
+    {
+      "w": "Nerve",
+      "level": 2,
+      "clue": "Body fiber that carries messages"
+    },
+    {
+      "w": "Senses",
+      "level": 2,
+      "clue": "Ways we notice the world around us"
+    },
+    {
+      "w": "Hearing",
+      "level": 2,
+      "clue": "Sense that uses the ears to notice sound"
+    },
+    {
+      "w": "Balance",
+      "level": 2,
+      "clue": "Ability to stay steady while moving"
+    },
+    {
+      "w": "Tendon",
+      "level": 3,
+      "clue": "Tough cord connecting muscle to bone"
+    },
+    {
+      "w": "Ligament",
+      "level": 3,
+      "clue": "Tough band connecting bones at a joint"
+    },
+    {
+      "w": "Cartilage",
+      "level": 3,
+      "clue": "Smooth flexible tissue at joints and ears"
+    },
+    {
+      "w": "Diaphragm",
+      "level": 3,
+      "clue": "Breathing muscle below the lungs"
+    },
+    {
+      "w": "Esophagus",
+      "level": 3,
+      "clue": "Tube that carries food from throat to belly"
+    },
+    {
+      "w": "Intestine",
+      "level": 3,
+      "clue": "Long tube that helps absorb nutrients"
+    },
+    {
+      "w": "Artery",
+      "level": 3,
+      "clue": "Blood vessel that carries blood away from the heart"
+    },
+    {
+      "w": "Vein",
+      "level": 3,
+      "clue": "Blood vessel that carries blood back to the heart"
+    },
+    {
+      "w": "Capillary",
+      "level": 3,
+      "clue": "Tiny blood vessel where materials move in and out"
+    },
+    {
+      "w": "Pupil",
+      "level": 3,
+      "clue": "Dark opening that lets light into the eye"
+    },
+    {
+      "w": "Retina",
+      "level": 3,
+      "clue": "Light-sensing layer at the back of the eye"
+    },
+    {
+      "w": "Eardrum",
+      "level": 3,
+      "clue": "Thin part that vibrates when sound arrives"
+    }
+  ]
+}

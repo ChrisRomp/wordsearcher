@@ -1,0 +1,259 @@
+{
+  "id": "rainforest",
+  "name": "Rainforest",
+  "emoji": "🦜",
+  "category": "Animals",
+  "description": "Rainforest animals and plants from warm, leafy habitats",
+  "words": [
+    {
+      "w": "Sloth",
+      "level": 1,
+      "clue": "Slow tree climber with long curved claws"
+    },
+    {
+      "w": "Monkey",
+      "level": 1,
+      "clue": "Playful tree animal with grasping hands"
+    },
+    {
+      "w": "Jaguar",
+      "level": 1,
+      "clue": "Spotted big cat from warm forests"
+    },
+    {
+      "w": "Toucan",
+      "level": 1,
+      "clue": "Bird with a huge colorful bill"
+    },
+    {
+      "w": "Parrot",
+      "level": 1,
+      "clue": "Bright bird that can copy sounds"
+    },
+    {
+      "w": "Macaw",
+      "level": 1,
+      "clue": "Large colorful parrot with a long tail"
+    },
+    {
+      "w": "Ape",
+      "level": 1,
+      "clue": "Tailless primate that can swing or climb"
+    },
+    {
+      "w": "Snake",
+      "level": 1,
+      "clue": "Legless reptile that slides through leaves"
+    },
+    {
+      "w": "Lizard",
+      "level": 1,
+      "clue": "Scaly reptile that basks on branches"
+    },
+    {
+      "w": "Gecko",
+      "level": 1,
+      "clue": "Small lizard with sticky toe pads"
+    },
+    {
+      "w": "Bat",
+      "level": 1,
+      "clue": "Flying mammal that may eat fruit or insects"
+    },
+    {
+      "w": "Tapir",
+      "level": 1,
+      "clue": "Hoofed animal with a short trunk"
+    },
+    {
+      "w": "Otter",
+      "level": 1,
+      "clue": "Playful swimmer found in forest rivers"
+    },
+    {
+      "w": "Orchid",
+      "level": 1,
+      "clue": "Colorful flower that can grow on tree branches"
+    },
+    {
+      "w": "Fern",
+      "level": 1,
+      "clue": "Leafy plant with fronds instead of flowers"
+    },
+    {
+      "w": "Moss",
+      "level": 1,
+      "clue": "Soft green plant that carpets damp places"
+    },
+    {
+      "w": "Vine",
+      "level": 1,
+      "clue": "Climbing plant that wraps around trunks"
+    },
+    {
+      "w": "Cocoa",
+      "level": 1,
+      "clue": "Tree crop used to make chocolate"
+    },
+    {
+      "w": "Banana",
+      "level": 1,
+      "clue": "Tall plant with bunches of yellow food"
+    },
+    {
+      "w": "Kapok",
+      "level": 1,
+      "clue": "Giant tree with fluffy seed fibers"
+    },
+    {
+      "w": "Anaconda",
+      "level": 2,
+      "clue": "Huge water snake from South America"
+    },
+    {
+      "w": "Caiman",
+      "level": 2,
+      "clue": "Small crocodile relative from tropical rivers"
+    },
+    {
+      "w": "Ocelot",
+      "level": 2,
+      "clue": "Small spotted wild cat"
+    },
+    {
+      "w": "Lemur",
+      "level": 2,
+      "clue": "Big-eyed primate from Madagascar forests"
+    },
+    {
+      "w": "Iguana",
+      "level": 2,
+      "clue": "Large lizard that often eats leaves"
+    },
+    {
+      "w": "Capybara",
+      "level": 2,
+      "clue": "Largest rodent in the world, often near water"
+    },
+    {
+      "w": "Anteater",
+      "level": 2,
+      "clue": "Long-snouted animal that eats tiny insects"
+    },
+    {
+      "w": "Armadillo",
+      "level": 2,
+      "clue": "Armored mammal that can dig well"
+    },
+    {
+      "w": "Piranha",
+      "level": 2,
+      "clue": "Small river fish with sharp teeth"
+    },
+    {
+      "w": "Hornbill",
+      "level": 2,
+      "clue": "Bird with a large curved bill"
+    },
+    {
+      "w": "Tarantula",
+      "level": 2,
+      "clue": "Large hairy spider from warm places"
+    },
+    {
+      "w": "Butterfly",
+      "level": 2,
+      "clue": "Colorful insect often seen near flowers"
+    },
+    {
+      "w": "Dragonfly",
+      "level": 2,
+      "clue": "Fast four-winged insect near forest streams"
+    },
+    {
+      "w": "Bromeliad",
+      "level": 2,
+      "clue": "Plant that can hold pools of water in its leaves"
+    },
+    {
+      "w": "Bamboo",
+      "level": 2,
+      "clue": "Fast-growing grass with hollow stems"
+    },
+    {
+      "w": "Mahogany",
+      "level": 2,
+      "clue": "Tall hardwood tree with valuable wood"
+    },
+    {
+      "w": "Rubber Tree",
+      "level": 2,
+      "clue": "Forest plant tapped for stretchy sap"
+    },
+    {
+      "w": "Passion Fruit",
+      "level": 2,
+      "clue": "Tropical round food with sweet-tart pulp"
+    },
+    {
+      "w": "Okapi",
+      "level": 3,
+      "clue": "Striped forest relative of the giraffe"
+    },
+    {
+      "w": "Kinkajou",
+      "level": 3,
+      "clue": "Nocturnal mammal with a long curling tail"
+    },
+    {
+      "w": "Aye Aye",
+      "level": 3,
+      "clue": "Night primate with a very long finger"
+    },
+    {
+      "w": "Tarsier",
+      "level": 3,
+      "clue": "Tiny primate with huge eyes"
+    },
+    {
+      "w": "Harpy Eagle",
+      "level": 3,
+      "clue": "Powerful forest raptor with broad wings"
+    },
+    {
+      "w": "Poison Dart Frog",
+      "level": 3,
+      "clue": "Tiny bright amphibian from warm forests"
+    },
+    {
+      "w": "Strangler Fig",
+      "level": 3,
+      "clue": "Tree that starts high and sends roots downward"
+    },
+    {
+      "w": "Pitcher Plant",
+      "level": 3,
+      "clue": "Cup-shaped living thing that traps insects"
+    },
+    {
+      "w": "Rafflesia",
+      "level": 3,
+      "clue": "Giant blossom known for a strong smell"
+    },
+    {
+      "w": "Epiphyte",
+      "level": 3,
+      "clue": "Plant that grows on another plant for support"
+    },
+    {
+      "w": "Understory",
+      "level": 3,
+      "clue": "Shady forest layer below the treetops"
+    },
+    {
+      "w": "Canopy",
+      "level": 3,
+      "clue": "Leafy roof layer where many animals live"
+    }
+  ]
+}

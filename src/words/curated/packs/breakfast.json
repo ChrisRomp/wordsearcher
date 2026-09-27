@@ -1,0 +1,259 @@
+{
+  "id": "breakfast",
+  "name": "Breakfast Foods",
+  "emoji": "🥞",
+  "category": "Food",
+  "description": "Morning meals and favorite breakfast bites",
+  "words": [
+    {
+      "w": "Egg",
+      "level": 1,
+      "clue": "Oval breakfast food from a chicken"
+    },
+    {
+      "w": "Toast",
+      "level": 1,
+      "clue": "Bread cooked until crisp and brown"
+    },
+    {
+      "w": "Cereal",
+      "level": 1,
+      "clue": "Crunchy bowl food often eaten with milk"
+    },
+    {
+      "w": "Milk",
+      "level": 1,
+      "clue": "Cold white drink poured on cereal"
+    },
+    {
+      "w": "Juice",
+      "level": 1,
+      "clue": "Sweet drink squeezed from fruit"
+    },
+    {
+      "w": "Bagel",
+      "level": 1,
+      "clue": "Ring-shaped bread with a chewy bite"
+    },
+    {
+      "w": "Muffin",
+      "level": 1,
+      "clue": "Small baked treat often served in a paper cup"
+    },
+    {
+      "w": "Waffle",
+      "level": 1,
+      "clue": "Grid-shaped morning treat"
+    },
+    {
+      "w": "Pancake",
+      "level": 1,
+      "clue": "Flat round griddle food"
+    },
+    {
+      "w": "Oatmeal",
+      "level": 1,
+      "clue": "Warm creamy bowl often topped with fruit"
+    },
+    {
+      "w": "Yogurt",
+      "level": 1,
+      "clue": "Creamy tangy food served in cups or bowls"
+    },
+    {
+      "w": "Granola",
+      "level": 1,
+      "clue": "Crunchy mix of oats, nuts, and dried fruit"
+    },
+    {
+      "w": "Butter",
+      "level": 1,
+      "clue": "Creamy spread for warm bread"
+    },
+    {
+      "w": "Jam",
+      "level": 1,
+      "clue": "Sweet spread made from cooked fruit"
+    },
+    {
+      "w": "Honey",
+      "level": 1,
+      "clue": "Sweet golden topping made by bees"
+    },
+    {
+      "w": "Syrup",
+      "level": 1,
+      "clue": "Sweet pourable topping for griddle foods"
+    },
+    {
+      "w": "Banana",
+      "level": 1,
+      "clue": "Long yellow food often sliced on cereal"
+    },
+    {
+      "w": "Apple",
+      "level": 1,
+      "clue": "Crunchy fruit sometimes served in slices"
+    },
+    {
+      "w": "Grits",
+      "level": 1,
+      "clue": "Warm ground-corn bowl popular in the South"
+    },
+    {
+      "w": "Biscuit",
+      "level": 1,
+      "clue": "Fluffy baked bread often served warm"
+    },
+    {
+      "w": "Omelet",
+      "level": 2,
+      "clue": "Folded cooked eggs with fillings inside"
+    },
+    {
+      "w": "Scramble",
+      "level": 2,
+      "clue": "Soft mixed eggs cooked in a pan"
+    },
+    {
+      "w": "Hashbrown",
+      "level": 2,
+      "clue": "Crispy shredded potato breakfast side"
+    },
+    {
+      "w": "Sausage",
+      "level": 2,
+      "clue": "Seasoned meat link or patty"
+    },
+    {
+      "w": "Bacon",
+      "level": 2,
+      "clue": "Crispy salty strip often served with eggs"
+    },
+    {
+      "w": "Parfait",
+      "level": 2,
+      "clue": "Layered cup with yogurt, fruit, and crunch"
+    },
+    {
+      "w": "Smoothie",
+      "level": 2,
+      "clue": "Blended drink made with fruit or yogurt"
+    },
+    {
+      "w": "Croissant",
+      "level": 2,
+      "clue": "Flaky crescent-shaped pastry"
+    },
+    {
+      "w": "Doughnut",
+      "level": 2,
+      "clue": "Sweet fried ring or filled treat"
+    },
+    {
+      "w": "Crepe",
+      "level": 2,
+      "clue": "Very thin pancake wrapped around fillings"
+    },
+    {
+      "w": "Porridge",
+      "level": 2,
+      "clue": "Warm soft grain bowl"
+    },
+    {
+      "w": "Muesli",
+      "level": 2,
+      "clue": "Cold oat mix with nuts and dried fruit"
+    },
+    {
+      "w": "Frittata",
+      "level": 2,
+      "clue": "Thick egg dish baked or cooked in a pan"
+    },
+    {
+      "w": "Quiche",
+      "level": 2,
+      "clue": "Savory egg pie with a crust"
+    },
+    {
+      "w": "Scone",
+      "level": 2,
+      "clue": "Crumbly baked treat served with spreads"
+    },
+    {
+      "w": "Fruit Salad",
+      "level": 2,
+      "clue": "Bowl of mixed fresh pieces from plants"
+    },
+    {
+      "w": "Cinnamon Roll",
+      "level": 2,
+      "clue": "Sweet spiral pastry with warm spice"
+    },
+    {
+      "w": "Raisin Bread",
+      "level": 2,
+      "clue": "Loaf slice with dried grapes inside"
+    },
+    {
+      "w": "Shakshuka",
+      "level": 3,
+      "clue": "Saucy tomato dish with eggs cooked on top"
+    },
+    {
+      "w": "Congee",
+      "level": 3,
+      "clue": "Soft rice porridge eaten in many countries"
+    },
+    {
+      "w": "Chilaquiles",
+      "level": 3,
+      "clue": "Tortilla chips simmered with sauce and toppings"
+    },
+    {
+      "w": "Huevos Rancheros",
+      "level": 3,
+      "clue": "Mexican morning plate with tortillas and sauce"
+    },
+    {
+      "w": "Lox",
+      "level": 3,
+      "clue": "Thin slices of cured salmon often served on a bagel"
+    },
+    {
+      "w": "Matzo Brei",
+      "level": 3,
+      "clue": "Pan-cooked dish made with softened crackers and eggs"
+    },
+    {
+      "w": "Dutch Baby",
+      "level": 3,
+      "clue": "Puffy oven pancake served in slices"
+    },
+    {
+      "w": "Acai Bowl",
+      "level": 3,
+      "clue": "Purple smoothie topped with fruit and crunch"
+    },
+    {
+      "w": "Overnight Oats",
+      "level": 3,
+      "clue": "Chilled oat mixture soaked before morning"
+    },
+    {
+      "w": "Arepa",
+      "level": 3,
+      "clue": "Corn cake split and filled for a morning meal"
+    },
+    {
+      "w": "Idli",
+      "level": 3,
+      "clue": "Soft steamed rice cakes from South India"
+    },
+    {
+      "w": "Dosa",
+      "level": 3,
+      "clue": "Thin crisp rice crepe from South India"
+    }
+  ]
+}

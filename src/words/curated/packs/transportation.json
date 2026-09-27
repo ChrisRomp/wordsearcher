@@ -1,0 +1,234 @@
+{
+  "id": "transportation",
+  "name": "Transportation",
+  "emoji": "🚂",
+  "category": "School & Community",
+  "description": "Vehicles and travel words for moving from place to place",
+  "words": [
+    {
+      "w": "Car",
+      "level": 1,
+      "clue": "A small road vehicle for families"
+    },
+    {
+      "w": "Bus",
+      "level": 1,
+      "clue": "A large road vehicle that carries many riders"
+    },
+    {
+      "w": "Bike",
+      "level": 1,
+      "clue": "A two-wheeled ride powered by pedals"
+    },
+    {
+      "w": "Train",
+      "level": 1,
+      "clue": "Rail cars pulled together along tracks"
+    },
+    {
+      "w": "Truck",
+      "level": 1,
+      "clue": "A road vehicle made to carry heavy things"
+    },
+    {
+      "w": "Boat",
+      "level": 1,
+      "clue": "A vehicle that floats on water"
+    },
+    {
+      "w": "Plane",
+      "level": 1,
+      "clue": "A flying vehicle with wings"
+    },
+    {
+      "w": "Taxi",
+      "level": 1,
+      "clue": "A hired car that takes riders where they ask"
+    },
+    {
+      "w": "Ship",
+      "level": 1,
+      "clue": "A large vehicle that travels on water"
+    },
+    {
+      "w": "Van",
+      "level": 1,
+      "clue": "A roomy road vehicle with space for people or gear"
+    },
+    {
+      "w": "Scooter",
+      "level": 1,
+      "clue": "A small ride with a platform and handlebar"
+    },
+    {
+      "w": "Wagon",
+      "level": 1,
+      "clue": "A four-wheeled cart pulled by hand or vehicle"
+    },
+    {
+      "w": "Sled",
+      "level": 1,
+      "clue": "A low rider that slides over ice or packed flakes"
+    },
+    {
+      "w": "Canoe",
+      "level": 1,
+      "clue": "A narrow watercraft moved with paddles"
+    },
+    {
+      "w": "Ferry",
+      "level": 1,
+      "clue": "A boat that carries people across water"
+    },
+    {
+      "w": "Tram",
+      "level": 1,
+      "clue": "A city rail vehicle powered by electricity"
+    },
+    {
+      "w": "Rocket",
+      "level": 1,
+      "clue": "A vehicle that blasts upward into space"
+    },
+    {
+      "w": "Skate",
+      "level": 1,
+      "clue": "A boot or board used for gliding"
+    },
+    {
+      "w": "Helicopter",
+      "level": 2,
+      "clue": "A flying vehicle with spinning blades on top"
+    },
+    {
+      "w": "Motorcycle",
+      "level": 2,
+      "clue": "A two-wheeled road vehicle with an engine"
+    },
+    {
+      "w": "Moped",
+      "level": 2,
+      "clue": "A small motorized two-wheeler"
+    },
+    {
+      "w": "Ambulance",
+      "level": 2,
+      "clue": "An emergency vehicle that carries patients"
+    },
+    {
+      "w": "Bulldozer",
+      "level": 2,
+      "clue": "A heavy machine that pushes dirt"
+    },
+    {
+      "w": "Monorail",
+      "level": 2,
+      "clue": "A train that runs on one rail"
+    },
+    {
+      "w": "Trolley",
+      "level": 2,
+      "clue": "A street vehicle that follows tracks or wires"
+    },
+    {
+      "w": "Gondola",
+      "level": 2,
+      "clue": "A small boat or hanging cable car"
+    },
+    {
+      "w": "Kayak",
+      "level": 2,
+      "clue": "A narrow watercraft paddled from a seated spot"
+    },
+    {
+      "w": "Raft",
+      "level": 2,
+      "clue": "A flat floating platform"
+    },
+    {
+      "w": "Bicycle",
+      "level": 2,
+      "clue": "A pedal-powered ride with two wheels"
+    },
+    {
+      "w": "Freighter",
+      "level": 2,
+      "clue": "A large vessel that carries cargo"
+    },
+    {
+      "w": "Tanker",
+      "level": 2,
+      "clue": "A large vessel that carries liquids"
+    },
+    {
+      "w": "Glider",
+      "level": 2,
+      "clue": "An aircraft that soars without an engine"
+    },
+    {
+      "w": "Locomotive",
+      "level": 2,
+      "clue": "An engine that pulls rail cars"
+    },
+    {
+      "w": "Rickshaw",
+      "level": 2,
+      "clue": "A small passenger cart often pulled or pedaled"
+    },
+    {
+      "w": "Catamaran",
+      "level": 3,
+      "clue": "A boat with two side-by-side hulls"
+    },
+    {
+      "w": "Hydrofoil",
+      "level": 3,
+      "clue": "A vessel lifted by winglike parts under water"
+    },
+    {
+      "w": "Maglev",
+      "level": 3,
+      "clue": "A train moved by magnets instead of regular wheels"
+    },
+    {
+      "w": "Funicular",
+      "level": 3,
+      "clue": "A cable railway that climbs a steep slope"
+    },
+    {
+      "w": "Aerial Lift",
+      "level": 3,
+      "clue": "Seats or cabins carried on a cable high above ground"
+    },
+    {
+      "w": "Amphibian",
+      "level": 3,
+      "clue": "A vehicle able to travel on land and water"
+    },
+    {
+      "w": "Rideshare",
+      "level": 3,
+      "clue": "A paid trip arranged through an app or service"
+    },
+    {
+      "w": "Turboprop",
+      "level": 3,
+      "clue": "An aircraft with propellers powered by turbines"
+    },
+    {
+      "w": "Zeppelin",
+      "level": 3,
+      "clue": "A large lighter-than-air craft shaped like a balloon"
+    },
+    {
+      "w": "Velomobile",
+      "level": 3,
+      "clue": "A covered pedal vehicle for one rider"
+    },
+    {
+      "w": "Autogyro",
+      "level": 3,
+      "clue": "A flying craft with an unpowered top rotor"
+    }
+  ]
+}

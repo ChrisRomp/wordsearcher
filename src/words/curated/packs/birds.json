@@ -1,0 +1,259 @@
+{
+  "id": "birds",
+  "name": "Birds",
+  "emoji": "🐦",
+  "category": "Animals",
+  "description": "Feathered animals from backyards, wetlands, and wild places",
+  "words": [
+    {
+      "w": "Robin",
+      "level": 1,
+      "clue": "Red-breasted backyard bird that hops on lawns"
+    },
+    {
+      "w": "Duck",
+      "level": 1,
+      "clue": "Web-footed bird that quacks"
+    },
+    {
+      "w": "Goose",
+      "level": 1,
+      "clue": "Large honking bird with a long neck"
+    },
+    {
+      "w": "Swan",
+      "level": 1,
+      "clue": "Graceful white water bird"
+    },
+    {
+      "w": "Crow",
+      "level": 1,
+      "clue": "Smart black bird with a loud caw"
+    },
+    {
+      "w": "Owl",
+      "level": 1,
+      "clue": "Night hunter with big eyes"
+    },
+    {
+      "w": "Eagle",
+      "level": 1,
+      "clue": "Large bird of prey with sharp vision"
+    },
+    {
+      "w": "Hawk",
+      "level": 1,
+      "clue": "Daytime hunter that soars over fields"
+    },
+    {
+      "w": "Dove",
+      "level": 1,
+      "clue": "Gentle cooing bird often seen in pairs"
+    },
+    {
+      "w": "Finch",
+      "level": 1,
+      "clue": "Small seed-eating songbird"
+    },
+    {
+      "w": "Wren",
+      "level": 1,
+      "clue": "Tiny brown songbird with a perky tail"
+    },
+    {
+      "w": "Lark",
+      "level": 1,
+      "clue": "Songbird known for singing in flight"
+    },
+    {
+      "w": "Gull",
+      "level": 1,
+      "clue": "Coastal bird that cries over beaches"
+    },
+    {
+      "w": "Crane",
+      "level": 1,
+      "clue": "Tall wetland bird with long legs"
+    },
+    {
+      "w": "Stork",
+      "level": 1,
+      "clue": "Tall wading bird with a long bill"
+    },
+    {
+      "w": "Heron",
+      "level": 1,
+      "clue": "Still hunter that waits in shallow water"
+    },
+    {
+      "w": "Raven",
+      "level": 1,
+      "clue": "Large black bird known for clever behavior"
+    },
+    {
+      "w": "Parrot",
+      "level": 1,
+      "clue": "Colorful bird that can copy sounds"
+    },
+    {
+      "w": "Turkey",
+      "level": 1,
+      "clue": "Large ground bird with a fan tail"
+    },
+    {
+      "w": "Chicken",
+      "level": 1,
+      "clue": "Farm bird that clucks"
+    },
+    {
+      "w": "Sparrow",
+      "level": 2,
+      "clue": "Small brown bird often seen near people"
+    },
+    {
+      "w": "Cardinal",
+      "level": 2,
+      "clue": "Bright red songbird with a crest"
+    },
+    {
+      "w": "Blue Jay",
+      "level": 2,
+      "clue": "Noisy crested backyard bird with bold colors"
+    },
+    {
+      "w": "Woodpecker",
+      "level": 2,
+      "clue": "Bird that taps tree trunks for insects"
+    },
+    {
+      "w": "Hummingbird",
+      "level": 2,
+      "clue": "Tiny nectar sipper that hovers"
+    },
+    {
+      "w": "Pelican",
+      "level": 2,
+      "clue": "Big-beaked water bird that scoops fish"
+    },
+    {
+      "w": "Flamingo",
+      "level": 2,
+      "clue": "Pink wading bird that stands on one leg"
+    },
+    {
+      "w": "Peacock",
+      "level": 2,
+      "clue": "Male bird with a huge colorful tail fan"
+    },
+    {
+      "w": "Ostrich",
+      "level": 2,
+      "clue": "Huge flightless runner from Africa"
+    },
+    {
+      "w": "Emu",
+      "level": 2,
+      "clue": "Tall flightless runner from Australia"
+    },
+    {
+      "w": "Kiwi",
+      "level": 2,
+      "clue": "Small flightless bird with a long bill"
+    },
+    {
+      "w": "Puffin",
+      "level": 2,
+      "clue": "Seabird with a bright striped beak"
+    },
+    {
+      "w": "Penguin",
+      "level": 2,
+      "clue": "Flightless swimmer from cold coasts"
+    },
+    {
+      "w": "Toucan",
+      "level": 2,
+      "clue": "Tropical bird with a giant colorful bill"
+    },
+    {
+      "w": "Macaw",
+      "level": 2,
+      "clue": "Large bright parrot from warm forests"
+    },
+    {
+      "w": "Condor",
+      "level": 2,
+      "clue": "Huge soaring bird with broad wings"
+    },
+    {
+      "w": "Falcon",
+      "level": 2,
+      "clue": "Fast hunter with pointed wings"
+    },
+    {
+      "w": "Magpie",
+      "level": 2,
+      "clue": "Black-and-white bird known for curiosity"
+    },
+    {
+      "w": "Albatross",
+      "level": 3,
+      "clue": "Ocean bird with extremely long wings"
+    },
+    {
+      "w": "Kingfisher",
+      "level": 3,
+      "clue": "Bright stream hunter that dives for meals"
+    },
+    {
+      "w": "Nuthatch",
+      "level": 3,
+      "clue": "Small bird that climbs down tree trunks"
+    },
+    {
+      "w": "Warbler",
+      "level": 3,
+      "clue": "Tiny active songbird that eats insects"
+    },
+    {
+      "w": "Kestrel",
+      "level": 3,
+      "clue": "Small falcon that can hover while hunting"
+    },
+    {
+      "w": "Osprey",
+      "level": 3,
+      "clue": "Fish-catching bird of prey"
+    },
+    {
+      "w": "Ptarmigan",
+      "level": 3,
+      "clue": "Arctic bird that changes color with seasons"
+    },
+    {
+      "w": "Cassowary",
+      "level": 3,
+      "clue": "Large flightless bird with a helmet-like crest"
+    },
+    {
+      "w": "Cockatoo",
+      "level": 3,
+      "clue": "Crested parrot known for loud calls"
+    },
+    {
+      "w": "Nightingale",
+      "level": 3,
+      "clue": "Songbird famous for rich nighttime songs"
+    },
+    {
+      "w": "Bobolink",
+      "level": 3,
+      "clue": "Meadow bird with a bubbling song"
+    },
+    {
+      "w": "Cormorant",
+      "level": 3,
+      "clue": "Dark water bird that dives for fish"
+    }
+  ]
+}

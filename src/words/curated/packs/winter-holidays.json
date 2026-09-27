@@ -1,0 +1,234 @@
+{
+  "id": "winter-holidays",
+  "name": "Winter Holidays",
+  "emoji": "🎁",
+  "category": "Seasons & Holidays",
+  "description": "Warm, inclusive words for winter celebrations and traditions",
+  "words": [
+    {
+      "w": "Gift",
+      "level": 1,
+      "clue": "A wrapped surprise given to someone"
+    },
+    {
+      "w": "Card",
+      "level": 1,
+      "clue": "A folded note with a message"
+    },
+    {
+      "w": "Candle",
+      "level": 1,
+      "clue": "A small wax light with a wick"
+    },
+    {
+      "w": "Bell",
+      "level": 1,
+      "clue": "A ringing object with a clear sound"
+    },
+    {
+      "w": "Bow",
+      "level": 1,
+      "clue": "A looped ribbon tied on a present"
+    },
+    {
+      "w": "Star",
+      "level": 1,
+      "clue": "A bright shape used on many decorations"
+    },
+    {
+      "w": "Tree",
+      "level": 1,
+      "clue": "A tall plant often decorated indoors"
+    },
+    {
+      "w": "Feast",
+      "level": 1,
+      "clue": "A large special meal shared with others"
+    },
+    {
+      "w": "Song",
+      "level": 1,
+      "clue": "Music with words to sing"
+    },
+    {
+      "w": "Snow",
+      "level": 1,
+      "clue": "Soft white crystals that fall from clouds"
+    },
+    {
+      "w": "Cocoa",
+      "level": 1,
+      "clue": "A warm chocolate drink"
+    },
+    {
+      "w": "Cookie",
+      "level": 1,
+      "clue": "A small sweet baked treat"
+    },
+    {
+      "w": "Ribbon",
+      "level": 1,
+      "clue": "A long strip of cloth used for wrapping"
+    },
+    {
+      "w": "Light",
+      "level": 1,
+      "clue": "Brightness that helps you see"
+    },
+    {
+      "w": "Family",
+      "level": 1,
+      "clue": "People who care for one another at home"
+    },
+    {
+      "w": "Friend",
+      "level": 1,
+      "clue": "Someone you like and trust"
+    },
+    {
+      "w": "Party",
+      "level": 1,
+      "clue": "A fun gathering with food or games"
+    },
+    {
+      "w": "Joy",
+      "level": 1,
+      "clue": "A bright feeling of happiness"
+    },
+    {
+      "w": "Dreidel",
+      "level": 2,
+      "clue": "A four-sided spinning top used in a winter game"
+    },
+    {
+      "w": "Garland",
+      "level": 2,
+      "clue": "A long decoration made of greenery or paper"
+    },
+    {
+      "w": "Ornament",
+      "level": 2,
+      "clue": "A small decoration that can hang from a branch"
+    },
+    {
+      "w": "Wreath",
+      "level": 2,
+      "clue": "A round decoration for a door or wall"
+    },
+    {
+      "w": "Kinara",
+      "level": 2,
+      "clue": "A candleholder used during a seven-day celebration"
+    },
+    {
+      "w": "Menorah",
+      "level": 2,
+      "clue": "A candleholder used during an eight-night celebration"
+    },
+    {
+      "w": "Kwanzaa",
+      "level": 2,
+      "clue": "A seven-day celebration of culture and community"
+    },
+    {
+      "w": "Hanukkah",
+      "level": 2,
+      "clue": "An eight-night winter celebration with lights"
+    },
+    {
+      "w": "Solstice",
+      "level": 2,
+      "clue": "The day with the fewest daylight hours"
+    },
+    {
+      "w": "Stocking",
+      "level": 2,
+      "clue": "A long sock-shaped decoration for small surprises"
+    },
+    {
+      "w": "Caroling",
+      "level": 2,
+      "clue": "Going place to place singing seasonal music"
+    },
+    {
+      "w": "Peppermint",
+      "level": 2,
+      "clue": "A cool flavor used in striped treats"
+    },
+    {
+      "w": "Gingerbread",
+      "level": 2,
+      "clue": "A spiced cookie dough used for people or houses"
+    },
+    {
+      "w": "Lantern",
+      "level": 2,
+      "clue": "A portable light with a handle"
+    },
+    {
+      "w": "Celebrate",
+      "level": 2,
+      "clue": "To mark a special day with happy activities"
+    },
+    {
+      "w": "Festival",
+      "level": 2,
+      "clue": "A community event with food, music, or games"
+    },
+    {
+      "w": "Tradition",
+      "level": 3,
+      "clue": "A custom people repeat over time"
+    },
+    {
+      "w": "Gratitude",
+      "level": 3,
+      "clue": "A thankful feeling for kindness or help"
+    },
+    {
+      "w": "Reflection",
+      "level": 3,
+      "clue": "Quiet thinking about memories or choices"
+    },
+    {
+      "w": "Generosity",
+      "level": 3,
+      "clue": "Sharing freely with others"
+    },
+    {
+      "w": "Community",
+      "level": 3,
+      "clue": "A group of people connected by place or care"
+    },
+    {
+      "w": "Symbol",
+      "level": 3,
+      "clue": "A picture or object that stands for an idea"
+    },
+    {
+      "w": "Heritage",
+      "level": 3,
+      "clue": "Customs and history passed through families"
+    },
+    {
+      "w": "Evergreen",
+      "level": 3,
+      "clue": "A tree that keeps needles all year"
+    },
+    {
+      "w": "Luminary",
+      "level": 3,
+      "clue": "A small glowing decoration often set in a bag"
+    },
+    {
+      "w": "Countdown",
+      "level": 3,
+      "clue": "Numbers said backward to a special moment"
+    },
+    {
+      "w": "Resolution",
+      "level": 3,
+      "clue": "A promise to try a helpful new habit"
+    }
+  ]
+}

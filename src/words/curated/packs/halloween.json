@@ -1,0 +1,234 @@
+{
+  "id": "halloween",
+  "name": "Halloween",
+  "emoji": "🎃",
+  "category": "Seasons & Holidays",
+  "description": "Friendly costumes, glowing pumpkins, and playful pretend fun",
+  "words": [
+    {
+      "w": "Pumpkin",
+      "level": 1,
+      "clue": "A big orange fruit used for fall decorations"
+    },
+    {
+      "w": "Candy",
+      "level": 1,
+      "clue": "A sweet treat often shared in small pieces"
+    },
+    {
+      "w": "Costume",
+      "level": 1,
+      "clue": "Clothes worn to pretend to be someone else"
+    },
+    {
+      "w": "Mask",
+      "level": 1,
+      "clue": "A face covering used for dress-up"
+    },
+    {
+      "w": "Bat",
+      "level": 1,
+      "clue": "A small flying mammal active at night"
+    },
+    {
+      "w": "Cat",
+      "level": 1,
+      "clue": "A furry pet that may purr"
+    },
+    {
+      "w": "Owl",
+      "level": 1,
+      "clue": "A night bird with big eyes and a soft hoot"
+    },
+    {
+      "w": "Moon",
+      "level": 1,
+      "clue": "The round bright object seen in the night sky"
+    },
+    {
+      "w": "Treat",
+      "level": 1,
+      "clue": "A small goodie given for fun"
+    },
+    {
+      "w": "Trick",
+      "level": 1,
+      "clue": "A playful joke or clever move"
+    },
+    {
+      "w": "Glow",
+      "level": 1,
+      "clue": "A soft shine in the dark"
+    },
+    {
+      "w": "Broom",
+      "level": 1,
+      "clue": "A long-handled tool for sweeping"
+    },
+    {
+      "w": "Hat",
+      "level": 1,
+      "clue": "A cap used as part of dress-up"
+    },
+    {
+      "w": "Door",
+      "level": 1,
+      "clue": "The part of a house you open to enter"
+    },
+    {
+      "w": "Apple",
+      "level": 1,
+      "clue": "A crisp fruit sometimes dipped in caramel"
+    },
+    {
+      "w": "Party",
+      "level": 1,
+      "clue": "A fun gathering with games or snacks"
+    },
+    {
+      "w": "Games",
+      "level": 1,
+      "clue": "Activities played for fun"
+    },
+    {
+      "w": "Orange",
+      "level": 1,
+      "clue": "A bright color seen on many pumpkins"
+    },
+    {
+      "w": "Cobweb",
+      "level": 2,
+      "clue": "A dusty spider net decoration"
+    },
+    {
+      "w": "Cauldron",
+      "level": 2,
+      "clue": "A large round pot used in pretend stories"
+    },
+    {
+      "w": "Spooky",
+      "level": 2,
+      "clue": "A little eerie in a fun, not-too-scary way"
+    },
+    {
+      "w": "Parade",
+      "level": 2,
+      "clue": "A line of people walking to celebrate"
+    },
+    {
+      "w": "Monster",
+      "level": 2,
+      "clue": "A pretend creature from stories or dress-up"
+    },
+    {
+      "w": "Skeleton",
+      "level": 2,
+      "clue": "The bone frame inside a body model"
+    },
+    {
+      "w": "Gourd",
+      "level": 2,
+      "clue": "A hard-skinned fruit used for fall decorations"
+    },
+    {
+      "w": "Caramel",
+      "level": 2,
+      "clue": "A chewy golden candy made from cooked sugar"
+    },
+    {
+      "w": "Harvest",
+      "level": 2,
+      "clue": "The time when ripe crops are gathered"
+    },
+    {
+      "w": "Pretend",
+      "level": 2,
+      "clue": "To act as if something is true for fun"
+    },
+    {
+      "w": "October",
+      "level": 2,
+      "clue": "The month before November"
+    },
+    {
+      "w": "Decorate",
+      "level": 2,
+      "clue": "To make a place look festive"
+    },
+    {
+      "w": "Lantern",
+      "level": 2,
+      "clue": "A portable light with a handle"
+    },
+    {
+      "w": "Shadow",
+      "level": 2,
+      "clue": "A dark shape made when light is blocked"
+    },
+    {
+      "w": "Goblin",
+      "level": 2,
+      "clue": "A small make-believe creature from stories"
+    },
+    {
+      "w": "Wizard",
+      "level": 2,
+      "clue": "A pretend magic character in a robe or hat"
+    },
+    {
+      "w": "Masquerade",
+      "level": 3,
+      "clue": "A dress-up party with face coverings"
+    },
+    {
+      "w": "Nocturnal",
+      "level": 3,
+      "clue": "Active during the night"
+    },
+    {
+      "w": "Silhouette",
+      "level": 3,
+      "clue": "A dark outline seen against a lighter background"
+    },
+    {
+      "w": "Tradition",
+      "level": 3,
+      "clue": "A custom people repeat over time"
+    },
+    {
+      "w": "Folklore",
+      "level": 3,
+      "clue": "Stories and customs passed from person to person"
+    },
+    {
+      "w": "Imagination",
+      "level": 3,
+      "clue": "The mind's power to picture new ideas"
+    },
+    {
+      "w": "Mystery",
+      "level": 3,
+      "clue": "Something puzzling to figure out"
+    },
+    {
+      "w": "Carnival",
+      "level": 3,
+      "clue": "A lively event with games, food, and costumes"
+    },
+    {
+      "w": "Make Believe",
+      "level": 3,
+      "clue": "Play that uses pretend ideas and stories"
+    },
+    {
+      "w": "Illusion",
+      "level": 3,
+      "clue": "Something that looks different from what it is"
+    },
+    {
+      "w": "Festivity",
+      "level": 3,
+      "clue": "A joyful celebration or party activity"
+    }
+  ]
+}

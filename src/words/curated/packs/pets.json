@@ -1,0 +1,259 @@
+{
+  "id": "pets",
+  "name": "Pets & Pet Care",
+  "emoji": "🐶",
+  "category": "Animals",
+  "description": "Companion animals and ways to care for them",
+  "words": [
+    {
+      "w": "Dog",
+      "level": 1,
+      "clue": "Four-legged companion that barks"
+    },
+    {
+      "w": "Cat",
+      "level": 1,
+      "clue": "Purring companion with whiskers"
+    },
+    {
+      "w": "Fish",
+      "level": 1,
+      "clue": "Quiet swimmer kept in a tank"
+    },
+    {
+      "w": "Bird",
+      "level": 1,
+      "clue": "Feathered companion that may sing"
+    },
+    {
+      "w": "Hamster",
+      "level": 1,
+      "clue": "Small furry pet that runs on a wheel"
+    },
+    {
+      "w": "Rabbit",
+      "level": 1,
+      "clue": "Hopping pet with long ears"
+    },
+    {
+      "w": "Turtle",
+      "level": 1,
+      "clue": "Shelled reptile kept in a warm habitat"
+    },
+    {
+      "w": "Lizard",
+      "level": 1,
+      "clue": "Scaly reptile that likes warm spots"
+    },
+    {
+      "w": "Snake",
+      "level": 1,
+      "clue": "Legless reptile kept by careful owners"
+    },
+    {
+      "w": "Mouse",
+      "level": 1,
+      "clue": "Tiny furry pet with a long tail"
+    },
+    {
+      "w": "Gerbil",
+      "level": 1,
+      "clue": "Small desert rodent that likes to dig"
+    },
+    {
+      "w": "Kitten",
+      "level": 1,
+      "clue": "Baby feline full of playful energy"
+    },
+    {
+      "w": "Puppy",
+      "level": 1,
+      "clue": "Baby canine learning manners"
+    },
+    {
+      "w": "Pony",
+      "level": 1,
+      "clue": "Small horse cared for in a stable"
+    },
+    {
+      "w": "Ferret",
+      "level": 1,
+      "clue": "Curious long-bodied pet"
+    },
+    {
+      "w": "Gecko",
+      "level": 1,
+      "clue": "Small lizard with sticky toe pads"
+    },
+    {
+      "w": "Parrot",
+      "level": 1,
+      "clue": "Colorful companion that can copy sounds"
+    },
+    {
+      "w": "Finch",
+      "level": 1,
+      "clue": "Small songbird kept in a roomy cage"
+    },
+    {
+      "w": "Budgie",
+      "level": 1,
+      "clue": "Tiny parakeet with a cheerful chirp"
+    },
+    {
+      "w": "Canary",
+      "level": 1,
+      "clue": "Yellow songbird known for sweet tunes"
+    },
+    {
+      "w": "Leash",
+      "level": 2,
+      "clue": "Strap used for safe walks"
+    },
+    {
+      "w": "Collar",
+      "level": 2,
+      "clue": "Band worn around an animals neck"
+    },
+    {
+      "w": "Brush",
+      "level": 2,
+      "clue": "Tool for smoothing fur"
+    },
+    {
+      "w": "Crate",
+      "level": 2,
+      "clue": "Safe boxlike resting place"
+    },
+    {
+      "w": "Cage",
+      "level": 2,
+      "clue": "Roomy enclosure for small companions"
+    },
+    {
+      "w": "Bowl",
+      "level": 2,
+      "clue": "Dish for meals or drinks"
+    },
+    {
+      "w": "Treat",
+      "level": 2,
+      "clue": "Small snack used as a reward"
+    },
+    {
+      "w": "Kibble",
+      "level": 2,
+      "clue": "Crunchy dry meal pieces"
+    },
+    {
+      "w": "Pellet",
+      "level": 2,
+      "clue": "Small pressed food piece for tiny animals"
+    },
+    {
+      "w": "Hay",
+      "level": 2,
+      "clue": "Dried grass eaten by some small pets"
+    },
+    {
+      "w": "Bedding",
+      "level": 2,
+      "clue": "Soft material for a cozy enclosure"
+    },
+    {
+      "w": "Perch",
+      "level": 2,
+      "clue": "Resting stick for a feathered friend"
+    },
+    {
+      "w": "Tank",
+      "level": 2,
+      "clue": "Glass home for swimmers or reptiles"
+    },
+    {
+      "w": "Filter",
+      "level": 2,
+      "clue": "Device that helps keep tank water clean"
+    },
+    {
+      "w": "Carrier",
+      "level": 2,
+      "clue": "Box or bag for safe trips"
+    },
+    {
+      "w": "Harness",
+      "level": 2,
+      "clue": "Body strap used for gentle control"
+    },
+    {
+      "w": "Scratcher",
+      "level": 2,
+      "clue": "Textured post for claw exercise"
+    },
+    {
+      "w": "Aquarium",
+      "level": 2,
+      "clue": "Glass water home for swimmers"
+    },
+    {
+      "w": "Terrarium",
+      "level": 3,
+      "clue": "Enclosed habitat for reptiles or plants"
+    },
+    {
+      "w": "Vivarium",
+      "level": 3,
+      "clue": "Carefully controlled habitat for small animals"
+    },
+    {
+      "w": "Grooming",
+      "level": 3,
+      "clue": "Cleaning and brushing to keep a pet healthy"
+    },
+    {
+      "w": "Training",
+      "level": 3,
+      "clue": "Practice that teaches good behavior"
+    },
+    {
+      "w": "Adoption",
+      "level": 3,
+      "clue": "Giving an animal a safe new home"
+    },
+    {
+      "w": "Veterinarian",
+      "level": 3,
+      "clue": "Animal doctor who gives checkups"
+    },
+    {
+      "w": "Vaccination",
+      "level": 3,
+      "clue": "Shot that helps prevent sickness"
+    },
+    {
+      "w": "Microchip",
+      "level": 3,
+      "clue": "Tiny ID device placed by an animal doctor"
+    },
+    {
+      "w": "Habitat",
+      "level": 3,
+      "clue": "Home setup that meets an animals needs"
+    },
+    {
+      "w": "Enrichment",
+      "level": 3,
+      "clue": "Toys and activities that keep minds busy"
+    },
+    {
+      "w": "Socialize",
+      "level": 3,
+      "clue": "Help an animal feel calm with people and others"
+    },
+    {
+      "w": "Behavior",
+      "level": 3,
+      "clue": "The way an animal acts"
+    }
+  ]
+}

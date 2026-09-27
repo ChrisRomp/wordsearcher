@@ -1,0 +1,234 @@
+{
+  "id": "school-supplies",
+  "name": "School Supplies",
+  "emoji": "✏️",
+  "category": "School & Community",
+  "description": "Classroom tools for writing, reading, art, and learning",
+  "words": [
+    {
+      "w": "Pencil",
+      "level": 1,
+      "clue": "A wooden writing tool with graphite"
+    },
+    {
+      "w": "Paper",
+      "level": 1,
+      "clue": "Thin sheets used for writing or drawing"
+    },
+    {
+      "w": "Crayon",
+      "level": 1,
+      "clue": "A wax coloring tool"
+    },
+    {
+      "w": "Glue",
+      "level": 1,
+      "clue": "Sticky stuff that holds things together"
+    },
+    {
+      "w": "Ruler",
+      "level": 1,
+      "clue": "A straight tool for measuring length"
+    },
+    {
+      "w": "Eraser",
+      "level": 1,
+      "clue": "A tool that rubs away pencil marks"
+    },
+    {
+      "w": "Marker",
+      "level": 1,
+      "clue": "A colorful writing tool with a felt tip"
+    },
+    {
+      "w": "Folder",
+      "level": 1,
+      "clue": "A folded cover that holds loose pages"
+    },
+    {
+      "w": "Scissors",
+      "level": 1,
+      "clue": "A tool with two blades for cutting paper"
+    },
+    {
+      "w": "Backpack",
+      "level": 1,
+      "clue": "A bag with straps for school gear"
+    },
+    {
+      "w": "Desk",
+      "level": 1,
+      "clue": "A table used for writing or working"
+    },
+    {
+      "w": "Tape",
+      "level": 1,
+      "clue": "A sticky strip used to hold things together"
+    },
+    {
+      "w": "Chalk",
+      "level": 1,
+      "clue": "A soft stick for writing on a board"
+    },
+    {
+      "w": "Binder",
+      "level": 1,
+      "clue": "A ringed holder for loose pages"
+    },
+    {
+      "w": "Stapler",
+      "level": 1,
+      "clue": "A tool that fastens pages with tiny metal clips"
+    },
+    {
+      "w": "Clipboard",
+      "level": 1,
+      "clue": "A firm writing surface that holds papers"
+    },
+    {
+      "w": "Lunchbox",
+      "level": 1,
+      "clue": "A container for a meal brought to school"
+    },
+    {
+      "w": "Pouch",
+      "level": 1,
+      "clue": "A small soft bag for classroom tools"
+    },
+    {
+      "w": "Highlighter",
+      "level": 2,
+      "clue": "A bright marker used to show important words"
+    },
+    {
+      "w": "Compass",
+      "level": 2,
+      "clue": "A tool for drawing circles"
+    },
+    {
+      "w": "Protractor",
+      "level": 2,
+      "clue": "A tool for measuring angles"
+    },
+    {
+      "w": "Dictionary",
+      "level": 2,
+      "clue": "A reference that explains word meanings"
+    },
+    {
+      "w": "Planner",
+      "level": 2,
+      "clue": "A notebook for dates, assignments, and reminders"
+    },
+    {
+      "w": "Workbook",
+      "level": 2,
+      "clue": "A practice volume with questions and activities"
+    },
+    {
+      "w": "Notebook",
+      "level": 2,
+      "clue": "A bound set of pages for notes"
+    },
+    {
+      "w": "Index Card",
+      "level": 2,
+      "clue": "Small stiff rectangle for facts or vocabulary"
+    },
+    {
+      "w": "Paintbrush",
+      "level": 2,
+      "clue": "A handled tool with bristles for art"
+    },
+    {
+      "w": "Watercolor",
+      "level": 2,
+      "clue": "An art medium that makes soft transparent shades"
+    },
+    {
+      "w": "Sharpener",
+      "level": 2,
+      "clue": "A tool that makes a pencil point ready"
+    },
+    {
+      "w": "Textbook",
+      "level": 2,
+      "clue": "A class volume that teaches a subject"
+    },
+    {
+      "w": "Flashcard",
+      "level": 2,
+      "clue": "A small study rectangle with a question or fact"
+    },
+    {
+      "w": "Dividers",
+      "level": 2,
+      "clue": "Tabbed pages that split a binder into sections"
+    },
+    {
+      "w": "Portfolio",
+      "level": 2,
+      "clue": "A case or folder for keeping finished work"
+    },
+    {
+      "w": "Calculator",
+      "level": 2,
+      "clue": "A number tool that helps with math"
+    },
+    {
+      "w": "Calligraphy",
+      "level": 3,
+      "clue": "Decorative handwriting with careful strokes"
+    },
+    {
+      "w": "Geometry Set",
+      "level": 3,
+      "clue": "Math tools like a compass and triangle"
+    },
+    {
+      "w": "Drafting",
+      "level": 3,
+      "clue": "Careful technical drawing with straight lines"
+    },
+    {
+      "w": "Thesaurus",
+      "level": 3,
+      "clue": "A reference for words with similar meanings"
+    },
+    {
+      "w": "Atlas",
+      "level": 3,
+      "clue": "A book of maps"
+    },
+    {
+      "w": "Laminator",
+      "level": 3,
+      "clue": "A machine that seals paper in clear plastic"
+    },
+    {
+      "w": "Headphones",
+      "level": 3,
+      "clue": "Ear covers used for listening quietly"
+    },
+    {
+      "w": "Stylus",
+      "level": 3,
+      "clue": "A pen-shaped tool for a touchscreen"
+    },
+    {
+      "w": "Organizer",
+      "level": 3,
+      "clue": "A holder with sections for neat storage"
+    },
+    {
+      "w": "Abacus",
+      "level": 3,
+      "clue": "A counting frame with sliding beads"
+    },
+    {
+      "w": "Set Square",
+      "level": 3,
+      "clue": "Triangle-shaped tool for drawing straight angles"
+    }
+  ]
+}

@@ -1,0 +1,234 @@
+{
+  "id": "community-helpers",
+  "name": "Community Helpers",
+  "emoji": "🚒",
+  "category": "School & Community",
+  "description": "Jobs and workers who help neighborhoods run well",
+  "words": [
+    {
+      "w": "Teacher",
+      "level": 1,
+      "clue": "A classroom leader who helps students learn"
+    },
+    {
+      "w": "Nurse",
+      "level": 1,
+      "clue": "A health worker who cares for patients"
+    },
+    {
+      "w": "Doctor",
+      "level": 1,
+      "clue": "A medical worker who helps people get well"
+    },
+    {
+      "w": "Farmer",
+      "level": 1,
+      "clue": "A worker who grows crops or raises animals"
+    },
+    {
+      "w": "Baker",
+      "level": 1,
+      "clue": "A worker who makes bread and treats"
+    },
+    {
+      "w": "Chef",
+      "level": 1,
+      "clue": "A worker who cooks meals"
+    },
+    {
+      "w": "Driver",
+      "level": 1,
+      "clue": "Someone who operates a vehicle"
+    },
+    {
+      "w": "Dentist",
+      "level": 1,
+      "clue": "A health worker who cares for teeth"
+    },
+    {
+      "w": "Artist",
+      "level": 1,
+      "clue": "A person who creates pictures, music, or other art"
+    },
+    {
+      "w": "Coach",
+      "level": 1,
+      "clue": "A leader who helps a team practice skills"
+    },
+    {
+      "w": "Pilot",
+      "level": 1,
+      "clue": "A worker who flies an aircraft"
+    },
+    {
+      "w": "Guard",
+      "level": 1,
+      "clue": "A worker who watches and keeps places safe"
+    },
+    {
+      "w": "Clerk",
+      "level": 1,
+      "clue": "A store worker who helps customers"
+    },
+    {
+      "w": "Plumber",
+      "level": 1,
+      "clue": "A worker who fixes pipes and sinks"
+    },
+    {
+      "w": "Barber",
+      "level": 1,
+      "clue": "A worker who cuts hair"
+    },
+    {
+      "w": "Server",
+      "level": 1,
+      "clue": "A restaurant worker who brings food to tables"
+    },
+    {
+      "w": "Guide",
+      "level": 1,
+      "clue": "A person who leads visitors and explains places"
+    },
+    {
+      "w": "Ranger",
+      "level": 1,
+      "clue": "A worker who helps care for parks"
+    },
+    {
+      "w": "Firefighter",
+      "level": 2,
+      "clue": "A safety worker with hoses, ladders, and rescue gear"
+    },
+    {
+      "w": "Paramedic",
+      "level": 2,
+      "clue": "An emergency medical worker who rides in an ambulance"
+    },
+    {
+      "w": "Librarian",
+      "level": 2,
+      "clue": "A worker who helps people find books and information"
+    },
+    {
+      "w": "Mechanic",
+      "level": 2,
+      "clue": "A worker who repairs cars and machines"
+    },
+    {
+      "w": "Electrician",
+      "level": 2,
+      "clue": "A worker who fixes wires, outlets, and lights"
+    },
+    {
+      "w": "Carpenter",
+      "level": 2,
+      "clue": "A worker who builds with wood"
+    },
+    {
+      "w": "Mail Carrier",
+      "level": 2,
+      "clue": "Person who brings letters and packages"
+    },
+    {
+      "w": "Veterinarian",
+      "level": 2,
+      "clue": "A medical worker who cares for animals"
+    },
+    {
+      "w": "Scientist",
+      "level": 2,
+      "clue": "Someone who asks questions and tests ideas"
+    },
+    {
+      "w": "Custodian",
+      "level": 2,
+      "clue": "A worker who keeps buildings clean and safe"
+    },
+    {
+      "w": "Translator",
+      "level": 2,
+      "clue": "A worker who changes words from one language to another"
+    },
+    {
+      "w": "Counselor",
+      "level": 2,
+      "clue": "A helper who listens and gives guidance"
+    },
+    {
+      "w": "Reporter",
+      "level": 2,
+      "clue": "A worker who shares news stories"
+    },
+    {
+      "w": "Florist",
+      "level": 2,
+      "clue": "A worker who arranges flowers"
+    },
+    {
+      "w": "Architect",
+      "level": 2,
+      "clue": "A worker who designs buildings"
+    },
+    {
+      "w": "Pharmacist",
+      "level": 2,
+      "clue": "A worker who prepares medicines safely"
+    },
+    {
+      "w": "Meteorologist",
+      "level": 3,
+      "clue": "Scientist who studies weather and forecasts"
+    },
+    {
+      "w": "Nutritionist",
+      "level": 3,
+      "clue": "A food expert who helps people eat well"
+    },
+    {
+      "w": "Cartographer",
+      "level": 3,
+      "clue": "A mapmaker who draws places accurately"
+    },
+    {
+      "w": "Radiologist",
+      "level": 3,
+      "clue": "A medical image expert"
+    },
+    {
+      "w": "Audiologist",
+      "level": 3,
+      "clue": "A hearing expert who helps people listen better"
+    },
+    {
+      "w": "Engineer",
+      "level": 3,
+      "clue": "A designer who solves problems with math and science"
+    },
+    {
+      "w": "Dispatcher",
+      "level": 3,
+      "clue": "A worker who sends help where it is needed"
+    },
+    {
+      "w": "Interpreter",
+      "level": 3,
+      "clue": "A worker who explains spoken words in another language"
+    },
+    {
+      "w": "Hydrologist",
+      "level": 3,
+      "clue": "Scientist who studies water on Earth"
+    },
+    {
+      "w": "Archivist",
+      "level": 3,
+      "clue": "A worker who preserves important records"
+    },
+    {
+      "w": "Ecologist",
+      "level": 3,
+      "clue": "Scientist who studies living things and their homes"
+    }
+  ]
+}

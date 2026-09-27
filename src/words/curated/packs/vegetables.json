@@ -1,0 +1,259 @@
+{
+  "id": "vegetables",
+  "name": "Vegetables",
+  "emoji": "🥕",
+  "category": "Food",
+  "description": "Crunchy, leafy, and hearty foods from gardens and farms",
+  "words": [
+    {
+      "w": "Carrot",
+      "level": 1,
+      "clue": "Orange root often eaten raw or cooked"
+    },
+    {
+      "w": "Corn",
+      "level": 1,
+      "clue": "Yellow kernels that grow on a cob"
+    },
+    {
+      "w": "Potato",
+      "level": 1,
+      "clue": "Starchy tuber often baked or mashed"
+    },
+    {
+      "w": "Tomato",
+      "level": 1,
+      "clue": "Juicy red food used in sauces and salads"
+    },
+    {
+      "w": "Onion",
+      "level": 1,
+      "clue": "Layered bulb with a strong smell"
+    },
+    {
+      "w": "Garlic",
+      "level": 1,
+      "clue": "Small strong bulb used for flavor"
+    },
+    {
+      "w": "Celery",
+      "level": 1,
+      "clue": "Crunchy green stalk often eaten with dip"
+    },
+    {
+      "w": "Lettuce",
+      "level": 1,
+      "clue": "Leafy food used in salads and sandwiches"
+    },
+    {
+      "w": "Spinach",
+      "level": 1,
+      "clue": "Dark leafy green often eaten fresh or cooked"
+    },
+    {
+      "w": "Broccoli",
+      "level": 1,
+      "clue": "Green stalk with little tree-like tops"
+    },
+    {
+      "w": "Cabbage",
+      "level": 1,
+      "clue": "Round leafy head used in slaw"
+    },
+    {
+      "w": "Cucumber",
+      "level": 1,
+      "clue": "Cool green food often sliced in salads"
+    },
+    {
+      "w": "Zucchini",
+      "level": 1,
+      "clue": "Long green summer squash"
+    },
+    {
+      "w": "Squash",
+      "level": 1,
+      "clue": "Garden food with many shapes and colors"
+    },
+    {
+      "w": "Pumpkin",
+      "level": 1,
+      "clue": "Large orange squash used in pies and soups"
+    },
+    {
+      "w": "Radish",
+      "level": 1,
+      "clue": "Small crisp root with a peppery bite"
+    },
+    {
+      "w": "Turnip",
+      "level": 1,
+      "clue": "Round root with white and purple skin"
+    },
+    {
+      "w": "Beet",
+      "level": 1,
+      "clue": "Deep red root that can color your plate"
+    },
+    {
+      "w": "Okra",
+      "level": 1,
+      "clue": "Green pod used in soups and stews"
+    },
+    {
+      "w": "Kale",
+      "level": 1,
+      "clue": "Curly leafy green often used in chips"
+    },
+    {
+      "w": "Cauliflower",
+      "level": 2,
+      "clue": "Pale head of tight buds related to broccoli"
+    },
+    {
+      "w": "Eggplant",
+      "level": 2,
+      "clue": "Purple food with smooth shiny skin"
+    },
+    {
+      "w": "Asparagus",
+      "level": 2,
+      "clue": "Tender green spears that grow from the ground"
+    },
+    {
+      "w": "Artichoke",
+      "level": 2,
+      "clue": "Thistle bud with edible leaves and center"
+    },
+    {
+      "w": "Parsnip",
+      "level": 2,
+      "clue": "Pale sweet root related to carrots"
+    },
+    {
+      "w": "Leek",
+      "level": 2,
+      "clue": "Mild onion relative with long white stalks"
+    },
+    {
+      "w": "Chard",
+      "level": 2,
+      "clue": "Leafy green with colorful stems"
+    },
+    {
+      "w": "Shallot",
+      "level": 2,
+      "clue": "Small mild bulb used for flavor"
+    },
+    {
+      "w": "Scallion",
+      "level": 2,
+      "clue": "Slender green onion used as a topping"
+    },
+    {
+      "w": "Rutabaga",
+      "level": 2,
+      "clue": "Large round root with yellow flesh"
+    },
+    {
+      "w": "Jicama",
+      "level": 2,
+      "clue": "Crunchy pale root often eaten raw"
+    },
+    {
+      "w": "Endive",
+      "level": 2,
+      "clue": "Leafy food with a slightly bitter taste"
+    },
+    {
+      "w": "Escarole",
+      "level": 2,
+      "clue": "Broad leafy green often added to soup"
+    },
+    {
+      "w": "Fennel",
+      "level": 2,
+      "clue": "Bulb with feathery tops and a sweet scent"
+    },
+    {
+      "w": "Daikon",
+      "level": 2,
+      "clue": "Long white radish used in many dishes"
+    },
+    {
+      "w": "Arugula",
+      "level": 2,
+      "clue": "Peppery salad leaves"
+    },
+    {
+      "w": "Collard",
+      "level": 2,
+      "clue": "Large leafy green often cooked slowly"
+    },
+    {
+      "w": "Watercress",
+      "level": 2,
+      "clue": "Small leafy green with a peppery taste"
+    },
+    {
+      "w": "Bok Choy",
+      "level": 3,
+      "clue": "Crisp leafy vegetable common in stir-fries"
+    },
+    {
+      "w": "Snow Pea",
+      "level": 3,
+      "clue": "Flat edible pod used in stir-fries"
+    },
+    {
+      "w": "Green Bean",
+      "level": 3,
+      "clue": "Long crisp pod often snapped before cooking"
+    },
+    {
+      "w": "Bell Pepper",
+      "level": 3,
+      "clue": "Crunchy hollow vegetable with sweet flavor"
+    },
+    {
+      "w": "Brussels Sprout",
+      "level": 3,
+      "clue": "Tiny cabbage-like bud on a tall stalk"
+    },
+    {
+      "w": "Mustard Greens",
+      "level": 3,
+      "clue": "Peppery leaves often cooked or added to salads"
+    },
+    {
+      "w": "Kohlrabi",
+      "level": 3,
+      "clue": "Round stem vegetable with a mild crisp bite"
+    },
+    {
+      "w": "Romanesco",
+      "level": 3,
+      "clue": "Spiral green vegetable related to cauliflower"
+    },
+    {
+      "w": "Sunchoke",
+      "level": 3,
+      "clue": "Knobby root with a nutty flavor"
+    },
+    {
+      "w": "Celeriac",
+      "level": 3,
+      "clue": "Knobby root with a celery-like flavor"
+    },
+    {
+      "w": "Rapini",
+      "level": 3,
+      "clue": "Leafy green with small buds and a bold taste"
+    },
+    {
+      "w": "Radicchio",
+      "level": 3,
+      "clue": "Red leafy head with a slightly bitter taste"
+    }
+  ]
+}

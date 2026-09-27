@@ -1,0 +1,259 @@
+{
+  "id": "farm-animals",
+  "name": "Farm Animals",
+  "emoji": "🐄",
+  "category": "Animals",
+  "description": "Animals you might meet on a farm",
+  "words": [
+    {
+      "w": "Cow",
+      "level": 1,
+      "clue": "Gives milk and says moo"
+    },
+    {
+      "w": "Pig",
+      "level": 1,
+      "clue": "Pink barnyard animal that likes mud"
+    },
+    {
+      "w": "Horse",
+      "level": 1,
+      "clue": "Strong animal people can ride"
+    },
+    {
+      "w": "Sheep",
+      "level": 1,
+      "clue": "Woolly animal that says baa"
+    },
+    {
+      "w": "Goat",
+      "level": 1,
+      "clue": "Climbing barn animal with small horns"
+    },
+    {
+      "w": "Duck",
+      "level": 1,
+      "clue": "Pond bird that quacks"
+    },
+    {
+      "w": "Goose",
+      "level": 1,
+      "clue": "Large honking farm bird"
+    },
+    {
+      "w": "Hen",
+      "level": 1,
+      "clue": "Female chicken that lays eggs"
+    },
+    {
+      "w": "Rooster",
+      "level": 1,
+      "clue": "Farm bird that crows at dawn"
+    },
+    {
+      "w": "Chick",
+      "level": 1,
+      "clue": "Fluffy baby barn bird"
+    },
+    {
+      "w": "Donkey",
+      "level": 1,
+      "clue": "Long-eared helper that brays"
+    },
+    {
+      "w": "Pony",
+      "level": 1,
+      "clue": "Small horse often loved by children"
+    },
+    {
+      "w": "Turkey",
+      "level": 1,
+      "clue": "Large farm bird with a fan tail"
+    },
+    {
+      "w": "Cat",
+      "level": 1,
+      "clue": "Barn helper that may chase mice"
+    },
+    {
+      "w": "Dog",
+      "level": 1,
+      "clue": "Loyal helper that can herd animals"
+    },
+    {
+      "w": "Llama",
+      "level": 1,
+      "clue": "Woolly pack animal with a long neck"
+    },
+    {
+      "w": "Alpaca",
+      "level": 1,
+      "clue": "Soft-fleeced animal raised for fiber"
+    },
+    {
+      "w": "Calf",
+      "level": 1,
+      "clue": "Baby cattle animal"
+    },
+    {
+      "w": "Lamb",
+      "level": 1,
+      "clue": "Baby sheep"
+    },
+    {
+      "w": "Rabbit",
+      "level": 1,
+      "clue": "Hopping animal with long ears"
+    },
+    {
+      "w": "Bull",
+      "level": 2,
+      "clue": "Adult male cattle animal"
+    },
+    {
+      "w": "Oxen",
+      "level": 2,
+      "clue": "Strong cattle trained to pull heavy loads"
+    },
+    {
+      "w": "Mule",
+      "level": 2,
+      "clue": "Sure-footed helper related to horses and donkeys"
+    },
+    {
+      "w": "Yak",
+      "level": 2,
+      "clue": "Long-haired animal from cold mountain farms"
+    },
+    {
+      "w": "Emu",
+      "level": 2,
+      "clue": "Tall flightless bird sometimes raised on farms"
+    },
+    {
+      "w": "Bison",
+      "level": 2,
+      "clue": "Shaggy herd animal raised on ranches"
+    },
+    {
+      "w": "Camel",
+      "level": 2,
+      "clue": "Humped animal that can carry loads"
+    },
+    {
+      "w": "Ram",
+      "level": 2,
+      "clue": "Adult male sheep"
+    },
+    {
+      "w": "Ewe",
+      "level": 2,
+      "clue": "Adult female sheep"
+    },
+    {
+      "w": "Sow",
+      "level": 2,
+      "clue": "Adult female pig"
+    },
+    {
+      "w": "Boar",
+      "level": 2,
+      "clue": "Adult male pig"
+    },
+    {
+      "w": "Gosling",
+      "level": 2,
+      "clue": "Baby goose"
+    },
+    {
+      "w": "Colt",
+      "level": 2,
+      "clue": "Young male horse"
+    },
+    {
+      "w": "Foal",
+      "level": 2,
+      "clue": "Young horse of any kind"
+    },
+    {
+      "w": "Kid",
+      "level": 2,
+      "clue": "Baby goat"
+    },
+    {
+      "w": "Gander",
+      "level": 2,
+      "clue": "Adult male goose"
+    },
+    {
+      "w": "Peafowl",
+      "level": 2,
+      "clue": "Farm bird with fancy tail feathers"
+    },
+    {
+      "w": "Heifer",
+      "level": 2,
+      "clue": "Young female cattle animal"
+    },
+    {
+      "w": "Holstein",
+      "level": 3,
+      "clue": "Black-and-white dairy breed"
+    },
+    {
+      "w": "Hereford",
+      "level": 3,
+      "clue": "Red-and-white cattle breed"
+    },
+    {
+      "w": "Highland",
+      "level": 3,
+      "clue": "Shaggy cattle breed from Scotland"
+    },
+    {
+      "w": "Clydesdale",
+      "level": 3,
+      "clue": "Large draft horse breed with feathered feet"
+    },
+    {
+      "w": "Percheron",
+      "level": 3,
+      "clue": "Powerful draft horse breed"
+    },
+    {
+      "w": "Silkie",
+      "level": 3,
+      "clue": "Fluffy chicken breed with soft feathers"
+    },
+    {
+      "w": "Merino",
+      "level": 3,
+      "clue": "Sheep breed known for fine wool"
+    },
+    {
+      "w": "Nubian",
+      "level": 3,
+      "clue": "Long-eared dairy goat breed"
+    },
+    {
+      "w": "Zebu",
+      "level": 3,
+      "clue": "Humped cattle breed from warm places"
+    },
+    {
+      "w": "Bantam",
+      "level": 3,
+      "clue": "Small chicken breed"
+    },
+    {
+      "w": "Guinea Fowl",
+      "level": 3,
+      "clue": "Speckled farm bird with a loud alarm call"
+    },
+    {
+      "w": "Kune Kune",
+      "level": 3,
+      "clue": "Small friendly pig breed from New Zealand"
+    }
+  ]
+}

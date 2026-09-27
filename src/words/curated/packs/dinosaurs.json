@@ -1,0 +1,259 @@
+{
+  "id": "dinosaurs",
+  "name": "Dinosaurs",
+  "emoji": "🦕",
+  "category": "Animals",
+  "description": "Prehistoric creatures and clues from fossil digs",
+  "words": [
+    {
+      "w": "Fossil",
+      "level": 1,
+      "clue": "Ancient remains preserved in stone"
+    },
+    {
+      "w": "Bone",
+      "level": 1,
+      "clue": "Hard body part found at dig sites"
+    },
+    {
+      "w": "Egg",
+      "level": 1,
+      "clue": "Oval start for many baby animals"
+    },
+    {
+      "w": "Tail",
+      "level": 1,
+      "clue": "Back body part used for balance"
+    },
+    {
+      "w": "Horn",
+      "level": 1,
+      "clue": "Pointed head part on some ancient animals"
+    },
+    {
+      "w": "Claw",
+      "level": 1,
+      "clue": "Sharp curved toe part"
+    },
+    {
+      "w": "Tooth",
+      "level": 1,
+      "clue": "Hard biting part found in jaws"
+    },
+    {
+      "w": "Skull",
+      "level": 1,
+      "clue": "Head bones that protect the brain"
+    },
+    {
+      "w": "Track",
+      "level": 1,
+      "clue": "Foot mark left in mud or stone"
+    },
+    {
+      "w": "Nest",
+      "level": 1,
+      "clue": "Safe place where eggs were kept"
+    },
+    {
+      "w": "Spike",
+      "level": 1,
+      "clue": "Pointed body armor part"
+    },
+    {
+      "w": "Plate",
+      "level": 1,
+      "clue": "Flat armor piece on some backs"
+    },
+    {
+      "w": "Scale",
+      "level": 1,
+      "clue": "Small hard skin covering"
+    },
+    {
+      "w": "Roar",
+      "level": 1,
+      "clue": "Loud sound imagined for a giant creature"
+    },
+    {
+      "w": "Dig",
+      "level": 1,
+      "clue": "Carefully remove dirt to find old clues"
+    },
+    {
+      "w": "Rock",
+      "level": 1,
+      "clue": "Hard natural material that may hold old clues"
+    },
+    {
+      "w": "Amber",
+      "level": 1,
+      "clue": "Hardened tree resin that can trap tiny life"
+    },
+    {
+      "w": "Fern",
+      "level": 1,
+      "clue": "Leafy plant that grew long ago"
+    },
+    {
+      "w": "Shell",
+      "level": 1,
+      "clue": "Hard outer cover found on some ancient eggs"
+    },
+    {
+      "w": "Print",
+      "level": 1,
+      "clue": "Mark pressed into soft ground"
+    },
+    {
+      "w": "Dinosaur",
+      "level": 2,
+      "clue": "Ancient reptile group from long before people"
+    },
+    {
+      "w": "Stegosaurus",
+      "level": 2,
+      "clue": "Plant eater with back plates and a spiked tail"
+    },
+    {
+      "w": "Triceratops",
+      "level": 2,
+      "clue": "Three-horned plant eater with a neck frill"
+    },
+    {
+      "w": "Pteranodon",
+      "level": 2,
+      "clue": "Flying reptile with a long head crest"
+    },
+    {
+      "w": "Brachiosaur",
+      "level": 2,
+      "clue": "Long-necked giant with tall front legs"
+    },
+    {
+      "w": "Apatosaurus",
+      "level": 2,
+      "clue": "Huge long-necked plant eater"
+    },
+    {
+      "w": "Allosaurus",
+      "level": 2,
+      "clue": "Large meat eater from the Jurassic period"
+    },
+    {
+      "w": "Ankylosaur",
+      "level": 2,
+      "clue": "Armored plant eater with a tail club"
+    },
+    {
+      "w": "Spinosaurus",
+      "level": 2,
+      "clue": "Huge predator with a sail on its back"
+    },
+    {
+      "w": "Jurassic",
+      "level": 2,
+      "clue": "Middle time period famous for giant reptiles"
+    },
+    {
+      "w": "Cretaceous",
+      "level": 2,
+      "clue": "Later time period when many famous species lived"
+    },
+    {
+      "w": "Triassic",
+      "level": 2,
+      "clue": "Early time period when the first group appeared"
+    },
+    {
+      "w": "Herbivore",
+      "level": 2,
+      "clue": "Animal that eats plants"
+    },
+    {
+      "w": "Carnivore",
+      "level": 2,
+      "clue": "Animal that eats meat"
+    },
+    {
+      "w": "Extinct",
+      "level": 2,
+      "clue": "No longer living anywhere on Earth"
+    },
+    {
+      "w": "Museum",
+      "level": 2,
+      "clue": "Place where old skeletons may be displayed"
+    },
+    {
+      "w": "Excavate",
+      "level": 2,
+      "clue": "Carefully uncover something buried"
+    },
+    {
+      "w": "Prehistoric",
+      "level": 2,
+      "clue": "From a time before written records"
+    },
+    {
+      "w": "Tyrannosaurus",
+      "level": 3,
+      "clue": "Giant predator with huge jaws and tiny arms"
+    },
+    {
+      "w": "Velociraptor",
+      "level": 3,
+      "clue": "Feathered hunter much smaller than movie versions"
+    },
+    {
+      "w": "Parasaurolophus",
+      "level": 3,
+      "clue": "Duck-billed plant eater with a long head tube"
+    },
+    {
+      "w": "Diplodocus",
+      "level": 3,
+      "clue": "Very long plant eater with a whip-like tail"
+    },
+    {
+      "w": "Iguanodon",
+      "level": 3,
+      "clue": "Plant eater known for thumb spikes"
+    },
+    {
+      "w": "Compsognathus",
+      "level": 3,
+      "clue": "Small fast hunter about the size of a turkey"
+    },
+    {
+      "w": "Archaeopteryx",
+      "level": 3,
+      "clue": "Feathered ancient animal linked to birds"
+    },
+    {
+      "w": "Carnotaurus",
+      "level": 3,
+      "clue": "Meat eater with small horns above its eyes"
+    },
+    {
+      "w": "Deinonychus",
+      "level": 3,
+      "clue": "Clawed hunter that helped scientists rethink speed"
+    },
+    {
+      "w": "Gallimimus",
+      "level": 3,
+      "clue": "Ostrich-like runner with long legs"
+    },
+    {
+      "w": "Maiasaura",
+      "level": 3,
+      "clue": "Duck-billed animal famous for nesting sites"
+    },
+    {
+      "w": "Theropod",
+      "level": 3,
+      "clue": "Two-legged group that includes many predators"
+    }
+  ]
+}

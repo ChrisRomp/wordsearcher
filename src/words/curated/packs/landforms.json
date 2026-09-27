@@ -1,0 +1,234 @@
+{
+  "id": "landforms",
+  "name": "Landforms & Water",
+  "emoji": "🏔️",
+  "category": "Places & Geography",
+  "description": "Earth shapes and water features from mountains to marshes",
+  "words": [
+    {
+      "w": "Hill",
+      "level": 1,
+      "clue": "A small raised area of land"
+    },
+    {
+      "w": "Mountain",
+      "level": 1,
+      "clue": "A very high natural rise of land"
+    },
+    {
+      "w": "River",
+      "level": 1,
+      "clue": "A long moving ribbon of fresh water"
+    },
+    {
+      "w": "Lake",
+      "level": 1,
+      "clue": "A large area of water surrounded by land"
+    },
+    {
+      "w": "Ocean",
+      "level": 1,
+      "clue": "A huge body of salty water"
+    },
+    {
+      "w": "Beach",
+      "level": 1,
+      "clue": "A sandy place where land meets water"
+    },
+    {
+      "w": "Island",
+      "level": 1,
+      "clue": "A place with water all around it"
+    },
+    {
+      "w": "Valley",
+      "level": 1,
+      "clue": "Low land between higher places"
+    },
+    {
+      "w": "Cave",
+      "level": 1,
+      "clue": "A hollow space inside rock or a hillside"
+    },
+    {
+      "w": "Cliff",
+      "level": 1,
+      "clue": "A steep high face of rock or earth"
+    },
+    {
+      "w": "Pond",
+      "level": 1,
+      "clue": "A small body of still water"
+    },
+    {
+      "w": "Stream",
+      "level": 1,
+      "clue": "A small flowing body of water"
+    },
+    {
+      "w": "Rock",
+      "level": 1,
+      "clue": "A hard natural piece of earth"
+    },
+    {
+      "w": "Shore",
+      "level": 1,
+      "clue": "The land along the edge of water"
+    },
+    {
+      "w": "Field",
+      "level": 1,
+      "clue": "Open land often covered with grass or crops"
+    },
+    {
+      "w": "Forest",
+      "level": 1,
+      "clue": "A large area filled with many trees"
+    },
+    {
+      "w": "Desert",
+      "level": 1,
+      "clue": "A very dry place with little rain"
+    },
+    {
+      "w": "Plain",
+      "level": 1,
+      "clue": "A wide flat area with few trees"
+    },
+    {
+      "w": "Canyon",
+      "level": 2,
+      "clue": "A deep narrow valley with steep sides"
+    },
+    {
+      "w": "Plateau",
+      "level": 2,
+      "clue": "High flat land with steep sides"
+    },
+    {
+      "w": "Glacier",
+      "level": 2,
+      "clue": "A huge slow-moving river of frozen water"
+    },
+    {
+      "w": "Volcano",
+      "level": 2,
+      "clue": "A mountain that can release lava and ash"
+    },
+    {
+      "w": "Prairie",
+      "level": 2,
+      "clue": "A wide grassland with few trees"
+    },
+    {
+      "w": "Wetland",
+      "level": 2,
+      "clue": "Ground that is often soaked and full of life"
+    },
+    {
+      "w": "Delta",
+      "level": 2,
+      "clue": "Land built where a river spreads into smaller channels"
+    },
+    {
+      "w": "Lagoon",
+      "level": 2,
+      "clue": "A shallow area of water near the sea"
+    },
+    {
+      "w": "Marsh",
+      "level": 2,
+      "clue": "Soft wet ground with grasses and reeds"
+    },
+    {
+      "w": "Meadow",
+      "level": 2,
+      "clue": "An open grassy place with wild plants"
+    },
+    {
+      "w": "Reef",
+      "level": 2,
+      "clue": "A ridge under the sea where many animals live"
+    },
+    {
+      "w": "Dune",
+      "level": 2,
+      "clue": "A hill made by blowing grains"
+    },
+    {
+      "w": "Bayou",
+      "level": 2,
+      "clue": "A slow stream through low, wet land"
+    },
+    {
+      "w": "Basin",
+      "level": 2,
+      "clue": "A low area where water drains or collects"
+    },
+    {
+      "w": "Tundra",
+      "level": 2,
+      "clue": "A cold treeless region with low plants"
+    },
+    {
+      "w": "Savanna",
+      "level": 2,
+      "clue": "A warm grassland with scattered trees"
+    },
+    {
+      "w": "Peninsula",
+      "level": 3,
+      "clue": "Land almost surrounded by water"
+    },
+    {
+      "w": "Archipelago",
+      "level": 3,
+      "clue": "A group of islands close together"
+    },
+    {
+      "w": "Isthmus",
+      "level": 3,
+      "clue": "A narrow strip of land joining larger lands"
+    },
+    {
+      "w": "Tributary",
+      "level": 3,
+      "clue": "A smaller stream that flows into a larger one"
+    },
+    {
+      "w": "Estuary",
+      "level": 3,
+      "clue": "A place where river water meets the sea"
+    },
+    {
+      "w": "Fjord",
+      "level": 3,
+      "clue": "A deep sea inlet between steep slopes"
+    },
+    {
+      "w": "Escarpment",
+      "level": 3,
+      "clue": "A long steep slope or cliff edge"
+    },
+    {
+      "w": "Mesa",
+      "level": 3,
+      "clue": "A flat-topped high area with steep sides"
+    },
+    {
+      "w": "Butte",
+      "level": 3,
+      "clue": "A small steep hill with a flat top"
+    },
+    {
+      "w": "Aquifer",
+      "level": 3,
+      "clue": "Underground layer that stores water"
+    },
+    {
+      "w": "Watershed",
+      "level": 3,
+      "clue": "An area where rainfall drains to one place"
+    }
+  ]
+}

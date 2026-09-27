@@ -1,0 +1,234 @@
+{
+  "id": "around-the-house",
+  "name": "Around the House",
+  "emoji": "🏠",
+  "category": "Me & My World",
+  "description": "Rooms, furniture, and everyday things found at home",
+  "words": [
+    {
+      "w": "Chair",
+      "level": 1,
+      "clue": "A seat with a back"
+    },
+    {
+      "w": "Table",
+      "level": 1,
+      "clue": "A flat surface with legs for meals or work"
+    },
+    {
+      "w": "Bed",
+      "level": 1,
+      "clue": "A place to sleep at night"
+    },
+    {
+      "w": "Lamp",
+      "level": 1,
+      "clue": "A light you can turn on in a room"
+    },
+    {
+      "w": "Door",
+      "level": 1,
+      "clue": "The part of a room you open to enter"
+    },
+    {
+      "w": "Window",
+      "level": 1,
+      "clue": "Glass in a wall that lets you see outside"
+    },
+    {
+      "w": "Sofa",
+      "level": 1,
+      "clue": "A soft seat for two or more people"
+    },
+    {
+      "w": "Rug",
+      "level": 1,
+      "clue": "A small floor covering"
+    },
+    {
+      "w": "Sink",
+      "level": 1,
+      "clue": "A bowl with a faucet for washing"
+    },
+    {
+      "w": "Towel",
+      "level": 1,
+      "clue": "A cloth used for drying hands or dishes"
+    },
+    {
+      "w": "Soap",
+      "level": 1,
+      "clue": "A cleaner used with water for washing"
+    },
+    {
+      "w": "Broom",
+      "level": 1,
+      "clue": "A long-handled tool for sweeping floors"
+    },
+    {
+      "w": "Clock",
+      "level": 1,
+      "clue": "A tool that shows the time"
+    },
+    {
+      "w": "Pillow",
+      "level": 1,
+      "clue": "A soft cushion for your head while resting"
+    },
+    {
+      "w": "Blanket",
+      "level": 1,
+      "clue": "A warm cover for a bed or couch"
+    },
+    {
+      "w": "Mirror",
+      "level": 1,
+      "clue": "A shiny surface that shows your reflection"
+    },
+    {
+      "w": "Shelf",
+      "level": 1,
+      "clue": "A flat board used to hold things"
+    },
+    {
+      "w": "Plant",
+      "level": 1,
+      "clue": "A living green thing in a pot"
+    },
+    {
+      "w": "Kitchen",
+      "level": 2,
+      "clue": "A room where meals are prepared"
+    },
+    {
+      "w": "Bathroom",
+      "level": 2,
+      "clue": "A home area with a sink, toilet, or tub"
+    },
+    {
+      "w": "Closet",
+      "level": 2,
+      "clue": "A small storage space with a door"
+    },
+    {
+      "w": "Drawer",
+      "level": 2,
+      "clue": "A sliding box in furniture"
+    },
+    {
+      "w": "Curtain",
+      "level": 2,
+      "clue": "Cloth that hangs over a window"
+    },
+    {
+      "w": "Carpet",
+      "level": 2,
+      "clue": "A soft floor covering that reaches wall to wall"
+    },
+    {
+      "w": "Counter",
+      "level": 2,
+      "clue": "A work surface in a kitchen or bathroom"
+    },
+    {
+      "w": "Cabinet",
+      "level": 2,
+      "clue": "A storage cupboard with shelves or doors"
+    },
+    {
+      "w": "Faucet",
+      "level": 2,
+      "clue": "A fixture where water comes out"
+    },
+    {
+      "w": "Shower",
+      "level": 2,
+      "clue": "A place where water sprays for washing"
+    },
+    {
+      "w": "Laundry",
+      "level": 2,
+      "clue": "Clothes and linens ready to be washed"
+    },
+    {
+      "w": "Oven",
+      "level": 2,
+      "clue": "A heated box used for baking food"
+    },
+    {
+      "w": "Toaster",
+      "level": 2,
+      "clue": "A small appliance that browns bread"
+    },
+    {
+      "w": "Freezer",
+      "level": 2,
+      "clue": "A very cold box for long food storage"
+    },
+    {
+      "w": "Vacuum",
+      "level": 2,
+      "clue": "A machine that cleans floors by suction"
+    },
+    {
+      "w": "Cushion",
+      "level": 2,
+      "clue": "A soft pad on a seat"
+    },
+    {
+      "w": "Thermostat",
+      "level": 3,
+      "clue": "Wall control for heating and cooling"
+    },
+    {
+      "w": "Bookcase",
+      "level": 3,
+      "clue": "Furniture with shelves for stories and supplies"
+    },
+    {
+      "w": "Upholstery",
+      "level": 3,
+      "clue": "Fabric covering on chairs or sofas"
+    },
+    {
+      "w": "Ventilation",
+      "level": 3,
+      "clue": "Fresh air moving through a room or building"
+    },
+    {
+      "w": "Insulation",
+      "level": 3,
+      "clue": "Material that helps keep heat in or out"
+    },
+    {
+      "w": "Appliance",
+      "level": 3,
+      "clue": "A home machine that helps with chores"
+    },
+    {
+      "w": "Pantry",
+      "level": 3,
+      "clue": "A small storage area for food"
+    },
+    {
+      "w": "Dishwasher",
+      "level": 3,
+      "clue": "Machine that cleans plates and cups"
+    },
+    {
+      "w": "Microwave",
+      "level": 3,
+      "clue": "Small appliance that warms food quickly"
+    },
+    {
+      "w": "Recycling",
+      "level": 3,
+      "clue": "Sorting used items so materials can be used again"
+    },
+    {
+      "w": "Staircase",
+      "level": 3,
+      "clue": "A set of steps connecting floors"
+    }
+  ]
+}

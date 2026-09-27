@@ -1,0 +1,234 @@
+{
+  "id": "camping",
+  "name": "Camping",
+  "emoji": "🏕️",
+  "category": "Hobbies & Fun",
+  "description": "Everything you need for a night under the stars",
+  "words": [
+    {
+      "w": "Tent",
+      "level": 1,
+      "clue": "A fabric shelter used outdoors"
+    },
+    {
+      "w": "Lantern",
+      "level": 1,
+      "clue": "A portable light with a handle"
+    },
+    {
+      "w": "Map",
+      "level": 1,
+      "clue": "A drawing that shows where places are"
+    },
+    {
+      "w": "Trail",
+      "level": 1,
+      "clue": "A path through woods or fields"
+    },
+    {
+      "w": "Boots",
+      "level": 1,
+      "clue": "Sturdy footwear for rough ground"
+    },
+    {
+      "w": "Log",
+      "level": 1,
+      "clue": "A cut piece of tree trunk"
+    },
+    {
+      "w": "Rope",
+      "level": 1,
+      "clue": "A strong cord used for tying"
+    },
+    {
+      "w": "Cook",
+      "level": 1,
+      "clue": "To make food ready to eat"
+    },
+    {
+      "w": "Lake",
+      "level": 1,
+      "clue": "A large area of water surrounded by land"
+    },
+    {
+      "w": "River",
+      "level": 1,
+      "clue": "A long moving ribbon of fresh water"
+    },
+    {
+      "w": "Tree",
+      "level": 1,
+      "clue": "A tall plant with a trunk and branches"
+    },
+    {
+      "w": "Rock",
+      "level": 1,
+      "clue": "A hard natural piece of earth"
+    },
+    {
+      "w": "Hike",
+      "level": 1,
+      "clue": "To walk outdoors on paths"
+    },
+    {
+      "w": "Snack",
+      "level": 1,
+      "clue": "A small bit of food between meals"
+    },
+    {
+      "w": "Cabin",
+      "level": 1,
+      "clue": "A small simple house in the woods"
+    },
+    {
+      "w": "Torch",
+      "level": 1,
+      "clue": "A handheld light for dark paths"
+    },
+    {
+      "w": "Blanket",
+      "level": 1,
+      "clue": "A warm cover for resting"
+    },
+    {
+      "w": "Chair",
+      "level": 1,
+      "clue": "A seat with a back"
+    },
+    {
+      "w": "Campfire",
+      "level": 2,
+      "clue": "A safe outdoor blaze for warmth or cooking"
+    },
+    {
+      "w": "Sleeping Bag",
+      "level": 2,
+      "clue": "A padded sack that keeps you warm at night"
+    },
+    {
+      "w": "Marshmallow",
+      "level": 2,
+      "clue": "A soft sweet treat often toasted on a stick"
+    },
+    {
+      "w": "Compass",
+      "level": 2,
+      "clue": "A tool that points north"
+    },
+    {
+      "w": "Campsite",
+      "level": 2,
+      "clue": "A place chosen for outdoor sleeping"
+    },
+    {
+      "w": "Pinecone",
+      "level": 2,
+      "clue": "A woody seed holder from an evergreen tree"
+    },
+    {
+      "w": "Firewood",
+      "level": 2,
+      "clue": "Dry pieces of wood used for a blaze"
+    },
+    {
+      "w": "Hammock",
+      "level": 2,
+      "clue": "A hanging cloth bed tied between supports"
+    },
+    {
+      "w": "Canteen",
+      "level": 2,
+      "clue": "A bottle carried for drinking water"
+    },
+    {
+      "w": "Wildflower",
+      "level": 2,
+      "clue": "A bloom that grows without being planted"
+    },
+    {
+      "w": "Stargaze",
+      "level": 2,
+      "clue": "To look up at the night sky"
+    },
+    {
+      "w": "Rainfly",
+      "level": 2,
+      "clue": "A cover that helps keep a shelter dry"
+    },
+    {
+      "w": "Kindling",
+      "level": 2,
+      "clue": "Small dry sticks used to start a blaze"
+    },
+    {
+      "w": "Backpack",
+      "level": 2,
+      "clue": "A bag with straps for gear"
+    },
+    {
+      "w": "Binoculars",
+      "level": 2,
+      "clue": "A tool that makes faraway things look closer"
+    },
+    {
+      "w": "Firefly",
+      "level": 2,
+      "clue": "A small glowing insect seen at dusk"
+    },
+    {
+      "w": "Orienteering",
+      "level": 3,
+      "clue": "Finding your way using a map and compass"
+    },
+    {
+      "w": "Topographic",
+      "level": 3,
+      "clue": "Showing hills and heights on a map"
+    },
+    {
+      "w": "Waterproof",
+      "level": 3,
+      "clue": "Able to keep rain from soaking through"
+    },
+    {
+      "w": "Foraging",
+      "level": 3,
+      "clue": "Searching outdoors for safe wild foods"
+    },
+    {
+      "w": "Nocturnal",
+      "level": 3,
+      "clue": "Active during the night"
+    },
+    {
+      "w": "Elevation",
+      "level": 3,
+      "clue": "Height above sea level"
+    },
+    {
+      "w": "Conservation",
+      "level": 3,
+      "clue": "Careful protection of nature"
+    },
+    {
+      "w": "Leave No Trace",
+      "level": 3,
+      "clue": "Outdoor care rule: take only memories and tidy up"
+    },
+    {
+      "w": "Carabiner",
+      "level": 3,
+      "clue": "A metal clip used to hold outdoor gear"
+    },
+    {
+      "w": "Portage",
+      "level": 3,
+      "clue": "Carrying a canoe between waterways"
+    },
+    {
+      "w": "Backcountry",
+      "level": 3,
+      "clue": "Wild area far from roads and towns"
+    }
+  ]
+}

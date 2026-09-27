@@ -1,0 +1,259 @@
+{
+  "id": "outer-space",
+  "name": "Outer Space",
+  "emoji": "🚀",
+  "category": "Science",
+  "description": "Planets, stars, astronauts, and space objects",
+  "words": [
+    {
+      "w": "Sun",
+      "level": 1,
+      "clue": "Nearest star that warms our planet"
+    },
+    {
+      "w": "Moon",
+      "level": 1,
+      "clue": "Bright round neighbor seen at night"
+    },
+    {
+      "w": "Star",
+      "level": 1,
+      "clue": "Faraway glowing ball of gas"
+    },
+    {
+      "w": "Mars",
+      "level": 1,
+      "clue": "Red planet with dusty plains"
+    },
+    {
+      "w": "Earth",
+      "level": 1,
+      "clue": "Our home planet"
+    },
+    {
+      "w": "Comet",
+      "level": 1,
+      "clue": "Icy traveler with a glowing tail"
+    },
+    {
+      "w": "Rocket",
+      "level": 1,
+      "clue": "Powerful vehicle that blasts upward"
+    },
+    {
+      "w": "Planet",
+      "level": 1,
+      "clue": "Large round world that travels around a star"
+    },
+    {
+      "w": "Orbit",
+      "level": 1,
+      "clue": "Curved path around a larger object"
+    },
+    {
+      "w": "Space",
+      "level": 1,
+      "clue": "Vast area beyond our sky"
+    },
+    {
+      "w": "Sky",
+      "level": 1,
+      "clue": "Blue view overhead by day"
+    },
+    {
+      "w": "Light",
+      "level": 1,
+      "clue": "Brightness that travels very fast"
+    },
+    {
+      "w": "Dust",
+      "level": 1,
+      "clue": "Tiny bits of matter floating or resting"
+    },
+    {
+      "w": "Ring",
+      "level": 1,
+      "clue": "Flat band around some planets"
+    },
+    {
+      "w": "Probe",
+      "level": 1,
+      "clue": "Robot craft sent to explore"
+    },
+    {
+      "w": "Rover",
+      "level": 1,
+      "clue": "Robot vehicle that drives on another world"
+    },
+    {
+      "w": "Launch",
+      "level": 1,
+      "clue": "Start a trip upward from the ground"
+    },
+    {
+      "w": "Meteor",
+      "level": 1,
+      "clue": "Streak of glowing rock entering air"
+    },
+    {
+      "w": "Crater",
+      "level": 1,
+      "clue": "Bowl-shaped dent on a surface"
+    },
+    {
+      "w": "Lunar",
+      "level": 1,
+      "clue": "About our closest natural neighbor in the sky"
+    },
+    {
+      "w": "Mercury",
+      "level": 2,
+      "clue": "Small planet closest to our nearest star"
+    },
+    {
+      "w": "Jupiter",
+      "level": 2,
+      "clue": "Largest planet with a giant storm"
+    },
+    {
+      "w": "Saturn",
+      "level": 2,
+      "clue": "Planet famous for wide icy bands"
+    },
+    {
+      "w": "Neptune",
+      "level": 2,
+      "clue": "Far blue planet with strong winds"
+    },
+    {
+      "w": "Pluto",
+      "level": 2,
+      "clue": "Dwarf planet in the outer solar system"
+    },
+    {
+      "w": "Galaxy",
+      "level": 2,
+      "clue": "Huge group of stars, gas, and dust"
+    },
+    {
+      "w": "Nebula",
+      "level": 2,
+      "clue": "Cloud of gas and dust where stars can form"
+    },
+    {
+      "w": "Asteroid",
+      "level": 2,
+      "clue": "Rocky object that travels around the star"
+    },
+    {
+      "w": "Astronaut",
+      "level": 2,
+      "clue": "Explorer trained to travel beyond Earth"
+    },
+    {
+      "w": "Shuttle",
+      "level": 2,
+      "clue": "Reusable craft once used for space trips"
+    },
+    {
+      "w": "Satellite",
+      "level": 2,
+      "clue": "Object that travels around a planet"
+    },
+    {
+      "w": "Telescope",
+      "level": 2,
+      "clue": "Tool that makes far objects easier to see"
+    },
+    {
+      "w": "Gravity",
+      "level": 2,
+      "clue": "Force that pulls objects toward each other"
+    },
+    {
+      "w": "Eclipse",
+      "level": 2,
+      "clue": "Event when one object blocks another in the sky"
+    },
+    {
+      "w": "Cosmos",
+      "level": 2,
+      "clue": "The universe seen as one vast whole"
+    },
+    {
+      "w": "Vacuum",
+      "level": 2,
+      "clue": "Region with almost no air or matter"
+    },
+    {
+      "w": "Module",
+      "level": 2,
+      "clue": "Separate part of a spacecraft"
+    },
+    {
+      "w": "Europa",
+      "level": 2,
+      "clue": "Icy moon of Jupiter that may hide an ocean"
+    },
+    {
+      "w": "Supernova",
+      "level": 3,
+      "clue": "Huge explosion of a dying star"
+    },
+    {
+      "w": "Black Hole",
+      "level": 3,
+      "clue": "Region where gravity traps even brightness"
+    },
+    {
+      "w": "Milky Way",
+      "level": 3,
+      "clue": "Our home galaxy"
+    },
+    {
+      "w": "Andromeda",
+      "level": 3,
+      "clue": "Large nearby galaxy visible in dark skies"
+    },
+    {
+      "w": "Kuiper Belt",
+      "level": 3,
+      "clue": "Far band of icy objects beyond Neptune"
+    },
+    {
+      "w": "Oort Cloud",
+      "level": 3,
+      "clue": "Distant icy shell around the solar system"
+    },
+    {
+      "w": "Quasar",
+      "level": 3,
+      "clue": "Brilliant center of a very distant galaxy"
+    },
+    {
+      "w": "Pulsar",
+      "level": 3,
+      "clue": "Spinning star remnant that sends regular signals"
+    },
+    {
+      "w": "Red Giant",
+      "level": 3,
+      "clue": "Swollen old star late in its life"
+    },
+    {
+      "w": "White Dwarf",
+      "level": 3,
+      "clue": "Small dense leftover core of a star"
+    },
+    {
+      "w": "Event Horizon",
+      "level": 3,
+      "clue": "Boundary around a gravity trap where return is impossible"
+    },
+    {
+      "w": "Heliosphere",
+      "level": 3,
+      "clue": "Bubble made by our stars wind around the solar system"
+    }
+  ]
+}

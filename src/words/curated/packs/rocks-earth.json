@@ -1,0 +1,259 @@
+{
+  "id": "rocks-earth",
+  "name": "Rocks & Earth Science",
+  "emoji": "🪨",
+  "category": "Science",
+  "description": "Rocks, landforms, minerals, and Earth science words",
+  "words": [
+    {
+      "w": "Rock",
+      "level": 1,
+      "clue": "Hard natural piece of Earth material"
+    },
+    {
+      "w": "Stone",
+      "level": 1,
+      "clue": "Small hard piece found on the ground"
+    },
+    {
+      "w": "Pebble",
+      "level": 1,
+      "clue": "Tiny smooth stone"
+    },
+    {
+      "w": "Sand",
+      "level": 1,
+      "clue": "Tiny grains on beaches or in deserts"
+    },
+    {
+      "w": "Clay",
+      "level": 1,
+      "clue": "Sticky fine soil used for pottery"
+    },
+    {
+      "w": "Soil",
+      "level": 1,
+      "clue": "Ground layer where many plants grow"
+    },
+    {
+      "w": "Mud",
+      "level": 1,
+      "clue": "Wet soft earth"
+    },
+    {
+      "w": "Lava",
+      "level": 1,
+      "clue": "Hot melted rock on the surface"
+    },
+    {
+      "w": "Gem",
+      "level": 1,
+      "clue": "Pretty mineral used in jewelry"
+    },
+    {
+      "w": "Crystal",
+      "level": 1,
+      "clue": "Solid with a repeating shape pattern"
+    },
+    {
+      "w": "Fossil",
+      "level": 1,
+      "clue": "Ancient remains preserved in rock"
+    },
+    {
+      "w": "Shell",
+      "level": 1,
+      "clue": "Hard cover left by some animals"
+    },
+    {
+      "w": "Cave",
+      "level": 1,
+      "clue": "Natural hollow space underground or in a cliff"
+    },
+    {
+      "w": "Cliff",
+      "level": 1,
+      "clue": "Steep wall of rock"
+    },
+    {
+      "w": "Hill",
+      "level": 1,
+      "clue": "Raised land smaller than a mountain"
+    },
+    {
+      "w": "Valley",
+      "level": 1,
+      "clue": "Low land between hills or mountains"
+    },
+    {
+      "w": "River",
+      "level": 1,
+      "clue": "Flowing water that moves across land"
+    },
+    {
+      "w": "Beach",
+      "level": 1,
+      "clue": "Sandy or pebbly shore beside water"
+    },
+    {
+      "w": "Earth",
+      "level": 1,
+      "clue": "Our planet and the ground beneath us"
+    },
+    {
+      "w": "Core",
+      "level": 1,
+      "clue": "Center layer of our planet"
+    },
+    {
+      "w": "Granite",
+      "level": 2,
+      "clue": "Speckled hard rock often used in buildings"
+    },
+    {
+      "w": "Basalt",
+      "level": 2,
+      "clue": "Dark rock made from cooled lava"
+    },
+    {
+      "w": "Marble",
+      "level": 2,
+      "clue": "Rock often used for statues and floors"
+    },
+    {
+      "w": "Slate",
+      "level": 2,
+      "clue": "Flat-splitting rock used for tiles"
+    },
+    {
+      "w": "Quartz",
+      "level": 2,
+      "clue": "Common glassy mineral"
+    },
+    {
+      "w": "Mineral",
+      "level": 2,
+      "clue": "Natural solid with a crystal structure"
+    },
+    {
+      "w": "Magma",
+      "level": 2,
+      "clue": "Melted rock below the surface"
+    },
+    {
+      "w": "Volcano",
+      "level": 2,
+      "clue": "Mountain or opening where melted rock can erupt"
+    },
+    {
+      "w": "Canyon",
+      "level": 2,
+      "clue": "Deep valley carved by water"
+    },
+    {
+      "w": "Plateau",
+      "level": 2,
+      "clue": "High flat area of land"
+    },
+    {
+      "w": "Delta",
+      "level": 2,
+      "clue": "Fan-shaped land at a river mouth"
+    },
+    {
+      "w": "Dune",
+      "level": 2,
+      "clue": "Hill of sand shaped by wind"
+    },
+    {
+      "w": "Glacier",
+      "level": 2,
+      "clue": "Huge slow-moving sheet of ice"
+    },
+    {
+      "w": "Mantle",
+      "level": 2,
+      "clue": "Thick hot layer inside Earth"
+    },
+    {
+      "w": "Crust",
+      "level": 2,
+      "clue": "Thin outer layer of Earth"
+    },
+    {
+      "w": "Erosion",
+      "level": 2,
+      "clue": "Wearing away of land by water, wind, or ice"
+    },
+    {
+      "w": "Weathering",
+      "level": 2,
+      "clue": "Breaking down of rocks into smaller pieces"
+    },
+    {
+      "w": "Sediment",
+      "level": 2,
+      "clue": "Small pieces carried by water, wind, or ice"
+    },
+    {
+      "w": "Igneous",
+      "level": 3,
+      "clue": "Rock type formed from cooled melted material"
+    },
+    {
+      "w": "Stratified",
+      "level": 3,
+      "clue": "Arranged in layers"
+    },
+    {
+      "w": "Metamorphic",
+      "level": 3,
+      "clue": "Rock type changed by heat and pressure"
+    },
+    {
+      "w": "Obsidian",
+      "level": 3,
+      "clue": "Shiny black volcanic glass"
+    },
+    {
+      "w": "Pumice",
+      "level": 3,
+      "clue": "Light volcanic rock full of holes"
+    },
+    {
+      "w": "Geologist",
+      "level": 3,
+      "clue": "Scientist who studies Earth materials"
+    },
+    {
+      "w": "Tectonic",
+      "level": 3,
+      "clue": "About moving plates of Earth's crust"
+    },
+    {
+      "w": "Lithosphere",
+      "level": 3,
+      "clue": "Rigid outer shell of Earth"
+    },
+    {
+      "w": "Hydrosphere",
+      "level": 3,
+      "clue": "All the water on, under, and above Earth"
+    },
+    {
+      "w": "Pangaea",
+      "level": 3,
+      "clue": "Ancient supercontinent made of joined land"
+    },
+    {
+      "w": "Stalactite",
+      "level": 3,
+      "clue": "Cave formation that hangs from above"
+    },
+    {
+      "w": "Stalagmite",
+      "level": 3,
+      "clue": "Cave formation that rises from the floor"
+    }
+  ]
+}

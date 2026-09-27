@@ -1,0 +1,234 @@
+{
+  "id": "spring",
+  "name": "Spring",
+  "emoji": "🌷",
+  "category": "Seasons & Holidays",
+  "description": "New growth, gentle rain, and fresh outdoor discoveries",
+  "words": [
+    {
+      "w": "Flower",
+      "level": 1,
+      "clue": "A colorful plant part that may smell sweet"
+    },
+    {
+      "w": "Seed",
+      "level": 1,
+      "clue": "A tiny plant starter with a hard cover"
+    },
+    {
+      "w": "Garden",
+      "level": 1,
+      "clue": "A place where people grow plants"
+    },
+    {
+      "w": "Bunny",
+      "level": 1,
+      "clue": "A small hopping animal with long ears"
+    },
+    {
+      "w": "Chick",
+      "level": 1,
+      "clue": "A baby bird, especially from a hen"
+    },
+    {
+      "w": "Nest",
+      "level": 1,
+      "clue": "A bird home made of twigs or grass"
+    },
+    {
+      "w": "Egg",
+      "level": 1,
+      "clue": "A smooth oval that may hold a baby bird"
+    },
+    {
+      "w": "Rain",
+      "level": 1,
+      "clue": "Water drops falling from clouds"
+    },
+    {
+      "w": "Worm",
+      "level": 1,
+      "clue": "A small wiggly animal that helps soil"
+    },
+    {
+      "w": "Frog",
+      "level": 1,
+      "clue": "A jumping green animal that croaks"
+    },
+    {
+      "w": "Bee",
+      "level": 1,
+      "clue": "A buzzing insect that visits blooms"
+    },
+    {
+      "w": "Bud",
+      "level": 1,
+      "clue": "A tiny closed plant part before it opens"
+    },
+    {
+      "w": "Grass",
+      "level": 1,
+      "clue": "Soft green blades that cover many lawns"
+    },
+    {
+      "w": "Green",
+      "level": 1,
+      "clue": "The color of many new plants"
+    },
+    {
+      "w": "Kite",
+      "level": 1,
+      "clue": "A light toy that flies on a string"
+    },
+    {
+      "w": "Mud",
+      "level": 1,
+      "clue": "Wet soil that squishes under boots"
+    },
+    {
+      "w": "Robin",
+      "level": 1,
+      "clue": "A bird with a reddish chest"
+    },
+    {
+      "w": "Pond",
+      "level": 1,
+      "clue": "A small body of still water"
+    },
+    {
+      "w": "Blossom",
+      "level": 2,
+      "clue": "A bloom on a plant or tree"
+    },
+    {
+      "w": "Meadow",
+      "level": 2,
+      "clue": "An open grassy place with wild plants"
+    },
+    {
+      "w": "Tulip",
+      "level": 2,
+      "clue": "A cup-shaped bloom that grows from a bulb"
+    },
+    {
+      "w": "Daffodil",
+      "level": 2,
+      "clue": "A yellow bloom shaped like a trumpet"
+    },
+    {
+      "w": "Sprout",
+      "level": 2,
+      "clue": "A new tiny plant pushing up from soil"
+    },
+    {
+      "w": "Picnic",
+      "level": 2,
+      "clue": "A meal eaten outside on a nice day"
+    },
+    {
+      "w": "Butterfly",
+      "level": 2,
+      "clue": "An insect with wide colorful wings"
+    },
+    {
+      "w": "Puddle",
+      "level": 2,
+      "clue": "A small pool left after wet weather"
+    },
+    {
+      "w": "Shower",
+      "level": 2,
+      "clue": "A short burst of falling water from clouds"
+    },
+    {
+      "w": "Breeze",
+      "level": 2,
+      "clue": "A light gentle wind"
+    },
+    {
+      "w": "Pastel",
+      "level": 2,
+      "clue": "A soft light color"
+    },
+    {
+      "w": "April",
+      "level": 2,
+      "clue": "The month after March"
+    },
+    {
+      "w": "Maypole",
+      "level": 2,
+      "clue": "A tall ribboned post used for a dance"
+    },
+    {
+      "w": "Tadpole",
+      "level": 2,
+      "clue": "A young frog that swims and has a tail"
+    },
+    {
+      "w": "Hatchling",
+      "level": 2,
+      "clue": "A baby animal that just came out of an egg"
+    },
+    {
+      "w": "Umbrella",
+      "level": 2,
+      "clue": "A cover you hold above you in wet weather"
+    },
+    {
+      "w": "Pollinate",
+      "level": 3,
+      "clue": "To move plant dust so seeds can grow"
+    },
+    {
+      "w": "Germinate",
+      "level": 3,
+      "clue": "To start growing from a tiny plant starter"
+    },
+    {
+      "w": "Equinox",
+      "level": 3,
+      "clue": "A yearly time when day and night are about equal"
+    },
+    {
+      "w": "Migration",
+      "level": 3,
+      "clue": "Traveling to a new place when seasons change"
+    },
+    {
+      "w": "Vernal",
+      "level": 3,
+      "clue": "Having to do with this season of new growth"
+    },
+    {
+      "w": "Perennial",
+      "level": 3,
+      "clue": "A plant that returns year after year"
+    },
+    {
+      "w": "Photosynthesis",
+      "level": 3,
+      "clue": "How plants use sunlight to make food"
+    },
+    {
+      "w": "Nectar",
+      "level": 3,
+      "clue": "Sweet liquid inside many blooms"
+    },
+    {
+      "w": "Chrysalis",
+      "level": 3,
+      "clue": "A case where a caterpillar changes"
+    },
+    {
+      "w": "Metamorphosis",
+      "level": 3,
+      "clue": "A big body change, like caterpillar to adult insect"
+    },
+    {
+      "w": "Climate",
+      "level": 3,
+      "clue": "The usual weather pattern of a place"
+    }
+  ]
+}

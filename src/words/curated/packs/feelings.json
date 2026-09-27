@@ -1,0 +1,234 @@
+{
+  "id": "feelings",
+  "name": "Feelings",
+  "emoji": "😊",
+  "category": "Me & My World",
+  "description": "Emotion words for naming feelings with care and confidence",
+  "words": [
+    {
+      "w": "Happy",
+      "level": 1,
+      "clue": "Feeling good and cheerful inside"
+    },
+    {
+      "w": "Sad",
+      "level": 1,
+      "clue": "Feeling down and needing comfort"
+    },
+    {
+      "w": "Mad",
+      "level": 1,
+      "clue": "Feeling upset when something seems unfair"
+    },
+    {
+      "w": "Glad",
+      "level": 1,
+      "clue": "Pleased about something good"
+    },
+    {
+      "w": "Calm",
+      "level": 1,
+      "clue": "Quiet inside, with steady feelings"
+    },
+    {
+      "w": "Proud",
+      "level": 1,
+      "clue": "Pleased by something you did well"
+    },
+    {
+      "w": "Brave",
+      "level": 1,
+      "clue": "Ready to try even when something is hard"
+    },
+    {
+      "w": "Shy",
+      "level": 1,
+      "clue": "Quiet around others at first"
+    },
+    {
+      "w": "Silly",
+      "level": 1,
+      "clue": "Playfully funny or goofy"
+    },
+    {
+      "w": "Tired",
+      "level": 1,
+      "clue": "Needing rest or sleep"
+    },
+    {
+      "w": "Bored",
+      "level": 1,
+      "clue": "Needing something interesting to do"
+    },
+    {
+      "w": "Angry",
+      "level": 1,
+      "clue": "Feeling a strong kind of upset"
+    },
+    {
+      "w": "Safe",
+      "level": 1,
+      "clue": "Protected and out of danger"
+    },
+    {
+      "w": "Loved",
+      "level": 1,
+      "clue": "Feeling cared for by others"
+    },
+    {
+      "w": "Kind",
+      "level": 1,
+      "clue": "Caring and gentle toward others"
+    },
+    {
+      "w": "Sorry",
+      "level": 1,
+      "clue": "Feeling regret after a mistake"
+    },
+    {
+      "w": "Joyful",
+      "level": 1,
+      "clue": "Full of bright happiness"
+    },
+    {
+      "w": "Peace",
+      "level": 1,
+      "clue": "A quiet feeling with no upset"
+    },
+    {
+      "w": "Excited",
+      "level": 2,
+      "clue": "Full of energy about what might happen"
+    },
+    {
+      "w": "Curious",
+      "level": 2,
+      "clue": "Wanting to learn or find out more"
+    },
+    {
+      "w": "Nervous",
+      "level": 2,
+      "clue": "Uneasy before something new or important"
+    },
+    {
+      "w": "Lonely",
+      "level": 2,
+      "clue": "Wishing for company or connection"
+    },
+    {
+      "w": "Hopeful",
+      "level": 2,
+      "clue": "Believing something good can happen"
+    },
+    {
+      "w": "Thankful",
+      "level": 2,
+      "clue": "Feeling grateful for help or kindness"
+    },
+    {
+      "w": "Cheerful",
+      "level": 2,
+      "clue": "Showing bright, upbeat feelings"
+    },
+    {
+      "w": "Confident",
+      "level": 2,
+      "clue": "Trusting that you can try or succeed"
+    },
+    {
+      "w": "Patient",
+      "level": 2,
+      "clue": "Able to wait without getting too upset"
+    },
+    {
+      "w": "Surprised",
+      "level": 2,
+      "clue": "Feeling caught off guard by something new"
+    },
+    {
+      "w": "Frustrated",
+      "level": 2,
+      "clue": "Upset because something is not working yet"
+    },
+    {
+      "w": "Grateful",
+      "level": 2,
+      "clue": "Appreciating something kind or helpful"
+    },
+    {
+      "w": "Relaxed",
+      "level": 2,
+      "clue": "Loose, restful, and not worried"
+    },
+    {
+      "w": "Caring",
+      "level": 2,
+      "clue": "Showing concern for how others feel"
+    },
+    {
+      "w": "Playful",
+      "level": 2,
+      "clue": "Ready for fun, jokes, or games"
+    },
+    {
+      "w": "Gentle",
+      "level": 2,
+      "clue": "Soft and careful with people or things"
+    },
+    {
+      "w": "Empathy",
+      "level": 3,
+      "clue": "Understanding how another person may feel"
+    },
+    {
+      "w": "Resilient",
+      "level": 3,
+      "clue": "Able to bounce back after a hard time"
+    },
+    {
+      "w": "Optimistic",
+      "level": 3,
+      "clue": "Expecting that things can turn out well"
+    },
+    {
+      "w": "Compassion",
+      "level": 3,
+      "clue": "Caring action toward someone who needs help"
+    },
+    {
+      "w": "Determined",
+      "level": 3,
+      "clue": "Ready to keep trying toward a goal"
+    },
+    {
+      "w": "Vulnerable",
+      "level": 3,
+      "clue": "Open about feelings, even when it feels risky"
+    },
+    {
+      "w": "Anxious",
+      "level": 3,
+      "clue": "Worried in a way that can feel hard to settle"
+    },
+    {
+      "w": "Contentment",
+      "level": 3,
+      "clue": "A steady sense of being okay with what is here"
+    },
+    {
+      "w": "Encouraged",
+      "level": 3,
+      "clue": "Helped to feel ready to keep trying"
+    },
+    {
+      "w": "Mindful",
+      "level": 3,
+      "clue": "Paying careful attention to the present moment"
+    },
+    {
+      "w": "Reflective",
+      "level": 3,
+      "clue": "Thoughtful about experiences and choices"
+    }
+  ]
+}
