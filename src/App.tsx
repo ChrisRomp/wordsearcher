@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { DocError } from './doc/puzzleDoc'
+import { DocError, docHash } from './doc/puzzleDoc'
 import { docFromHash } from './doc/share'
 import { useStore } from './state/store'
 import { AboutDialog } from './ui/AboutDialog'
@@ -8,7 +8,8 @@ import { IssuesPanel } from './ui/editor/IssuesPanel'
 import { Header } from './ui/Header'
 import { PlayView } from './ui/play/PlayView'
 import { PreviewPane } from './ui/preview/PreviewPane'
-import { Toasts, toast } from './ui/toast'
+import { Toasts } from './ui/toast'
+import { toast } from './ui/toastStore'
 import { useFontsReady } from './ui/useSheets'
 
 /** Regenerates (debounced) whenever generator settings change. */
@@ -27,9 +28,16 @@ function useSharedDoc() {
       try {
         const doc = docFromHash(location.hash)
         if (!doc) return
+        const { gen, style, doc: previous, docKey } = useStore.getState()
         useStore.getState().loadDoc(doc)
         useStore.getState().setView('play')
-        toast('Opened a shared puzzle')
+        toast(
+          'Opened a shared puzzle',
+          'ok',
+          previous && docHash(previous) !== docHash(doc)
+            ? { label: 'Back to my puzzle', run: () => useStore.setState({ gen, style, doc: previous, docKey, view: 'edit', issues: [], status: 'idle' }) }
+            : undefined,
+        )
       } catch (e) {
         toast(e instanceof DocError ? `Couldn’t open link: ${e.message}` : 'Couldn’t open that link', 'error')
       }
@@ -59,7 +67,15 @@ export default function App() {
             <IssuesPanel />
             <EditorPanel />
           </div>
-          <PreviewPane fontsReady={fontsReady} />
+          <div id="preview" className="scroll-mt-3">
+            <PreviewPane fontsReady={fontsReady} />
+          </div>
+          <a href="#preview" className="btn btn-teal fixed right-4 bottom-4 z-20 lg:hidden" onClick={(e) => {
+            e.preventDefault()
+            document.getElementById('preview')?.scrollIntoView({ behavior: 'smooth' })
+          }}>
+            See puzzle ↓
+          </a>
         </main>
       )}
       <AboutDialog open={about} onClose={() => setAbout(false)} />

@@ -1,4 +1,5 @@
 import { compressToEncodedURIComponent, decompressFromEncodedURIComponent } from 'lz-string'
+import { fromCompact, toCompact } from './compact'
 import { DocError, parseDoc, type PuzzleDoc } from './puzzleDoc'
 
 /** Links above this length are awkward to paste into emails/LMSes; offer a file download instead. */
@@ -9,7 +10,7 @@ const MAX_DECODED_BYTES = 200_000
 export const SHARE_PARAM = 'p'
 
 export function encodeDoc(doc: PuzzleDoc): string {
-  return compressToEncodedURIComponent(JSON.stringify(doc))
+  return compressToEncodedURIComponent(JSON.stringify(toCompact(doc)))
 }
 
 export function decodeDoc(encoded: string): PuzzleDoc {
@@ -23,7 +24,8 @@ export function decodeDoc(encoded: string): PuzzleDoc {
   } catch {
     throw new DocError('Link is damaged')
   }
-  return parseDoc(raw)
+  const obj = raw && typeof raw === 'object' ? (raw as Record<string, unknown>) : {}
+  return parseDoc(obj.f === 1 ? fromCompact(obj) : raw)
 }
 
 export function shareUrl(doc: PuzzleDoc, base: string): string {

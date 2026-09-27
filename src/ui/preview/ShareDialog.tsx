@@ -4,7 +4,7 @@ import { SHARE_URL_HARD_LIMIT, SHARE_URL_SOFT_LIMIT, shareUrl } from '../../doc/
 import { exportDoc } from '../../state/store'
 import { downloadDocFile } from '../exports'
 import { Dialog } from '../primitives'
-import { toast } from '../toast'
+import { toast } from '../toastStore'
 
 export function ShareDialog({ open, onClose }: { open: boolean; onClose: () => void }) {
   const doc = open ? exportDoc() : null

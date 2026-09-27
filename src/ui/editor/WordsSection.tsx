@@ -1,9 +1,10 @@
 import { BookOpen, Pin, Plus, Sparkles, Trash2, X } from 'lucide-react'
-import { useEffect, useMemo, useState } from 'react'
+import { useMemo, useState } from 'react'
 import { normalizeWord } from '../../core/normalize'
 import type { WordEntry } from '../../core/types'
 import { useStore } from '../../state/store'
-import { curatedThemes, dictThemes, themeName, type ThemeInfo } from '../../words/themes'
+import { themeName } from '../../words/themes'
+import { useAllThemes } from '../useAllThemes'
 import { Dialog, Section, Stepper, Toggle } from '../primitives'
 import { ThemeBrowser } from './ThemeBrowser'
 
@@ -13,17 +14,6 @@ const SOURCE_STYLE: Record<WordEntry['source'], string> = {
   dict: 'bg-sky-soft',
 }
 
-export function useAllThemes(): ThemeInfo[] {
-  const [dict, setDict] = useState<ThemeInfo[]>([])
-  useEffect(() => {
-    let alive = true
-    dictThemes().then((t) => alive && setDict(t))
-    return () => {
-      alive = false
-    }
-  }, [])
-  return useMemo(() => [...curatedThemes(), ...dict], [dict])
-}
 
 function WordEditDialog({ word, onClose }: { word: WordEntry | null; onClose: () => void }) {
   const updateWord = useStore((s) => s.updateWord)

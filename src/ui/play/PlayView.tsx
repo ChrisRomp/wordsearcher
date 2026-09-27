@@ -2,7 +2,7 @@ import { ArrowLeft, Check, Hand, Minus, Plus, RotateCcw, Timer } from 'lucide-re
 import { useCallback, useEffect, useMemo, useRef, useState, type KeyboardEvent, type PointerEvent } from 'react'
 import { pathCells } from '../../core/directions'
 import { docGrid, docHash, type PuzzleDoc } from '../../doc/puzzleDoc'
-import { pathData } from '../../layout/PageSvg'
+import { pathData } from '../../layout/path'
 import { FACES, GRID_FONTS, TITLE_FONTS } from '../../layout/fonts'
 import { ANSWER_COLORS, applyCase, capsule, letterHint, sortedWords } from '../../layout/sheet'
 import { usePlayStore } from '../../state/playStore'
@@ -12,10 +12,10 @@ import { formatTime, matchSelection, snapSelection, type Cell } from './selectio
 
 const CELL = 44
 
-function Capsule({ cells, color, opacity, width = 2.5, className, style }: { cells: Cell[]; color: string; opacity: number; width?: number; className?: string; style?: React.CSSProperties }) {
+function Capsule({ cells, color, opacity, width = 2.5, className, style, slim }: { cells: Cell[]; color: string; opacity: number; width?: number; className?: string; style?: React.CSSProperties; slim?: boolean }) {
   const a = cells[0]
   const b = cells[cells.length - 1]
-  const d = capsule((a.c + 0.5) * CELL, (a.r + 0.5) * CELL, (b.c + 0.5) * CELL, (b.r + 0.5) * CELL, CELL * 0.4)
+  const d = capsule((a.c + 0.5) * CELL, (a.r + 0.5) * CELL, (b.c + 0.5) * CELL, (b.r + 0.5) * CELL, CELL * (slim ? 0.27 : 0.4))
   return <path d={pathData(d)} fill={color} fillOpacity={opacity} stroke={color} strokeWidth={width} strokeLinejoin="round" className={className} style={style} pathLength={1} />
 }
 
@@ -245,6 +245,7 @@ function PlayBoard({ doc, style }: { doc: PuzzleDoc; style: StyleSettings }) {
               <Capsule
                 key={idx}
                 cells={placementCells(placements[idx])}
+                slim={!!placements[idx].nestedIn}
                 color={colorOf(idx)}
                 opacity={0.22}
                 className={idx === fresh ? '[animation:swipe_0.45s_cubic-bezier(0.22,1,0.36,1)_both]' : undefined}

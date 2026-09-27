@@ -13,6 +13,7 @@ export const ANSWER_COLORS = ['#e8553d', '#1f9e89', '#2f6fdb', '#f29f05', '#8e44
 const TITLE_SIZES = { sm: 22, md: 30, lg: 40 } as const
 const MAX_CELL = 40
 const MIN_CELL = 15
+const COMFORT_CELL = 22
 const LIST_SIZES = [13, 12, 11, 10, 9]
 
 export interface SheetDoc {
@@ -290,15 +291,24 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
   let cell = cellFor(bottom - y)
   let overflow: ListBlock | null = null
   const minCell = Math.min(MIN_CELL, gridAreaW / (doc.cols + padFactor * 2))
-  for (const size of LIST_SIZES) {
-    const block = listBlock(doc, style, answerKey, listW, size, measure)
-    if (!block) break
-    const c = side ? cellFor(bottom - y) : cellFor(bottom - y - gap - block.height)
-    const fits = side ? block.height <= bottom - y : c >= minCell
-    if (fits) {
-      list = block
-      cell = c
-      break
+  // Prefer a comfortably sized grid with a readable list; then accept smaller type; else overflow.
+  const comfortable = Math.min(COMFORT_CELL, cellFor(bottom - y))
+  const blockFor = new Map(LIST_SIZES.map((size) => [size, listBlock(doc, style, answerKey, listW, size, measure)]))
+  const passes: [number, number[]][] = [
+    [comfortable, [13, 12, 11, 10]],
+    [minCell, [10, 9]],
+  ]
+  outer: for (const [threshold, sizes] of passes) {
+    for (const size of sizes) {
+      const block = blockFor.get(size)
+      if (!block) break outer
+      const c = side ? cellFor(bottom - y) : cellFor(bottom - y - gap - block.height)
+      const fits = side ? block.height <= bottom - y : c >= threshold
+      if (fits) {
+        list = block
+        cell = c
+        break outer
+      }
     }
   }
   if (!list) {
@@ -325,7 +335,7 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
       const x2 = gx + (p.c + d.dc * (p.token.length - 1) + 0.5) * cell
       const y2 = gy + (p.r + d.dr * (p.token.length - 1) + 0.5) * cell
       const color = ANSWER_COLORS[i % ANSWER_COLORS.length]
-      prims.push({ k: 'path', d: capsule(x1, y1, x2, y2, cell * 0.4), stroke: color, fill: color, fillOpacity: 0.16, width: Math.max(0.8, cell * 0.06) })
+      prims.push({ k: 'path', d: capsule(x1, y1, x2, y2, cell * (p.nestedIn ? 0.27 : 0.4)), stroke: color, fill: color, fillOpacity: 0.16, width: Math.max(0.8, cell * 0.06) })
     })
   }
 
