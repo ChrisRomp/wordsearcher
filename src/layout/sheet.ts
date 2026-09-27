@@ -199,23 +199,47 @@ function clueListBlock(items: string[], width: number, size: number, measure: Me
   }
 }
 
-function listBlock(doc: SheetDoc, style: StyleSettings, answerKey: boolean, width: number, size: number, measure: Measure): ListBlock | null {
+interface ListItems {
+  kind: 'words' | 'clues'
+  items: string[]
+  checkboxes: boolean
+}
+
+function listItems(doc: SheetDoc, style: StyleSettings, answerKey: boolean): ListItems | null {
   if (style.listOrder === 'hidden' && !answerKey) return null
   const words = sortedWords(doc.placements, style.listOrder === 'hidden' ? 'alpha' : style.listOrder)
   if (words.length === 0) return null
   if (style.clueMode) {
-    const items = words.map((p, i) =>
-      answerKey ? `${i + 1}. ${applyCase(p.display, style.letterCase)}` : `${i + 1}. ${p.clue?.trim() || '(clue needed)'} ${letterHint(p.display)}`,
-    )
-    return answerKey ? wordListBlock(items, width, size, measure, false) : clueListBlock(items, width, size, measure)
+    return answerKey
+      ? { kind: 'words', checkboxes: false, items: words.map((p, i) => `${i + 1}. ${applyCase(p.display, style.letterCase)}`) }
+      : { kind: 'clues', checkboxes: false, items: words.map((p, i) => `${i + 1}. ${p.clue?.trim() || '(clue needed)'} ${letterHint(p.display)}`) }
   }
-  return wordListBlock(
-    words.map((p) => applyCase(p.display, style.letterCase)),
-    width,
-    size,
-    measure,
-    !answerKey,
-  )
+  return { kind: 'words', checkboxes: !answerKey, items: words.map((p) => applyCase(p.display, style.letterCase)) }
+}
+
+function buildBlock(list: ListItems, items: string[], width: number, size: number, measure: Measure): ListBlock {
+  return list.kind === 'clues' ? clueListBlock(items, width, size, measure) : wordListBlock(items, width, size, measure, list.checkboxes)
+}
+
+/** Splits a list into blocks that each fit `maxH`, keeping item order (and clue numbering). */
+function paginate(list: ListItems, width: number, size: number, maxH: number, measure: Measure): ListBlock[] {
+  const out: ListBlock[] = []
+  let rest = list.items
+  while (rest.length > 0) {
+    let lo = 1
+    let hi = rest.length
+    let best = 1
+    while (lo <= hi) {
+      const mid = (lo + hi) >> 1
+      if (buildBlock(list, rest.slice(0, mid), width, size, measure).height <= maxH) {
+        best = mid
+        lo = mid + 1
+      } else hi = mid - 1
+    }
+    out.push(buildBlock(list, rest.slice(0, best), width, size, measure))
+    rest = rest.slice(best)
+  }
+  return out
 }
 
 // ---------- page ----------
@@ -258,10 +282,10 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
     y += 30
   }
 
-  const tFace = TITLE_FONTS[style.titleFont].face
-  const title = titleLines(style.title, tFace, TITLE_SIZES[style.titleSize], W, measure)
+  const titleFace = TITLE_FONTS[style.titleFont].face
+  const title = titleLines(style.title, titleFace, TITLE_SIZES[style.titleSize], W, measure)
   title.lines.forEach((line, i) => {
-    prims.push({ k: 'text', x: pw / 2, y: y + title.size * (0.85 + i * 1.1), text: line, face: tFace, size: title.size, color: style.titleColor, anchor: 'middle' })
+    prims.push({ k: 'text', x: pw / 2, y: y + title.size * (0.85 + i * 1.1), text: line, face: titleFace, size: title.size, color: style.titleColor, anchor: 'middle' })
   })
   if (title.lines.length) y += title.size * (0.85 + (title.lines.length - 1) * 1.1) + title.size * 0.35
 
@@ -289,11 +313,12 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
 
   let list: ListBlock | null = null
   let cell = cellFor(bottom - y)
-  let overflow: ListBlock | null = null
+  let overflow: ListBlock[] = []
+  const items = listItems(doc, style, answerKey)
   const minCell = Math.min(MIN_CELL, gridAreaW / (doc.cols + padFactor * 2))
   // Prefer a comfortably sized grid with a readable list; then accept smaller type; else overflow.
   const comfortable = Math.min(COMFORT_CELL, cellFor(bottom - y))
-  const blockFor = new Map(LIST_SIZES.map((size) => [size, listBlock(doc, style, answerKey, listW, size, measure)]))
+  const blockFor = new Map(LIST_SIZES.map((size) => [size, items ? buildBlock(items, items.items, listW, size, measure) : null]))
   const passes: [number, number[]][] = [
     [comfortable, [13, 12, 11, 10]],
     [minCell, [10, 9]],
@@ -311,12 +336,14 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
       }
     }
   }
-  if (!list) {
-    const page2H = ph - MARGIN * 2 - 40 - footerH
-    for (const size of LIST_SIZES) {
-      overflow = listBlock(doc, style, answerKey, W, size, measure)
-      if (!overflow || overflow.height <= page2H) break
-    }
+  const tFace = TITLE_FONTS[style.titleFont].face
+  const heading = titleLines(style.title.trim() ? `${style.title} (continued)` : 'Words to find (continued)', tFace, 18, W, measure)
+  const headingH = 22 + heading.lines.length * heading.size * 1.1
+  if (!list && items) {
+    // The list moves to its own page(s): one page at the largest size that fits, else paginate at 11pt.
+    const pageH = ph - MARGIN * 2 - headingH - footerH - 6
+    const single = [13, 12, 11, 10].map((size) => buildBlock(items, items.items, W, size, measure)).find((b) => b.height <= pageH)
+    overflow = single ? [single] : paginate(items, W, 11, pageH, measure)
     cell = cellFor(bottom - y)
   }
 
@@ -368,17 +395,16 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
   footer(prims, `Puzzle ${doc.seed}${answerKey ? ' · answer key' : ''}`)
 
   const pages: Page[] = [{ width: pw, height: ph, prims }]
-  if (overflow) {
-    const p2: Prim[] = []
-    const heading = titleLines(style.title.trim() ? `${style.title} (continued)` : 'Words to find (continued)', tFace, 18, W, measure)
-    heading.lines.forEach((line, i) =>
-      p2.push({ k: 'text', x: pw / 2, y: MARGIN + heading.size * (0.9 + i * 1.1), text: line, face: tFace, size: heading.size, color: style.titleColor, anchor: 'middle' }),
+  overflow.forEach((block, i) => {
+    const out: Prim[] = []
+    heading.lines.forEach((line, li) =>
+      out.push({ k: 'text', x: pw / 2, y: MARGIN + heading.size * (0.9 + li * 1.1), text: line, face: tFace, size: heading.size, color: style.titleColor, anchor: 'middle' }),
     )
-    overflow.draw(MARGIN, MARGIN + 22 + heading.lines.length * heading.size * 1.1, p2)
-    footer(p2, `Puzzle ${doc.seed} · page 2`)
-    pages.push({ width: pw, height: ph, prims: p2 })
-  }
-  return { pages, grid: { x: gx, y: gy, cell }, overflowed: !!overflow }
+    block.draw(MARGIN, MARGIN + headingH, out)
+    footer(out, `Puzzle ${doc.seed}${answerKey ? ' · answer key' : ''} · page ${i + 2}`)
+    pages.push({ width: pw, height: ph, prims: out })
+  })
+  return { pages, grid: { x: gx, y: gy, cell }, overflowed: overflow.length > 0 }
 }
 
 /** Crude metrics for environments without canvas (tests). */

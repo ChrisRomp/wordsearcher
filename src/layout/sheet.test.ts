@@ -141,13 +141,27 @@ describe('layoutSheet', () => {
     expect(texts(true)).toHaveLength(1)
   })
 
+  it('paginates very long clue lists and keeps every line on the page', () => {
+    const doc = sampleDoc(25, 25)
+    const many = Array.from({ length: 120 }, (_, i) => ({ ...doc.placements[i % doc.placements.length], wordId: `x${i}`, clue: `${WORDS[i % WORDS.length][1]} and more words to make this clue long` }))
+    for (const s of [style({ clueMode: true }), style({ clueMode: true, orientation: 'landscape' })]) {
+      const { pages } = layoutSheet({ ...doc, placements: many }, s, approxMeasure)
+      expect(pages.length).toBeGreaterThan(2)
+      const texts = pages.flatMap((p) => p.prims.filter((x) => x.k === 'text').map((x) => ({ y: (x as { y: number }).y, h: p.height })))
+      for (const t of texts) expect(t.y).toBeLessThanOrEqual(t.h - 36 + 4)
+      const numbers = pages.slice(1).flatMap((p) => p.prims.filter((x) => x.k === 'text' && /^\d+\.$/.test(x.text)).map((x) => (x as { text: string }).text))
+      expect(numbers).toHaveLength(120)
+      expect(numbers.at(-1)).toBe('120.')
+    }
+  })
+
   it('overflows a huge clue list onto a second page instead of shrinking the grid to nothing', () => {
     const doc = sampleDoc(30, 30)
     const long = { ...doc, placements: doc.placements.map((p) => ({ ...p, clue: `${p.clue} ${p.clue} ${p.clue}` })) }
     const { pages, grid, overflowed } = layoutSheet(long, style({ clueMode: true }), approxMeasure)
     expect(grid.cell).toBeGreaterThanOrEqual(14)
     expect(overflowed).toBe(true)
-    expect(pages).toHaveLength(2)
+    expect(pages.length).toBeGreaterThanOrEqual(2)
   })
 })
 

@@ -121,7 +121,7 @@ export function PreviewPane({ fontsReady }: { fontsReady: boolean }) {
       {doc && (
         <p className="text-center font-display text-sm text-muted">
           {doc.rows} × {doc.cols} · {doc.placements.length} words · {Math.round(docDensity(doc) * 100)}% full · puzzle <span className="font-semibold text-ink-soft">{doc.seed}</span>
-          {sheets?.puzzle.overflowed && ' · word list continues on page 2'}
+          {sheets?.puzzle.overflowed && ` · word list continues on ${sheets.puzzle.pages.length > 2 ? 'the next pages' : 'page 2'}`}
         </p>
       )}
 

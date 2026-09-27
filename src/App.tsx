@@ -15,10 +15,11 @@ import { useFontsReady } from './ui/useSheets'
 /** Regenerates (debounced) whenever generator settings change. */
 function useAutoGenerate() {
   const gen = useStore((s) => s.gen)
+  const clueMode = useStore((s) => s.style.clueMode)
   useEffect(() => {
     const t = setTimeout(() => void useStore.getState().generateNow(), 220)
     return () => clearTimeout(t)
-  }, [gen])
+  }, [gen, clueMode])
 }
 
 /** Opens a puzzle shared via "#p=…" and then cleans the URL. */

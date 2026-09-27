@@ -4,6 +4,7 @@ import { normalizeWord, splitWordInput } from '../core/normalize'
 import { PRESETS, matchPreset, type PresetId } from '../core/presets'
 import { randomSeed } from '../core/rng'
 import type { GenerateInput, ValidationIssue, WordEntry } from '../core/types'
+import { MAX_WORDS } from '../core/validate'
 import { createDoc, parseDoc, sanitizeSettings, sanitizeStyle, type PuzzleDoc } from '../doc/puzzleDoc'
 import { loadDictIndex, loadThemeWords, newWordId, toEntry } from '../words/themes'
 import { CancelledError, runGenerate } from './generatorClient'
@@ -52,10 +53,29 @@ interface AppState {
   reset(): void
 }
 
-const genKey = (gen: GenSettings) => JSON.stringify(gen)
+function stableStringify(v: unknown): string {
+  if (Array.isArray(v)) return `[${v.map(stableStringify).join(',')}]`
+  if (v && typeof v === 'object')
+    return `{${Object.keys(v)
+      .filter((k) => (v as Record<string, unknown>)[k] !== undefined)
+      .sort()
+      .map((k) => `${JSON.stringify(k)}:${stableStringify((v as Record<string, unknown>)[k])}`)
+      .join(',')}}`
+  return JSON.stringify(v)
+}
 
-async function buildPool(gen: GenSettings): Promise<{ pool: WordEntry[]; data?: string }> {
-  if (!gen.autoFill || gen.themes.length === 0) return { pool: [] }
+const usesPool = (gen: GenSettings) => gen.autoFill && gen.themes.length > 0
+
+/**
+ * Identity of everything that feeds the generator (property-order independent). Clue mode only
+ * matters when auto-filling, because then only words with clues are drawn from themes.
+ */
+export function settingsKey(gen: GenSettings, clueMode: boolean): string {
+  return stableStringify(gen) + (usesPool(gen) ? `|clues:${clueMode ? 1 : 0}` : '')
+}
+
+async function buildPool(gen: GenSettings, clueMode: boolean): Promise<{ pool: WordEntry[]; data?: string }> {
+  if (!usesPool(gen)) return { pool: [] }
   const levels = new Set(gen.levels)
   const pool: WordEntry[] = []
   let usesDict = false
@@ -64,7 +84,8 @@ async function buildPool(gen: GenSettings): Promise<{ pool: WordEntry[]; data?: 
       const words = await loadThemeWords(ref)
       if (ref.kind === 'dict') usesDict = true
       for (const w of words)
-        if (levels.has(w.level) && w.token.length >= gen.minLen && w.token.length <= gen.maxLen) pool.push(toEntry(w, ref))
+        if (levels.has(w.level) && w.token.length >= gen.minLen && w.token.length <= gen.maxLen && (!clueMode || w.clue))
+          pool.push(toEntry(w, ref))
     } catch {
       // A missing word list shouldn't block the rest of the pool.
     }
@@ -108,28 +129,34 @@ export const useStore = create<AppState>()(
       addWordsFromText(text) {
         const errors: InputError[] = []
         const entries: WordEntry[] = []
-        for (const raw of splitWordInput(text)) {
+        const room = Math.max(0, MAX_WORDS - get().gen.words.length)
+        // Parse a bit beyond the room left so duplicates/invalid entries don't hide valid words.
+        for (const raw of splitWordInput(text).slice(0, room + 100)) {
           const n = normalizeWord(raw)
-          if (n.error) errors.push({ text: raw, error: n.error })
-          else entries.push({ id: newWordId(), display: n.display, token: n.token, source: 'custom' })
+          if (n.error) errors.push({ text: raw.slice(0, 40), error: n.error })
+          else entries.push({ id: newWordId(), display: n.display.slice(0, 60), token: n.token, source: 'custom' })
         }
         const added = get().addEntries(entries)
-        set({ inputErrors: errors })
+        if (added >= room && entries.length > added)
+          errors.unshift({ text: `${entries.length - added} more`, error: `not added, since a puzzle can have at most ${MAX_WORDS} words` })
+        set({ inputErrors: errors.slice(0, 12) })
         return added
       },
 
       addEntries(entries) {
-        const existing = new Set(get().gen.words.map((w) => w.token))
+        const current = get().gen.words
+        const existing = new Set(current.map((w) => w.token))
         const fresh = entries.filter((e) => {
           if (existing.has(e.token)) return false
           existing.add(e.token)
           return true
-        })
+        }).slice(0, Math.max(0, MAX_WORDS - current.length))
         if (fresh.length) set((s) => ({ gen: { ...s.gen, words: [...s.gen.words, ...fresh] } }))
         return fresh.length
       },
 
       updateWord(id, patch) {
+        const wasCurrent = !!get().doc && get().docKey === settingsKey(get().gen, get().style.clueMode)
         set((s) => ({
           gen: {
             ...s.gen,
@@ -151,16 +178,25 @@ export const useStore = create<AppState>()(
             }),
           },
         }))
-        // Clue-only edits don't change the grid; patch the doc so the sheet updates without regenerating.
-        if (patch.display === undefined) {
-          const { doc, gen } = get()
-          if (doc && get().docKey) {
-            const word = gen.words.find((w) => w.id === id)
-            set({
-              doc: { ...doc, placements: doc.placements.map((p) => (p.wordId === id ? { ...p, clue: word?.clue } : p)) },
-              docKey: genKey(gen),
-            })
-          }
+        // Clue-only edits don't change the grid; patch the current doc so the sheet updates without
+        // regenerating. Only safe when the doc was generated from the settings being edited.
+        if (patch.display === undefined && wasCurrent) {
+          const { doc, gen, style } = get()
+          const word = gen.words.find((w) => w.id === id)
+          set({
+            doc: {
+              ...doc!,
+              settings: gen,
+              placements: doc!.placements.map((p) => {
+                if (p.wordId !== id) return p
+                const next = { ...p }
+                if (word?.clue) next.clue = word.clue
+                else delete next.clue
+                return next
+              }),
+            },
+            docKey: settingsKey(gen, style.clueMode),
+          })
         }
       },
 
@@ -174,6 +210,7 @@ export const useStore = create<AppState>()(
       pinPoolWords() {
         const { doc } = get()
         if (!doc) return
+        const wasCurrent = get().docKey === settingsKey(get().gen, get().style.clueMode)
         const pooled = doc.placements.filter((p) => p.fromPool)
         const entries: WordEntry[] = pooled.map((p) => ({
           id: p.wordId,
@@ -184,6 +221,14 @@ export const useStore = create<AppState>()(
         }))
         get().addEntries(entries)
         get().setGen({ autoFill: false })
+        // Keep the current layout: the pinned words are exactly the ones already in the grid.
+        const { gen, style } = get()
+        if (wasCurrent && gen.words.length === doc.placements.length) {
+          set({
+            doc: { ...doc, settings: gen, placements: doc.placements.map((p) => ({ ...p, fromPool: false })) },
+            docKey: settingsKey(gen, style.clueMode),
+          })
+        }
       },
 
       toggleTheme(ref, on) {
@@ -205,14 +250,17 @@ export const useStore = create<AppState>()(
       regenerate: () => get().setGen({ seed: randomSeed() }),
 
       async generateNow() {
-        const { gen } = get()
-        const key = genKey(gen)
+        const { gen, style } = get()
+        const key = settingsKey(gen, style.clueMode)
+        const stale = () => settingsKey(get().gen, get().style.clueMode) !== key
         if (key === get().docKey) {
           if (get().status !== 'idle') set({ status: 'idle', issues: [], failure: null })
           return
         }
         set({ status: 'generating' })
-        const { pool, data } = await buildPool(gen)
+        const { pool, data } = await buildPool(gen, style.clueMode)
+        // Settings changed while loading word lists; a newer run owns the worker now.
+        if (stale()) return
         const input: GenerateInput = {
           rows: gen.rows,
           cols: gen.cols,
@@ -234,7 +282,7 @@ export const useStore = create<AppState>()(
           set({ status: 'error', failure: 'budget-exhausted', issues: [{ code: 'over-capacity', severity: 'error', message: String((e as Error).message), wordIds: [] }] })
           return
         }
-        if (genKey(get().gen) !== key) return
+        if (stale()) return
         if (result.ok) {
           set({
             doc: createDoc({ grid: result.grid, placements: result.placements, style: get().style, settings: gen, data }),
@@ -254,7 +302,7 @@ export const useStore = create<AppState>()(
           doc,
           gen: doc.settings,
           style: doc.style,
-          docKey: genKey(doc.settings),
+          docKey: settingsKey(doc.settings, doc.style.clueMode),
           status: 'idle',
           issues: [],
           warnings: [],
@@ -283,12 +331,14 @@ export const useStore = create<AppState>()(
           doc = null
         }
         const gen = sanitizeSettings(p.gen)
+        const style = sanitizeStyle(p.style)
+        const key = settingsKey(gen, style.clueMode)
         return {
           ...current,
           gen,
-          style: sanitizeStyle(p.style),
+          style,
           doc,
-          docKey: doc && typeof p.docKey === 'string' && p.docKey === genKey(gen) ? p.docKey : null,
+          docKey: doc && p.docKey === key ? key : null,
         }
       },
     },
