@@ -73,6 +73,14 @@ export function docHash(doc: Pick<PuzzleDoc, 'grid' | 'placements' | 'cols'>): s
   return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36)
 }
 
+/** Fraction of usable cells covered by answer letters. */
+export function docDensity(doc: Pick<PuzzleDoc, 'grid' | 'placements' | 'cols'>): number {
+  const cells = new Set<number>()
+  for (const p of doc.placements) for (const [r, c] of pathCells(p.r, p.c, p.dir, p.token.length)) cells.add(r * doc.cols + c)
+  const usable = [...doc.grid].filter((ch) => ch !== '.').length
+  return usable ? cells.size / usable : 0
+}
+
 // ---------- validation for untrusted docs (share links, imported files, localStorage) ----------
 
 const LIMITS = { display: 60, clue: 200, title: 120, words: 200 }

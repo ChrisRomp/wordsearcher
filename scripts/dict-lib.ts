@@ -79,18 +79,29 @@ export type ClueResult =
   | { clue: string; reason?: undefined }
   | { clue?: undefined; reason: string }
 
+const TECHNICAL_CLUE_DENY = new Set([
+  'betulaceous',
+  'coagulated',
+  'gymnospermous',
+  'liquor',
+  'pinnate',
+  'rennet',
+])
+
 export function makeClue(
   definition: string | undefined,
   display: string,
   blocklistTokens: ReadonlySet<string>,
+  scowlSizes?: ReadonlyMap<string, number>,
 ): ClueResult {
   if (!definition) return { reason: 'missing-definition' }
 
   let clue = definition
     .split(';')[0]
     .replace(/\([^)]*\)/g, '')
-    .replace(/\b(?:of|in)\s+the\s+genus\s+[A-Z][a-z]+(?:\s+[a-z]+)?\b/g, '')
-    .replace(/\bgenus\s+[A-Z][a-z]+(?:\s+[a-z]+)?\b/g, '')
+    .replace(/\b(?:of|in)\s+the\s+genus\s+[A-Z][a-z]+\b/g, '')
+    .replace(/\b(?:of|in)\s+genus\s+[A-Z][a-z]+\b/g, '')
+    .replace(/\bgenus\s+[A-Z][a-z]+\b/g, '')
     .replace(/\s+/g, ' ')
     .trim()
     .replace(/\.$/, '')
@@ -98,8 +109,24 @@ export function makeClue(
   clue = clue.replace(/\s+,/g, ',').replace(/,\s*$/, '').trim()
   if (!clue) return { reason: 'empty-definition' }
   clue = clue.charAt(0).toUpperCase() + clue.slice(1)
-  if (clue.length > 100) return { reason: 'long-clue' }
+  const clueWords = foldAscii(clue).match(/[A-Za-z]+/g) ?? []
+  if (clueWords.length < 3) return { reason: 'short-clue' }
+  if (clue.length > 90) return { reason: 'long-clue' }
+  if (/\s[:;,]|[:;]\s| {2,}/.test(clue)) return { reason: 'punctuation-artifact' }
+  if (/\b(?:A|An)\s+(?:woman|boy|man|girl|male|female)\s+who\b/i.test(clue)) {
+    return { reason: 'dated-gendered-clue' }
+  }
   if (clueContainsBlockWord(clue, blocklistTokens)) return { reason: 'blocked-clue' }
+  if (/\bgenus\s+[A-Z]/.test(clue)) return { reason: 'technical-clue' }
+  if (scowlSizes) {
+    for (const word of clueWords) {
+      const folded = word.toLowerCase()
+      if (TECHNICAL_CLUE_DENY.has(folded)) return { reason: 'technical-clue-word' }
+      if (folded.length >= 5 && (scowlSizes.get(folded) ?? Number.POSITIVE_INFINITY) > 50) {
+        return { reason: 'rare-clue-word' }
+      }
+    }
+  }
 
   const clueFolded = foldAscii(clue).toLowerCase()
   const clueToken = toToken(clue)
@@ -115,7 +142,6 @@ export function makeClue(
     }
   }
 
-  if (/\bgenus\s+[A-Z]/.test(clue)) return { reason: 'technical-clue' }
   return { clue }
 }
 

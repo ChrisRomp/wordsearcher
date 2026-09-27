@@ -1,6 +1,6 @@
 {
   "version": "oewn2025-scowl2020-1",
-  "generatedAt": "2026-09-27T18:16:48.717Z",
+  "generatedAt": "2026-09-27T18:32:01.884Z",
   "sources": [
     {
       "name": "Open English WordNet",
@@ -32,7 +32,7 @@
         "mammal",
         "wildlife"
       ],
-      "count": 400,
+      "count": 243,
       "file": "cat/mammals.json"
     },
     {
@@ -45,21 +45,8 @@
         "breed",
         "pet"
       ],
-      "count": 56,
+      "count": 23,
       "file": "cat/dog-breeds.json"
-    },
-    {
-      "id": "cats",
-      "name": "Cats",
-      "emoji": "🐱",
-      "group": "Animals",
-      "keywords": [
-        "cat",
-        "feline",
-        "wildcat"
-      ],
-      "count": 37,
-      "file": "cat/cats.json"
     },
     {
       "id": "birds",
@@ -71,22 +58,8 @@
         "avian",
         "feather"
       ],
-      "count": 389,
+      "count": 157,
       "file": "cat/birds.json"
-    },
-    {
-      "id": "birds-of-prey",
-      "name": "Birds of prey",
-      "emoji": "🦅",
-      "group": "Animals",
-      "keywords": [
-        "raptor",
-        "eagle",
-        "hawk",
-        "owl"
-      ],
-      "count": 45,
-      "file": "cat/birds-of-prey.json"
     },
     {
       "id": "fish",
@@ -98,7 +71,7 @@
         "aquatic",
         "ocean"
       ],
-      "count": 230,
+      "count": 79,
       "file": "cat/fish.json"
     },
     {
@@ -111,7 +84,7 @@
         "scales",
         "cold-blooded"
       ],
-      "count": 136,
+      "count": 80,
       "file": "cat/reptiles.json"
     },
     {
@@ -124,34 +97,8 @@
         "serpent",
         "reptile"
       ],
-      "count": 64,
+      "count": 16,
       "file": "cat/snakes.json"
-    },
-    {
-      "id": "lizards",
-      "name": "Lizards",
-      "emoji": "🦎",
-      "group": "Animals",
-      "keywords": [
-        "lizard",
-        "reptile",
-        "gecko"
-      ],
-      "count": 35,
-      "file": "cat/lizards.json"
-    },
-    {
-      "id": "amphibians",
-      "name": "Amphibians",
-      "emoji": "🐸",
-      "group": "Animals",
-      "keywords": [
-        "frog",
-        "toad",
-        "newt"
-      ],
-      "count": 31,
-      "file": "cat/amphibians.json"
     },
     {
       "id": "insects",
@@ -163,34 +110,8 @@
         "bug",
         "arthropod"
       ],
-      "count": 220,
+      "count": 64,
       "file": "cat/insects.json"
-    },
-    {
-      "id": "butterflies-moths",
-      "name": "Butterflies & moths",
-      "emoji": "🦋",
-      "group": "Animals",
-      "keywords": [
-        "butterfly",
-        "moth",
-        "insect"
-      ],
-      "count": 40,
-      "file": "cat/butterflies-moths.json"
-    },
-    {
-      "id": "spiders-arachnids",
-      "name": "Spiders & arachnids",
-      "emoji": "🕷️",
-      "group": "Animals",
-      "keywords": [
-        "spider",
-        "arachnid",
-        "scorpion"
-      ],
-      "count": 25,
-      "file": "cat/spiders-arachnids.json"
     },
     {
       "id": "crustaceans-shellfish",
@@ -203,21 +124,8 @@
         "mollusk",
         "shellfish"
       ],
-      "count": 94,
+      "count": 43,
       "file": "cat/crustaceans-shellfish.json"
-    },
-    {
-      "id": "dinosaurs",
-      "name": "Dinosaurs",
-      "emoji": "🦖",
-      "group": "Animals",
-      "keywords": [
-        "dinosaur",
-        "prehistoric",
-        "fossil"
-      ],
-      "count": 9,
-      "file": "cat/dinosaurs.json"
     },
     {
       "id": "trees",
@@ -229,7 +137,7 @@
         "forest",
         "wood"
       ],
-      "count": 400,
+      "count": 215,
       "file": "cat/trees.json"
     },
     {
@@ -242,21 +150,8 @@
         "bloom",
         "garden"
       ],
-      "count": 167,
+      "count": 62,
       "file": "cat/flowers.json"
-    },
-    {
-      "id": "herbs-spices",
-      "name": "Herbs & spices",
-      "emoji": "🌿",
-      "group": "Plants",
-      "keywords": [
-        "herb",
-        "spice",
-        "seasoning"
-      ],
-      "count": 36,
-      "file": "cat/herbs-spices.json"
     },
     {
       "id": "fruits",
@@ -268,21 +163,8 @@
         "produce",
         "sweet"
       ],
-      "count": 111,
+      "count": 20,
       "file": "cat/fruits.json"
-    },
-    {
-      "id": "berries",
-      "name": "Berries",
-      "emoji": "🫐",
-      "group": "Food & Drink",
-      "keywords": [
-        "berry",
-        "fruit",
-        "jam"
-      ],
-      "count": 17,
-      "file": "cat/berries.json"
     },
     {
       "id": "vegetables",
@@ -294,35 +176,8 @@
         "produce",
         "garden"
       ],
-      "count": 157,
+      "count": 28,
       "file": "cat/vegetables.json"
-    },
-    {
-      "id": "nuts",
-      "name": "Nuts",
-      "emoji": "🥜",
-      "group": "Food & Drink",
-      "keywords": [
-        "nut",
-        "seed",
-        "snack"
-      ],
-      "count": 20,
-      "file": "cat/nuts.json"
-    },
-    {
-      "id": "grains-cereals",
-      "name": "Grains & cereals",
-      "emoji": "🌾",
-      "group": "Food & Drink",
-      "keywords": [
-        "grain",
-        "cereal",
-        "wheat",
-        "rice"
-      ],
-      "count": 22,
-      "file": "cat/grains-cereals.json"
     },
     {
       "id": "breads",
@@ -334,21 +189,8 @@
         "baking",
         "loaf"
       ],
-      "count": 88,
+      "count": 30,
       "file": "cat/breads.json"
-    },
-    {
-      "id": "cheeses",
-      "name": "Cheeses",
-      "emoji": "🧀",
-      "group": "Food & Drink",
-      "keywords": [
-        "cheese",
-        "dairy",
-        "food"
-      ],
-      "count": 22,
-      "file": "cat/cheeses.json"
     },
     {
       "id": "desserts-sweets",
@@ -360,7 +202,7 @@
         "sweet",
         "treat"
       ],
-      "count": 117,
+      "count": 48,
       "file": "cat/desserts-sweets.json"
     },
     {
@@ -373,7 +215,7 @@
         "confection",
         "sweet"
       ],
-      "count": 55,
+      "count": 23,
       "file": "cat/candy.json"
     },
     {
@@ -386,21 +228,8 @@
         "beverage",
         "juice"
       ],
-      "count": 84,
+      "count": 35,
       "file": "cat/beverages.json"
-    },
-    {
-      "id": "pasta",
-      "name": "Pasta",
-      "emoji": "🍝",
-      "group": "Food & Drink",
-      "keywords": [
-        "pasta",
-        "noodle",
-        "food"
-      ],
-      "count": 11,
-      "file": "cat/pasta.json"
     },
     {
       "id": "musical-instruments",
@@ -412,7 +241,7 @@
         "instrument",
         "sound"
       ],
-      "count": 156,
+      "count": 72,
       "file": "cat/musical-instruments.json"
     },
     {
@@ -425,7 +254,7 @@
         "workshop",
         "implement"
       ],
-      "count": 289,
+      "count": 152,
       "file": "cat/tools.json"
     },
     {
@@ -438,7 +267,7 @@
         "utensil",
         "cooking"
       ],
-      "count": 86,
+      "count": 47,
       "file": "cat/kitchen-utensils.json"
     },
     {
@@ -451,7 +280,7 @@
         "box",
         "holder"
       ],
-      "count": 400,
+      "count": 191,
       "file": "cat/containers.json"
     },
     {
@@ -464,7 +293,7 @@
         "chair",
         "table"
       ],
-      "count": 183,
+      "count": 83,
       "file": "cat/furniture.json"
     },
     {
@@ -477,7 +306,7 @@
         "transport",
         "car"
       ],
-      "count": 400,
+      "count": 153,
       "file": "cat/vehicles.json"
     },
     {
@@ -490,21 +319,8 @@
         "ship",
         "watercraft"
       ],
-      "count": 141,
+      "count": 36,
       "file": "cat/boats-ships.json"
-    },
-    {
-      "id": "aircraft",
-      "name": "Aircraft",
-      "emoji": "✈️",
-      "group": "Things & Tools",
-      "keywords": [
-        "aircraft",
-        "plane",
-        "flying"
-      ],
-      "count": 49,
-      "file": "cat/aircraft.json"
     },
     {
       "id": "buildings",
@@ -516,7 +332,7 @@
         "structure",
         "place"
       ],
-      "count": 266,
+      "count": 102,
       "file": "cat/buildings.json"
     },
     {
@@ -529,34 +345,8 @@
         "clothes",
         "wear"
       ],
-      "count": 400,
+      "count": 184,
       "file": "cat/clothing.json"
-    },
-    {
-      "id": "footwear",
-      "name": "Footwear",
-      "emoji": "👟",
-      "group": "Things & Tools",
-      "keywords": [
-        "footwear",
-        "shoe",
-        "boot"
-      ],
-      "count": 21,
-      "file": "cat/footwear.json"
-    },
-    {
-      "id": "hats",
-      "name": "Hats",
-      "emoji": "🎩",
-      "group": "Things & Tools",
-      "keywords": [
-        "hat",
-        "cap",
-        "headwear"
-      ],
-      "count": 40,
-      "file": "cat/hats.json"
     },
     {
       "id": "fabrics",
@@ -568,7 +358,7 @@
         "cloth",
         "textile"
       ],
-      "count": 217,
+      "count": 92,
       "file": "cat/fabrics.json"
     },
     {
@@ -581,7 +371,7 @@
         "plaything",
         "game"
       ],
-      "count": 56,
+      "count": 17,
       "file": "cat/toys.json"
     },
     {
@@ -594,7 +384,7 @@
         "contest",
         "play"
       ],
-      "count": 72,
+      "count": 31,
       "file": "cat/games.json"
     },
     {
@@ -607,7 +397,7 @@
         "athletics",
         "competition"
       ],
-      "count": 158,
+      "count": 72,
       "file": "cat/sports.json"
     },
     {
@@ -620,7 +410,7 @@
         "movement",
         "music"
       ],
-      "count": 91,
+      "count": 18,
       "file": "cat/dances.json"
     },
     {
@@ -633,34 +423,8 @@
         "worker",
         "career"
       ],
-      "count": 400,
+      "count": 212,
       "file": "cat/occupations.json"
-    },
-    {
-      "id": "family-relatives",
-      "name": "Family relatives",
-      "emoji": "👪",
-      "group": "People & Activities",
-      "keywords": [
-        "family",
-        "relative",
-        "relation"
-      ],
-      "count": 137,
-      "file": "cat/family-relatives.json"
-    },
-    {
-      "id": "body-parts",
-      "name": "Body parts",
-      "emoji": "🖐️",
-      "group": "Science & Nature",
-      "keywords": [
-        "body",
-        "anatomy",
-        "part"
-      ],
-      "count": 400,
-      "file": "cat/body-parts.json"
     },
     {
       "id": "bones",
@@ -672,7 +436,7 @@
         "skeleton",
         "anatomy"
       ],
-      "count": 99,
+      "count": 29,
       "file": "cat/bones.json"
     },
     {
@@ -685,7 +449,7 @@
         "gemstone",
         "jewel"
       ],
-      "count": 35,
+      "count": 16,
       "file": "cat/gemstones.json"
     },
     {
@@ -698,7 +462,7 @@
         "crystal",
         "geology"
       ],
-      "count": 82,
+      "count": 49,
       "file": "cat/minerals.json"
     },
     {
@@ -711,7 +475,7 @@
         "stone",
         "geology"
       ],
-      "count": 58,
+      "count": 24,
       "file": "cat/rocks.json"
     },
     {
@@ -724,7 +488,7 @@
         "element",
         "chemistry"
       ],
-      "count": 124,
+      "count": 62,
       "file": "cat/metals-elements.json"
     },
     {
@@ -737,7 +501,7 @@
         "colour",
         "hue"
       ],
-      "count": 156,
+      "count": 46,
       "file": "cat/colors.json"
     },
     {
@@ -750,7 +514,7 @@
         "geometry",
         "figure"
       ],
-      "count": 87,
+      "count": 31,
       "file": "cat/geometric-shapes.json"
     },
     {
@@ -763,7 +527,7 @@
         "storm",
         "cloud"
       ],
-      "count": 123,
+      "count": 49,
       "file": "cat/weather-phenomena.json"
     },
     {
@@ -777,7 +541,7 @@
         "lake",
         "ocean"
       ],
-      "count": 63,
+      "count": 33,
       "file": "cat/bodies-of-water.json"
     },
     {
@@ -790,7 +554,7 @@
         "geology",
         "mountain"
       ],
-      "count": 182,
+      "count": 88,
       "file": "cat/landforms.json"
     },
     {
@@ -803,7 +567,7 @@
         "subject",
         "discipline"
       ],
-      "count": 205,
+      "count": 69,
       "file": "cat/school-subjects.json"
     }
   ]

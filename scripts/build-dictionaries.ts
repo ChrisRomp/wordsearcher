@@ -49,7 +49,7 @@ const SCOWL_TAR = 'scowl-2020.12.07.tar.gz'
 const SCOWL_URL = 'https://sourceforge.net/projects/wordlist/files/SCOWL/2020.12.07/scowl-2020.12.07.tar.gz/download'
 const SCOWL_VERSION_DIR = 'scowl-2020.12.07'
 const SCOWL_SIZES = [10, 20, 35, 40, 50, 55, 60]
-const MAX_CATEGORY_WORDS = 400
+const MAX_CATEGORY_WORDS = 300
 const DEFAULT_MIN_WORDS = 15
 
 const BAD_USAGE_SYNSETS = new Set([
@@ -64,7 +64,7 @@ const BAD_USAGE_SYNSETS = new Set([
 ])
 
 const SENSITIVE_DEFINITION_RE =
-  /\b(offensive|vulgar|slang|derogator\w*|obscene|sexual|indecent|profane|genital\w*|sperm\w*|testicl\w*|breast|buttock\w*|rump|udder|teat|mammary|reproduct\w*|narcotic|drugs?|alcohol|alcoholic|intoxicant|wine|cognac|ferment\w*|tobacco|smoking|weapon|firearm|explosive|gun|murder|suicide|execution|torture|prostitut\w*|poison\w*|gambl\w*|bet|lottery|poker|casino|military|armed forces|armed services|army|duel|racial slur|ethnic slur)\b/i
+  /\b(offensive|vulgar|slang|derogator\w*|obscene|sexual|indecent|profane|genital\w*|sperm\w*|testicl\w*|breast|buttock\w*|rump|udder|teat|mammary|reproduct\w*|narcotic|drugs?|alcohol|alcoholic|intoxicant|liquor|wine|cognac|ferment\w*|tobacco|smoking|weapon|firearm|explosive|gun|murder|suicide|execution|torture|prostitut\w*|poison\w*|gambl\w*|bet|lottery|poker|casino|military|armed forces|armed services|army|warship|duel|racial slur|ethnic slur)\b/i
 
 type DictWord = { w: string; l: DictLevel; c?: string }
 type DictCategory = { id: string; name: string; words: DictWord[] }
@@ -93,6 +93,8 @@ interface CandidateWord {
   l: DictLevel
   depth: number
   synsetId: string
+  memberIndex: number
+  senseRank: number
   clue?: string
 }
 
@@ -105,6 +107,8 @@ interface BuildContext {
   globalExcludedSynsets: Set<string>
   dropCounts: Map<string, number>
   clueDropCounts: Map<string, number>
+  primarySenseDrops: Map<string, number>
+  manualDenyDrops: Map<string, number>
 }
 
 interface RootRow {
@@ -128,6 +132,8 @@ async function main() {
   const blocklistTokens = loadBlocklistTokens()
   const dropCounts = new Map<string, number>()
   const clueDropCounts = new Map<string, number>()
+  const primarySenseDrops = new Map<string, number>()
+  const manualDenyDrops = new Map<string, number>()
   const globalExcludedSynsets = collectClosure(GLOBAL_EXCLUDE_ROOTS, childrenByParent, Number.POSITIVE_INFINITY)
 
   const ctx: BuildContext = {
@@ -139,6 +145,8 @@ async function main() {
     globalExcludedSynsets,
     dropCounts,
     clueDropCounts,
+    primarySenseDrops,
+    manualDenyDrops,
   }
 
   const rootRows = buildRootRows(ctx)
@@ -153,7 +161,7 @@ async function main() {
 
   for (const config of CATEGORY_CONFIGS) {
     const category = buildCategory(config, ctx)
-    const minWords = config.minWords ?? DEFAULT_MIN_WORDS
+    const minWords = Math.max(config.minWords ?? DEFAULT_MIN_WORDS, DEFAULT_MIN_WORDS)
     if (category.words.length < minWords) {
       droppedCategories.push(`${config.id} (${category.words.length}/${minWords})`)
       inc(dropCounts, 'category-below-minimum', minWords - category.words.length)
@@ -202,7 +210,15 @@ async function main() {
   writeFileSync(join(publicDictDir, 'ATTRIBUTION.md'), buildAttribution())
   writeFileSync(
     reviewPath,
-    buildReviewReport(rootRows, categories, droppedCategories, ctx.dropCounts, ctx.clueDropCounts, publicDictDir),
+    buildReviewReport(
+      rootRows,
+      categories,
+      droppedCategories,
+      ctx.dropCounts,
+      ctx.clueDropCounts,
+      ctx.primarySenseDrops,
+      publicDictDir,
+    ),
   )
 
   console.log(`Wrote ${categories.length} categories and ${metas.reduce((sum, c) => sum + c.count, 0)} words.`)
@@ -346,6 +362,11 @@ function buildCategory(config: DictCategoryConfig, ctx: BuildContext): DictCateg
     Number.POSITIVE_INFINITY,
   )
   const denyTokens = new Set([...GLOBAL_DENY_TOKENS, ...(config.denyTokens ?? [])])
+  for (const entry of config.manualDeny ?? []) denyTokens.add(entry.token)
+  const rootLemmaTokens = collectRootLemmaTokens(config.roots, ctx.synsets)
+  const categoryNameTokens = collectCategoryNameTokens(config.name)
+  const genericTailTokens = collectGenericTailTokens(rootLemmaTokens, categoryNameTokens)
+  const bySynset = new Map<string, CandidateWord>()
   const byToken = new Map<string, CandidateWord>()
 
   for (const [synsetId, depth] of depths) {
@@ -355,20 +376,42 @@ function buildCategory(config: DictCategoryConfig, ctx: BuildContext): DictCateg
       inc(ctx.dropCounts, 'sensitive-or-excluded-subtree', synset.members?.length ?? 1)
       continue
     }
-    for (const member of synset.members ?? []) {
-      const candidate = candidateFromMember(member, synset, depth, config, denyTokens, ctx)
+    for (const [memberIndex, member] of (synset.members ?? []).entries()) {
+      const candidate = candidateFromMember(
+        member,
+        synset,
+        depth,
+        memberIndex,
+        depths,
+        rootLemmaTokens,
+        categoryNameTokens,
+        config,
+        denyTokens,
+        ctx,
+      )
       if (!candidate) continue
-      const previous = byToken.get(candidate.token)
-      if (!previous || compareCandidate(candidate, previous) < 0) {
-        if (previous) inc(ctx.dropCounts, 'duplicate-token')
-        byToken.set(candidate.token, candidate)
+      const synsetPrevious = bySynset.get(candidate.synsetId)
+      if (!synsetPrevious || compareSynsetLemma(candidate, synsetPrevious) < 0) {
+        if (synsetPrevious) inc(ctx.dropCounts, 'synset-lemma-alias')
+        bySynset.set(candidate.synsetId, candidate)
       } else {
-        inc(ctx.dropCounts, 'duplicate-token')
+        inc(ctx.dropCounts, 'synset-lemma-alias')
       }
     }
   }
 
-  const candidates = [...byToken.values()].sort(compareCandidate)
+  for (const candidate of bySynset.values()) {
+    const previous = byToken.get(candidate.token)
+    if (!previous || compareCandidate(candidate, previous) < 0) {
+      if (previous) inc(ctx.dropCounts, 'duplicate-token')
+      byToken.set(candidate.token, candidate)
+    } else {
+      inc(ctx.dropCounts, 'duplicate-token')
+    }
+  }
+
+  const filtered = dropMultiwordVariants([...byToken.values()], genericTailTokens, ctx.dropCounts)
+  const candidates = filtered.sort(compareCandidate)
   if (candidates.length > MAX_CATEGORY_WORDS) inc(ctx.dropCounts, 'category-cap-trim', candidates.length - MAX_CATEGORY_WORDS)
   return {
     id: config.id,
@@ -385,6 +428,10 @@ function candidateFromMember(
   member: string,
   synset: Synset,
   depth: number,
+  memberIndex: number,
+  categoryClosure: ReadonlyMap<string, number>,
+  rootLemmaTokens: ReadonlySet<string>,
+  categoryNameTokens: ReadonlySet<string>,
   config: DictCategoryConfig,
   denyTokens: ReadonlySet<string>,
   ctx: BuildContext,
@@ -401,10 +448,20 @@ function candidateFromMember(
 
   const token = toToken(displayBase)
   if (token.length < 3 || token.length > 15) return dropNull(ctx.dropCounts, 'length')
+  if (rootLemmaTokens.has(token)) return dropNull(ctx.dropCounts, 'root-lemma')
+  if (categoryNameTokens.has(token)) return dropNull(ctx.dropCounts, 'category-name-lemma')
   if (hasBlocklistedToken(token, ctx.blocklistTokens)) return dropNull(ctx.dropCounts, 'blocklist-token')
-  if (hasManualDeniedToken(token, denyTokens)) return dropNull(ctx.dropCounts, 'manual-deny-token')
+  if (hasManualDeniedToken(token, denyTokens)) {
+    inc(ctx.manualDenyDrops, config.id)
+    return dropNull(ctx.dropCounts, 'manual-deny-token')
+  }
 
   const lemmaSenseIds = ctx.nounSenseIdsByLemma.get(lemmaKey(displayBase)) ?? [synset.id]
+  const senseRank = lemmaSenseIds.indexOf(synset.id)
+  if (!passesPrimarySenseRule(synset.id, lemmaSenseIds, categoryClosure)) {
+    inc(ctx.primarySenseDrops, config.id)
+    return dropNull(ctx.dropCounts, 'non-primary-sense')
+  }
   if (lemmaSenseIds.some((id) => ctx.globalExcludedSynsets.has(id))) {
     return dropNull(ctx.dropCounts, 'sensitive-sense-subtree')
   }
@@ -414,7 +471,10 @@ function candidateFromMember(
   const level = levelForDisplay(displayBase, config, ctx.scowlSizes)
   if (typeof level === 'string') return dropNull(ctx.dropCounts, level)
 
-  const clueResult = makeClue(synset.definition?.[0], titleCaseDisplay(displayBase), ctx.blocklistTokens)
+  const clueSynset = clueSynsetForLemma(synset.id, lemmaSenseIds, categoryClosure, ctx.synsets)
+  const clueResult: { clue?: string; reason?: string } = clueSynset
+    ? makeClue(clueSynset.definition?.[0], titleCaseDisplay(displayBase), ctx.blocklistTokens, ctx.scowlSizes)
+    : { reason: 'non-primary-clue-sense' }
   if (clueResult.reason) inc(ctx.clueDropCounts, clueResult.reason)
 
   return {
@@ -423,6 +483,8 @@ function candidateFromMember(
     l: level,
     depth,
     synsetId: synset.id,
+    memberIndex,
+    senseRank: senseRank === -1 ? Number.POSITIVE_INFINITY : senseRank,
     clue: clueResult.clue,
   }
 }
@@ -447,6 +509,97 @@ function levelForDisplay(
   const level = scowlSizeToLevel(size)
   if (!level) return 'rare-scowl'
   return level
+}
+
+function passesPrimarySenseRule(
+  synsetId: string,
+  lemmaSenseIds: readonly string[],
+  categoryClosure: ReadonlyMap<string, number>,
+): boolean {
+  const rank = lemmaSenseIds.indexOf(synsetId)
+  if (rank === 0) return true
+  return rank === 1 && lemmaSenseIds.length >= 4 && categoryClosure.has(lemmaSenseIds[0])
+}
+
+function clueSynsetForLemma(
+  synsetId: string,
+  lemmaSenseIds: readonly string[],
+  categoryClosure: ReadonlyMap<string, number>,
+  synsets: ReadonlyMap<string, Synset>,
+): Synset | null {
+  const earliestInCategory = lemmaSenseIds.find((id) => categoryClosure.has(id))
+  if (!earliestInCategory || earliestInCategory !== lemmaSenseIds[0]) return null
+  return synsets.get(earliestInCategory) ?? synsets.get(synsetId) ?? null
+}
+
+function compareSynsetLemma(a: CandidateWord, b: CandidateWord): number {
+  const aParts = splitDisplayParts(a.w).length
+  const bParts = splitDisplayParts(b.w).length
+  return aParts - bParts || a.l - b.l || a.memberIndex - b.memberIndex || compareCandidate(a, b)
+}
+
+function dropMultiwordVariants(
+  candidates: CandidateWord[],
+  genericTailTokens: ReadonlySet<string>,
+  dropCounts: Map<string, number>,
+): CandidateWord[] {
+  const singleTokens = new Set(candidates.filter((candidate) => splitDisplayParts(candidate.w).length === 1).map((candidate) => candidate.token))
+  const kept: CandidateWord[] = []
+  for (const candidate of candidates) {
+    const parts = splitDisplayParts(candidate.w)
+    const lastPartToken = parts.length > 1 ? toToken(parts[parts.length - 1]) : ''
+    if (candidate.w.includes('-') && parts.length > 1) {
+      inc(dropCounts, 'hyphenated-multiword')
+      continue
+    }
+    if (lastPartToken && genericTailTokens.has(lastPartToken)) {
+      inc(dropCounts, 'generic-multiword-compound')
+      continue
+    }
+    if (parts.length > 1 && parts.some((part) => part.length >= 3 && singleTokens.has(toToken(part)))) {
+      inc(dropCounts, 'multiword-variant')
+      continue
+    }
+    kept.push(candidate)
+  }
+  return kept
+}
+
+function collectRootLemmaTokens(rootIds: readonly string[], synsets: ReadonlyMap<string, Synset>): Set<string> {
+  const tokens = new Set<string>()
+  for (const id of rootIds) {
+    const synset = synsets.get(id)
+    for (const member of synset?.members ?? []) {
+      const token = toToken(member)
+      if (token) tokens.add(token)
+    }
+  }
+  return tokens
+}
+
+function collectCategoryNameTokens(name: string): Set<string> {
+  const tokens = new Set<string>()
+  for (const word of foldAscii(name).match(/[A-Za-z]+/g) ?? []) {
+    if (word.length < 3) continue
+    const singular = singularize(word.toLowerCase())
+    tokens.add(toToken(singular))
+  }
+  return tokens
+}
+
+function collectGenericTailTokens(rootLemmaTokens: ReadonlySet<string>, categoryNameTokens: ReadonlySet<string>): Set<string> {
+  const tokens = new Set<string>(categoryNameTokens)
+  for (const token of rootLemmaTokens) tokens.add(token)
+  return tokens
+}
+
+function singularize(word: string): string {
+  if (word.endsWith('ies') && word.length > 4) return `${word.slice(0, -3)}y`
+  if (word.endsWith('ses') || word.endsWith('xes') || word.endsWith('ches') || word.endsWith('shes')) {
+    return word.slice(0, -2)
+  }
+  if (word.endsWith('s') && !word.endsWith('ss')) return word.slice(0, -1)
+  return word
 }
 
 function hasManualDeniedToken(token: string, denyTokens: ReadonlySet<string>): boolean {
@@ -505,6 +658,7 @@ function collectDepths(
 function compareCandidate(a: CandidateWord, b: CandidateWord): number {
   return (
     a.l - b.l ||
+    a.senseRank - b.senseRank ||
     a.depth - b.depth ||
     (b.clue ? 1 : 0) - (a.clue ? 1 : 0) ||
     a.w.localeCompare(b.w, 'en')
@@ -584,15 +738,18 @@ function buildReviewReport(
   droppedCategories: string[],
   dropCounts: ReadonlyMap<string, number>,
   clueDropCounts: ReadonlyMap<string, number>,
+  primarySenseDrops: ReadonlyMap<string, number>,
   dictDir: string,
 ): string {
   const categoryLines = categories.map((category) => {
     const levels = { 1: 0, 2: 0, 3: 0 }
     for (const word of category.words) levels[word.l] += 1
-    return `| ${category.id} | ${category.words.length} | ${levels[1]} | ${levels[2]} | ${levels[3]} |`
+    const clueCount = category.words.filter((word) => Boolean(word.c)).length
+    const clueCoverage = category.words.length ? `${Math.round((clueCount / category.words.length) * 100)}%` : '0%'
+    return `| ${category.id} | ${category.words.length} | ${levels[1]} | ${levels[2]} | ${levels[3]} | ${clueCount} | ${clueCoverage} |`
   })
 
-  const sampleIds = ['dog-breeds', 'trees', 'tools', 'occupations', 'desserts-sweets']
+  const sampleIds = ['dog-breeds', 'trees', 'tools', 'occupations', 'desserts-sweets', 'mammals', 'vehicles', 'body-parts']
   const samples = sampleIds
     .map((id) => categories.find((category) => category.id === id))
     .filter((category): category is DictCategory => Boolean(category))
@@ -627,8 +784,8 @@ ${rootRows.map((row) => `| ${row.category} | ${row.kind} | ${row.id} | ${escapeM
 
 ## Per-category counts
 
-| Category | Count | Level 1 | Level 2 | Level 3 |
-| --- | ---: | ---: | ---: | ---: |
+| Category | Count | Level 1 | Level 2 | Level 3 | Clues | Clue coverage |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
 ${categoryLines.join('\n')}
 
 ## Samples
@@ -640,6 +797,24 @@ ${samples}
 | Reason | Count |
 | --- | ---: |
 ${[...dropCounts.entries()].sort((a, b) => b[1] - a[1]).map(([reason, count]) => `| ${reason} | ${count} |`).join('\n')}
+
+## Primary-sense drops by category
+
+| Category | Dropped |
+| --- | ---: |
+${[...primarySenseDrops.entries()].sort((a, b) => b[1] - a[1]).map(([category, count]) => `| ${category} | ${count} |`).join('\n')}
+
+## Manual review
+
+Manual deny counts by category after the exhaustive category word review.
+
+| Category | Denied |
+| --- | ---: |
+${CATEGORY_CONFIGS.filter((config) => (config.manualDeny?.length ?? 0) > 0)
+  .map((config) => [config.id, config.manualDeny?.length ?? 0] as const)
+  .sort((a, b) => b[1] - a[1])
+  .map(([category, count]) => `| ${category} | ${count} |`)
+  .join('\n')}
 
 ## Clue omission counts
 

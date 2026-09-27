@@ -43,7 +43,8 @@ export async function pagesToPdf(pages: Page[], loadFont: FontLoader = fetchFont
     }),
   )
 
-  const opaque = new pdf.GState({ opacity: 1 })
+  const GState = pdf.GState as unknown as new (p: { opacity: number }) => unknown
+  const opaque = new GState({ opacity: 1 })
   pdf.setLineCap('round')
   pdf.setLineJoin('round')
   pages.forEach((page, i) => {
@@ -74,7 +75,7 @@ export async function pagesToPdf(pages: Page[], loadFont: FontLoader = fetchFont
         else pdf.rect(p.x, p.y, p.w, p.h, style)
       } else {
         if (p.fill) {
-          pdf.setGState(new pdf.GState({ opacity: p.fillOpacity ?? 1 }))
+          pdf.setGState(new GState({ opacity: p.fillOpacity ?? 1 }))
           pdf.setFillColor(p.fill)
           trace(pdf, p.d)
           pdf.fill()
