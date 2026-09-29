@@ -1,0 +1,26 @@
+version: 2
+updates:
+  # pnpm projects use the npm ecosystem (package.json + pnpm-lock.yaml).
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      # Majors are kept separate so a breaking change can't hold up routine updates.
+      npm-minor-patch:
+        patterns: ["*"]
+        update-types: [minor, patch]
+      npm-major:
+        patterns: ["*"]
+        update-types: [major]
+      npm-security:
+        applies-to: security-updates
+        patterns: ["*"]
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
+    groups:
+      github-actions:
+        patterns: ["*"]

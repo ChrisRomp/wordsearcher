@@ -67,6 +67,8 @@ Downloads are cached in `.cache/` (gitignored). Dictionary categories, deny list
 
 `.github/workflows/ci.yml` runs lint, typecheck, tests, and a production build on every pull request and every push to `main`. When a push to `main` passes, it also deploys `dist/` to GitHub Pages. The site is built with a relative base path, so `dist/` can be served from any subpath.
 
+Dependabot (`.github/dependabot.yml`) checks npm packages and GitHub Actions monthly and opens grouped pull requests: npm minor/patch updates together, npm major updates together, and all Actions updates together. Security updates for npm are grouped too.
+
 ## License
 
 The app code is licensed under the [GNU Affero General Public License v3.0 or later](LICENSE). If you run a modified version for others over a network, you must offer them its source code. The word data and fonts below keep their own licenses.
