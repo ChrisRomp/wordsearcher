@@ -75,13 +75,14 @@ export function createRng(seed: string): Rng {
   }
 }
 
-const SEED_ALPHABET = 'abcdefghjkmnpqrstuvwxyz23456789'
+/** No vowels (so IDs can never spell words on a kid's worksheet) and no look-alikes like 0/O or 1/l. */
+export const ID_ALPHABET = 'bcdfghjkmnpqrstvwxz23456789'
 
-/** Short, human-friendly random seed (not deterministic; for new puzzles). */
+/** Short random seed for new puzzles (not deterministic). */
 export function randomSeed(length = 6): string {
   let s = ''
   const bytes = new Uint8Array(length)
   crypto.getRandomValues(bytes)
-  for (const b of bytes) s += SEED_ALPHABET[b % SEED_ALPHABET.length]
+  for (const b of bytes) s += ID_ALPHABET[b % ID_ALPHABET.length]
   return s
 }

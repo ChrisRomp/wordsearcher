@@ -42,11 +42,14 @@ function ThemeCard({ theme, onOpen, active }: { theme: ThemeInfo; onOpen: () => 
 
 function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () => void; onDone: () => void }) {
   const gen = useStore((s) => s.gen)
-  const { addEntries, toggleTheme, setGen } = useStore.getState()
+  const { addEntries, clearWords, toggleTheme, setGen, retitleForTheme } = useStore.getState()
   const [words, setWords] = useState<ThemeWord[] | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [levels, setLevels] = useState<Level[]>(gen.levels)
   const [selected, setSelected] = useState<Set<string> | null>(null)
+  const [replace, setReplace] = useState(true)
+  const listSize = gen.words.length
+  const replacing = replace && listSize > 0
   const maxFit = Math.min(gen.maxLen, maxWordLength(gen.rows, gen.cols, gen.directions.length ? gen.directions : ['E']))
   const inList = useMemo(() => new Set(gen.words.map((w) => w.token)), [gen.words])
   const active = gen.themes.some((t) => sameRef(t, theme.ref))
@@ -61,19 +64,21 @@ function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () =
     }
   }, [theme.ref])
 
-  const visible = useMemo(
-    () => (words ?? []).filter((w) => levels.includes(w.level) && w.token.length >= gen.minLen && w.token.length <= maxFit && !inList.has(w.token)),
-    [words, levels, gen.minLen, maxFit, inList],
+  const candidates = useMemo(
+    () => (words ?? []).filter((w) => levels.includes(w.level) && w.token.length >= gen.minLen && w.token.length <= maxFit),
+    [words, levels, gen.minLen, maxFit],
   )
+  // Words already in the list only matter when adding to it; when replacing, the list is cleared first.
+  const visible = useMemo(() => (replacing ? candidates : candidates.filter((w) => !inList.has(w.token))), [candidates, replacing, inList])
   const suggested = Math.max(5, Math.min(visible.length, Math.round((gen.rows * gen.cols * gen.density) / 6.5)))
 
   useEffect(() => {
     if (!words) return
     const rng = createRng(`${theme.ref.id}|${randomSeed()}`)
     setSelected(new Set(rng.shuffle([...visible]).slice(0, suggested).map((w) => w.token)))
-    // Re-pick only when the filtered set changes.
+    // Re-pick when the filters change, but keep the picks when toggling "replace".
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [visible])
+  }, [candidates])
 
   const chosen = visible.filter((w) => selected?.has(w.token))
   const toggle = (token: string) =>
@@ -165,30 +170,46 @@ function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () =
         )}
       </div>
 
-      <footer className="flex flex-wrap items-center gap-2 border-t-2 border-ink/10 bg-white px-5 py-3">
+      <footer className="flex flex-wrap items-center gap-x-3 gap-y-2 border-t-2 border-ink/10 bg-white px-5 py-3">
         <button
           type="button"
           className={`btn btn-sm ${active ? 'btn-teal' : ''}`}
           onClick={() => {
             toggleTheme(theme.ref, !active)
-            if (!active) setGen({ autoFill: true })
+            if (!active) {
+              setGen({ autoFill: true })
+              // The theme is the whole puzzle when there are no other words.
+              if (listSize === 0) retitleForTheme(theme.name)
+            }
           }}
           title="Fill leftover space with random words from this theme each time you regenerate"
         >
           <Sparkles size={14} /> {active ? 'Using for auto-fill' : 'Use for auto-fill'}
         </button>
+        <span className="flex-1" />
+        {listSize > 0 && (
+          <label className="inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-ink-soft select-none">
+            <input
+              type="checkbox"
+              className="size-4 cursor-pointer accent-[var(--color-tomato)]"
+              checked={replace}
+              onChange={(e) => setReplace(e.target.checked)}
+            />
+            Replace my current list ({listSize} {listSize === 1 ? 'word' : 'words'})
+          </label>
+        )}
         <button
           type="button"
-          className="btn btn-primary ml-auto"
+          className="btn btn-primary"
           disabled={chosen.length === 0}
           onClick={() => {
+            if (replacing) clearWords()
             addEntries(chosen.map((w) => toEntry(w, theme.ref)))
-            const { style, setStyle } = useStore.getState()
-            if (!style.title.trim() || style.title === 'My Word Search') setStyle({ title: `${theme.name} Word Search` })
+            retitleForTheme(theme.name)
             onDone()
           }}
         >
-          Add {chosen.length} words to my list
+          {replacing ? `Replace list with ${chosen.length} words` : `Add ${chosen.length} words to my list`}
         </button>
       </footer>
     </div>

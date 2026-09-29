@@ -21,7 +21,8 @@ export interface SheetDoc {
   cols: number
   grid: string
   placements: Placement[]
-  seed: string
+  /** Short puzzle ID printed in the footer. */
+  id: string
   directions: DirectionId[]
 }
 
@@ -392,7 +393,7 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
 
   const footer = (out: Prim[], label: string) =>
     out.push({ k: 'text', x: MARGIN + W, y: ph - MARGIN + 4, text: label, face: BODY_FACE, size: 7, color: RULE, anchor: 'end' })
-  footer(prims, `Puzzle ${doc.seed}${answerKey ? ' · answer key' : ''}`)
+  footer(prims, `Puzzle ${doc.id}${answerKey ? ' · answer key' : ''}`)
 
   const pages: Page[] = [{ width: pw, height: ph, prims }]
   overflow.forEach((block, i) => {
@@ -401,7 +402,7 @@ export function layoutSheet(doc: SheetDoc, style: StyleSettings, measure: Measur
       out.push({ k: 'text', x: pw / 2, y: MARGIN + heading.size * (0.9 + li * 1.1), text: line, face: tFace, size: heading.size, color: style.titleColor, anchor: 'middle' }),
     )
     block.draw(MARGIN, MARGIN + headingH, out)
-    footer(out, `Puzzle ${doc.seed}${answerKey ? ' · answer key' : ''} · page ${i + 2}`)
+    footer(out, `Puzzle ${doc.id}${answerKey ? ' · answer key' : ''} · page ${i + 2}`)
     pages.push({ width: pw, height: ph, prims: out })
   })
   return { pages, grid: { x: gx, y: gy, cell }, overflowed: overflow.length > 0 }

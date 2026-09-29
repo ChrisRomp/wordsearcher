@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it } from 'vitest'
 import { generate } from '../core/generator'
 import { MAX_WORDS } from '../core/validate'
 import { createDoc } from '../doc/puzzleDoc'
+import { themeTitle } from '../words/themes'
 import { settingsKey, useStore } from './store'
 
 beforeEach(() => {
@@ -67,5 +68,24 @@ describe('store', () => {
     expect(currentPreset(useStore.getState().gen)).toBe('hard')
     useStore.getState().setGen({ overlap: 'none' })
     expect(currentPreset(useStore.getState().gen)).toBe('custom')
+  })
+
+  it('retitles for a theme unless the teacher typed their own title', () => {
+    const title = () => useStore.getState().style.title
+    useStore.getState().retitleForTheme('Ocean Life')
+    expect(title()).toBe('Ocean Life Word Search')
+    useStore.getState().retitleForTheme('Farm Animals')
+    expect(title()).toBe('Farm Animals Word Search')
+    useStore.getState().setStyle({ title: '' })
+    useStore.getState().retitleForTheme('Birds')
+    expect(title()).toBe('Birds Word Search')
+    useStore.getState().setStyle({ title: 'Mrs. Lee’s Spelling Words' })
+    useStore.getState().retitleForTheme('Weather')
+    expect(title()).toBe('Mrs. Lee’s Spelling Words')
+  })
+
+  it('title-cases dictionary list names', () => {
+    expect(themeTitle('Dog breeds')).toBe('Dog Breeds Word Search')
+    expect(themeTitle('Crustaceans & shellfish')).toBe('Crustaceans & Shellfish Word Search')
   })
 })

@@ -8,7 +8,7 @@ import { DIRECTIONS } from '../core/directions'
 import { generate } from '../core/generator'
 import { normalizeWord } from '../core/normalize'
 import type { GenerateInput } from '../core/types'
-import { createDoc } from '../doc/puzzleDoc'
+import { createDoc, puzzleId } from '../doc/puzzleDoc'
 import { encodeDoc } from '../doc/share'
 import { DEFAULT_STYLE, defaultGenSettings } from '../state/settings'
 import { usePlayStore } from '../state/playStore'
@@ -93,6 +93,45 @@ describe('editor', () => {
     await waitFor(() => expect(useStore.getState().gen.words).toHaveLength(15))
     expect(screen.getByLabelText('Title')).toHaveValue('Outer Space Word Search')
     expect(await screen.findByRole('img', { name: 'Worksheet page 1' })).toBeInTheDocument()
+  })
+
+  it('switching theme packs replaces the list, retitles, and gives a new puzzle ID', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: /Outer Space/ }))
+    await waitFor(() => expect(useStore.getState().doc?.placements).toHaveLength(15))
+    const firstId = puzzleId(useStore.getState().doc!)
+    expect(within(screen.getByRole('img', { name: 'Worksheet page 1' })).getByText(`Puzzle ${firstId}`)).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Themes' }))
+    await user.click(await screen.findByRole('button', { name: /Ocean Life/ }))
+    expect(screen.getByRole('checkbox', { name: 'Replace my current list (15 words)' })).toBeChecked()
+    await user.click(await screen.findByRole('button', { name: /^Replace list with [1-9]\d* words$/ }))
+
+    expect(useStore.getState().gen.words.every((w) => w.themeId === 'ocean-life')).toBe(true)
+    expect(screen.getByLabelText('Title')).toHaveValue('Ocean Life Word Search')
+    await waitFor(() => expect(puzzleId(useStore.getState().doc!)).not.toBe(firstId))
+    const newId = puzzleId(useStore.getState().doc!)
+    expect(await within(screen.getByRole('img', { name: 'Worksheet page 1' })).findByText(`Puzzle ${newId}`)).toBeInTheDocument()
+  })
+
+  it('can add theme words to the list instead of replacing it, keeping a custom title', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.clear(screen.getByLabelText('Title'))
+    await user.type(screen.getByLabelText('Title'), 'Week 5 Words')
+    await addWords(user, 'Apple, Banana')
+    await screen.findByRole('img', { name: 'Worksheet page 1' })
+
+    await user.click(screen.getByRole('button', { name: 'Themes' }))
+    await user.click(await screen.findByRole('button', { name: /Ocean Life/ }))
+    await user.click(screen.getByRole('checkbox', { name: /Replace my current list/ }))
+    await user.click(await screen.findByRole('button', { name: /^Add [1-9]\d* words to my list$/ }))
+
+    const tokens = useStore.getState().gen.words.map((w) => w.token)
+    expect(tokens.slice(0, 2)).toEqual(['APPLE', 'BANANA'])
+    expect(tokens.length).toBeGreaterThan(2)
+    expect(screen.getByLabelText('Title')).toHaveValue('Week 5 Words')
   })
 
   it('links to the source code (AGPL)', async () => {

@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { PuzzleDoc } from '../doc/puzzleDoc'
+import { puzzleId, type PuzzleDoc } from '../doc/puzzleDoc'
 import { registerFonts } from '../layout/fonts'
 import { canvasMeasure } from '../layout/renderCanvas'
 import { layoutSheet, type SheetDoc, type SheetLayout } from '../layout/sheet'
@@ -11,7 +11,7 @@ export function toSheetDoc(doc: PuzzleDoc): SheetDoc {
     cols: doc.cols,
     grid: doc.grid,
     placements: doc.placements,
-    seed: doc.seed,
+    id: puzzleId(doc),
     directions: doc.settings.directions,
   }
 }

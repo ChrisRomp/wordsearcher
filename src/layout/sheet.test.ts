@@ -66,7 +66,7 @@ function sampleDoc(rows = 20, cols = 20): SheetDoc {
     cols,
     grid: res.grid.map((r) => r.join('')).join(''),
     placements: res.placements,
-    seed: 'spike',
+    id: 'spike',
     directions: [...ALL_DIRECTIONS],
   }
 }

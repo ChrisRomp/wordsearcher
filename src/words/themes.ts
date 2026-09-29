@@ -1,6 +1,6 @@
 import { normalizeWord } from '../core/normalize'
 import type { Level, WordEntry, WordSource } from '../core/types'
-import type { ThemeRef } from '../state/settings'
+import { DEFAULT_STYLE, type ThemeRef } from '../state/settings'
 import type { CuratedPack, DictCategory, DictIndex } from './types'
 
 const packModules = import.meta.glob<CuratedPack>('./curated/packs/*.json', { eager: true, import: 'default' })
@@ -40,6 +40,7 @@ export function curatedThemes(): ThemeInfo[] {
 }
 
 let indexPromise: Promise<DictIndex | null> | null = null
+let dictThemeNames: string[] = []
 const categoryCache = new Map<string, Promise<DictCategory>>()
 
 const dictUrl = (path: string) => `${import.meta.env.BASE_URL}dict/${path}`
@@ -48,8 +49,24 @@ const dictUrl = (path: string) => `${import.meta.env.BASE_URL}dict/${path}`
 export function loadDictIndex(): Promise<DictIndex | null> {
   indexPromise ??= fetch(dictUrl('index.json'))
     .then((r) => (r.ok ? (r.json() as Promise<DictIndex>) : null))
+    .then((index) => {
+      dictThemeNames = index?.categories.map((c) => c.name) ?? []
+      return index
+    })
     .catch(() => null)
   return indexPromise
+}
+
+/** Title used when a theme is picked, e.g. "Dog breeds" → "Dog Breeds Word Search". */
+export function themeTitle(name: string): string {
+  return `${name.replace(/(^|\s)(\p{Ll})/gu, (_, space: string, ch: string) => space + ch.toUpperCase())} Word Search`
+}
+
+/** True if the title is empty, the default, or one generated from a theme (never a title the teacher typed). */
+export function shouldRetitle(title: string): boolean {
+  const t = title.trim().toLowerCase()
+  if (!t || t === DEFAULT_STYLE.title.toLowerCase()) return true
+  return [...CURATED_PACKS.map((p) => p.name), ...dictThemeNames].some((name) => themeTitle(name).toLowerCase() === t)
 }
 
 export async function dictThemes(): Promise<ThemeInfo[]> {

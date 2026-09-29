@@ -6,7 +6,7 @@ import { randomSeed } from '../core/rng'
 import type { GenerateInput, ValidationIssue, WordEntry } from '../core/types'
 import { MAX_WORDS } from '../core/validate'
 import { createDoc, parseDoc, sanitizeSettings, sanitizeStyle, type PuzzleDoc } from '../doc/puzzleDoc'
-import { loadDictIndex, loadThemeWords, newWordId, toEntry } from '../words/themes'
+import { loadDictIndex, loadThemeWords, newWordId, shouldRetitle, themeTitle, toEntry } from '../words/themes'
 import { CancelledError, runGenerate } from './generatorClient'
 import { DEFAULT_STYLE, defaultGenSettings, type GenSettings, type StyleSettings, type ThemeRef } from './settings'
 
@@ -43,6 +43,8 @@ interface AppState {
   clearWords(): void
   pinPoolWords(): void
   toggleTheme(ref: ThemeRef, on?: boolean): void
+  /** Sets the title to "[Theme] Word Search" unless the teacher typed their own title. */
+  retitleForTheme(themeName: string): void
   allowNested(token: string): void
   regenerate(): void
   generateNow(): Promise<void>
@@ -246,6 +248,10 @@ export const useStore = create<AppState>()(
 
       allowNested: (token) =>
         set((s) => ({ gen: { ...s.gen, allowNested: [...new Set([...s.gen.allowNested, token])] } })),
+
+      retitleForTheme(themeName) {
+        if (shouldRetitle(get().style.title)) get().setStyle({ title: themeTitle(themeName) })
+      },
 
       regenerate: () => get().setGen({ seed: randomSeed() }),
 

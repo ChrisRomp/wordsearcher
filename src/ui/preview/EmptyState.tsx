@@ -8,12 +8,12 @@ const STARTERS = ['outer-space', 'farm-animals', 'ocean-life', 'autumn']
 async function startWith(packId: string) {
   const pack = CURATED_PACKS.find((p) => p.id === packId)
   if (!pack) return
-  const { gen, addEntries, setStyle } = useStore.getState()
+  const { gen, addEntries, retitleForTheme } = useStore.getState()
   const ref = { kind: 'curated' as const, id: packId }
   const words = (await loadThemeWords(ref)).filter((w) => gen.levels.includes(w.level) && w.token.length <= Math.min(gen.rows, gen.cols))
   const pick = createRng(`${packId}|${gen.seed}`).shuffle(words).slice(0, 15)
   addEntries(pick.map((w) => toEntry(w, ref)))
-  setStyle({ title: `${pack.name} Word Search` })
+  retitleForTheme(pack.name)
 }
 
 export function EmptyState() {
