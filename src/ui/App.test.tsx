@@ -112,7 +112,7 @@ describe('editor', () => {
     expect(within(screen.getByRole('img', { name: 'Worksheet page 1' })).getByText(`Puzzle ${firstId}`)).toBeInTheDocument()
 
     await user.click(screen.getByRole('button', { name: 'Themes' }))
-    await user.click(await screen.findByRole('button', { name: /Ocean Life/ }))
+    await user.click(await within(await screen.findByRole('dialog')).findByRole('button', { name: /Ocean Life/ }))
     expect(screen.getByRole('checkbox', { name: 'Replace my current list (15 words)' })).toBeChecked()
     await user.click(await screen.findByRole('button', { name: /^Replace list with [1-9]\d* words$/ }))
 
@@ -132,7 +132,7 @@ describe('editor', () => {
     await screen.findByRole('img', { name: 'Worksheet page 1' })
 
     await user.click(screen.getByRole('button', { name: 'Themes' }))
-    await user.click(await screen.findByRole('button', { name: /Ocean Life/ }))
+    await user.click(await within(await screen.findByRole('dialog')).findByRole('button', { name: /Ocean Life/ }))
     await user.click(screen.getByRole('checkbox', { name: /Replace my current list/ }))
     await user.click(await screen.findByRole('button', { name: /^Add [1-9]\d* words to my list$/ }))
 
@@ -150,7 +150,7 @@ describe('editor', () => {
     render(<App />)
 
     await user.click(screen.getByRole('button', { name: 'Themes' }))
-    await user.click(await screen.findByRole('button', { name: /Ocean Life/ }))
+    await user.click(await within(await screen.findByRole('dialog')).findByRole('button', { name: /Ocean Life/ }))
     await screen.findByRole('button', { name: /^Replace list with [1-9]\d* words$/ })
     await user.click(screen.getByRole('checkbox', { name: `Replace my current list (${MAX_WORDS - 5} words)` }))
 
