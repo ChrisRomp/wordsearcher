@@ -1,5 +1,6 @@
 import { DIRECTIONS, pathCells } from '../core/directions'
 import { GENERATOR_VERSION } from '../core/generator'
+import { ID_ALPHABET } from '../core/rng'
 import type { DirectionId, Placement, WordSource } from '../core/types'
 import { DEFAULT_STYLE, GRID_MAX, defaultGenSettings, type GenSettings, type StyleSettings } from '../state/settings'
 
@@ -58,8 +59,9 @@ export function docGrid(doc: Pick<PuzzleDoc, 'grid' | 'rows' | 'cols'>): string[
   return out
 }
 
-/** Stable identity of the puzzle content (grid + answers); used to key play progress. */
-export function docHash(doc: Pick<PuzzleDoc, 'grid' | 'placements' | 'cols'>): string {
+type PuzzleContent = Pick<PuzzleDoc, 'grid' | 'placements' | 'cols'>
+
+function contentHash(doc: PuzzleContent): number {
   const s = `${doc.cols}|${doc.grid}|${doc.placements.map((p) => `${p.token}@${p.r},${p.c},${p.dir}`).join(';')}`
   let h1 = 0xdeadbeef
   let h2 = 0x41c6ce57
@@ -70,7 +72,26 @@ export function docHash(doc: Pick<PuzzleDoc, 'grid' | 'placements' | 'cols'>): s
   }
   h1 = Math.imul(h1 ^ (h1 >>> 16), 2246822507) ^ Math.imul(h2 ^ (h2 >>> 13), 3266489909)
   h2 = Math.imul(h2 ^ (h2 >>> 16), 2246822507) ^ Math.imul(h1 ^ (h1 >>> 13), 3266489909)
-  return (4294967296 * (2097151 & h2) + (h1 >>> 0)).toString(36)
+  return 4294967296 * (2097151 & h2) + (h1 >>> 0)
+}
+
+/** Stable identity of the puzzle content (grid + answers); used to key play progress. */
+export function docHash(doc: PuzzleContent): string {
+  return contentHash(doc).toString(36)
+}
+
+/**
+ * Short ID printed on worksheets so a sheet can be matched to its answer key. It fingerprints the
+ * finished grid: any change to the letters or answers gives a new ID; clue, title, and style edits don't.
+ */
+export function puzzleId(doc: PuzzleContent): string {
+  let n = contentHash(doc)
+  let id = ''
+  for (let i = 0; i < 6; i++) {
+    id += ID_ALPHABET[n % ID_ALPHABET.length]
+    n = Math.floor(n / ID_ALPHABET.length)
+  }
+  return id
 }
 
 /** Fraction of usable cells covered by answer letters. */
@@ -112,7 +133,7 @@ function record(v: unknown): Record<string, unknown> {
 export function sanitizeStyle(raw: unknown): StyleSettings {
   const s = record(raw)
   const d = DEFAULT_STYLE
-  return {
+  const style: StyleSettings = {
     title: str(s.title, LIMITS.title, d.title),
     titleFont: oneOf(s.titleFont, ['fredoka', 'nunito', 'patrick', 'atkinson', 'bree'], d.titleFont),
     titleColor: typeof s.titleColor === 'string' && /^#[0-9a-f]{6}$/i.test(s.titleColor) ? s.titleColor : d.titleColor,
@@ -127,6 +148,9 @@ export function sanitizeStyle(raw: unknown): StyleSettings {
     orientation: oneOf(s.orientation, ['portrait', 'landscape'], d.orientation),
     answerKey: bool(s.answerKey, d.answerKey),
   }
+  const autoTitle = str(s.autoTitle, LIMITS.title).trim()
+  if (autoTitle) style.autoTitle = autoTitle
+  return style
 }
 
 export function sanitizeSettings(raw: unknown): GenSettings {
@@ -166,19 +190,28 @@ export function sanitizeSettings(raw: unknown): GenSettings {
     minLen: int(s.minLen, 2, 30, d.minLen),
     maxLen: int(s.maxLen, 2, 30, d.maxLen),
     levels: levels.length ? [...new Set(levels)] : d.levels,
-    themes: Array.isArray(s.themes)
-      ? s.themes.slice(0, 20).flatMap((t) => {
-          const o = record(t)
-          const id = str(o.id, 60)
-          return /^[a-z0-9-]+$/.test(id) ? [{ kind: oneOf(o.kind, ['curated', 'dict'] as const, 'curated'), id }] : []
-        })
-      : d.themes,
-    autoFill: bool(s.autoFill, d.autoFill),
-    maxWords: int(s.maxWords, 1, 150, d.maxWords),
     allowNested: Array.isArray(s.allowNested)
       ? s.allowNested.filter((x): x is string => typeof x === 'string' && /^[A-Z]{1,40}$/.test(x)).slice(0, 100)
       : d.allowNested,
     seed: str(s.seed, 40, d.seed) || d.seed,
+  }
+}
+
+/**
+ * Puzzles made with the old theme auto-fill feature have placements that aren't in the word list.
+ * Fold them into the list so the puzzle can be edited without losing words.
+ */
+function adoptPoolWords(doc: PuzzleDoc): void {
+  const listed = new Set(doc.settings.words.map((w) => w.token))
+  const extra = doc.placements.filter((p) => !listed.has(p.token))
+  if (extra.length === 0 && !doc.placements.some((p) => p.fromPool)) return
+  doc.placements = doc.placements.map((p) => ({ ...p, fromPool: false }))
+  doc.settings = {
+    ...doc.settings,
+    words: [
+      ...doc.settings.words,
+      ...extra.map((p) => ({ id: p.wordId, display: p.display, token: p.token, source: p.source, ...(p.clue ? { clue: p.clue } : {}) })),
+    ],
   }
 }
 
@@ -231,6 +264,7 @@ export function parseDoc(raw: unknown): PuzzleDoc {
     settings: sanitizeSettings(o.settings),
     createdAt: typeof o.createdAt === 'number' ? o.createdAt : Date.now(),
   }
+  adoptPoolWords(doc)
   if (typeof o.data === 'string') doc.data = str(o.data, 60)
   return doc
 }

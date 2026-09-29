@@ -1,14 +1,15 @@
 // @vitest-environment jsdom
 import '../test/dom'
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent, { type UserEvent } from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
 import { DIRECTIONS } from '../core/directions'
 import { generate } from '../core/generator'
 import { normalizeWord } from '../core/normalize'
-import type { GenerateInput } from '../core/types'
-import { createDoc } from '../doc/puzzleDoc'
+import type { GenerateInput, WordEntry } from '../core/types'
+import { MAX_WORDS } from '../core/validate'
+import { createDoc, puzzleId } from '../doc/puzzleDoc'
 import { encodeDoc } from '../doc/share'
 import { DEFAULT_STYLE, defaultGenSettings } from '../state/settings'
 import { usePlayStore } from '../state/playStore'
@@ -36,6 +37,13 @@ afterEach(cleanup)
 async function addWords(user: UserEvent, text: string) {
   await user.type(screen.getByLabelText('Add words'), text)
   await user.click(screen.getByRole('button', { name: 'Add' }))
+}
+
+function customWords(count: number): WordEntry[] {
+  return Array.from({ length: count }, (_, i) => {
+    const suffix = `${String.fromCharCode(65 + Math.floor(i / 26))}${String.fromCharCode(65 + (i % 26))}`
+    return { id: `existing-${i}`, display: `Word ${suffix}`, token: `WORD${suffix}`, source: 'custom' }
+  })
 }
 
 describe('editor', () => {
@@ -93,6 +101,79 @@ describe('editor', () => {
     await waitFor(() => expect(useStore.getState().gen.words).toHaveLength(15))
     expect(screen.getByLabelText('Title')).toHaveValue('Outer Space Word Search')
     expect(await screen.findByRole('img', { name: 'Worksheet page 1' })).toBeInTheDocument()
+  })
+
+  it('switching theme packs replaces the list, retitles, and gives a new puzzle ID', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.click(screen.getByRole('button', { name: /Outer Space/ }))
+    await waitFor(() => expect(useStore.getState().doc?.placements).toHaveLength(15))
+    const firstId = puzzleId(useStore.getState().doc!)
+    expect(within(screen.getByRole('img', { name: 'Worksheet page 1' })).getByText(`Puzzle ${firstId}`)).toBeInTheDocument()
+
+    await user.click(screen.getByRole('button', { name: 'Themes' }))
+    await user.click(await within(await screen.findByRole('dialog')).findByRole('button', { name: /Ocean Life/ }))
+    expect(screen.getByRole('checkbox', { name: 'Replace my current list (15 words)' })).toBeChecked()
+    await user.click(await screen.findByRole('button', { name: /^Replace list with [1-9]\d* words$/ }))
+
+    expect(useStore.getState().gen.words.every((w) => w.themeId === 'ocean-life')).toBe(true)
+    expect(screen.getByLabelText('Title')).toHaveValue('Ocean Life Word Search')
+    await waitFor(() => expect(puzzleId(useStore.getState().doc!)).not.toBe(firstId))
+    const newId = puzzleId(useStore.getState().doc!)
+    expect(await within(screen.getByRole('img', { name: 'Worksheet page 1' })).findByText(`Puzzle ${newId}`)).toBeInTheDocument()
+  })
+
+  it('can add theme words to the list instead of replacing it, keeping a custom title', async () => {
+    const user = userEvent.setup()
+    render(<App />)
+    await user.clear(screen.getByLabelText('Title'))
+    await user.type(screen.getByLabelText('Title'), 'Week 5 Words')
+    await addWords(user, 'Apple, Banana')
+    await screen.findByRole('img', { name: 'Worksheet page 1' })
+
+    await user.click(screen.getByRole('button', { name: 'Themes' }))
+    await user.click(await within(await screen.findByRole('dialog')).findByRole('button', { name: /Ocean Life/ }))
+    await user.click(screen.getByRole('checkbox', { name: /Replace my current list/ }))
+    await user.click(await screen.findByRole('button', { name: /^Add [1-9]\d* words to my list$/ }))
+
+    const tokens = useStore.getState().gen.words.map((w) => w.token)
+    expect(tokens.slice(0, 2)).toEqual(['APPLE', 'BANANA'])
+    expect(tokens.length).toBeGreaterThan(2)
+    expect(screen.getByLabelText('Title')).toHaveValue('Week 5 Words')
+  })
+
+  it('caps added theme selections to the remaining word capacity', async () => {
+    const user = userEvent.setup()
+    act(() => {
+      useStore.getState().addEntries(customWords(MAX_WORDS - 5))
+    })
+    render(<App />)
+
+    await user.click(screen.getByRole('button', { name: 'Themes' }))
+    await user.click(await within(await screen.findByRole('dialog')).findByRole('button', { name: /Ocean Life/ }))
+    await screen.findByRole('button', { name: /^Replace list with [1-9]\d* words$/ })
+    await user.click(screen.getByRole('checkbox', { name: `Replace my current list (${MAX_WORDS - 5} words)` }))
+
+    expect(await screen.findByRole('alert')).toHaveTextContent(`you can add 5 more`)
+    expect(screen.getByRole('button', { name: /^Add \d+ words to my list$/ })).toBeDisabled()
+
+    await user.click(screen.getByRole('button', { name: 'First 5' }))
+    expect(screen.queryByRole('alert')).not.toBeInTheDocument()
+    await user.click(screen.getByRole('button', { name: 'Add 5 words to my list' }))
+
+    expect(useStore.getState().gen.words).toHaveLength(MAX_WORDS)
+  })
+
+  it('has a footer link to the source repo', () => {
+    render(<App />)
+    expect(screen.getByRole('link', { name: 'Source on GitHub' })).toHaveAttribute('href', 'https://github.com/ChrisRomp/wordsearcher')
+  })
+
+  it('hides clue mode unless a puzzle already uses it', () => {
+    render(<App />)
+    expect(screen.queryByRole('switch', { name: /Clue mode/ })).not.toBeInTheDocument()
+    act(() => useStore.getState().setStyle({ clueMode: true }))
+    expect(screen.getByRole('switch', { name: /Clue mode/ })).toBeChecked()
   })
 
   it('links to the source code (AGPL)', async () => {

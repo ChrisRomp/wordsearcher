@@ -4,6 +4,7 @@ import { docFromHash } from './doc/share'
 import { useStore } from './state/store'
 import { AboutDialog } from './ui/AboutDialog'
 import { EditorPanel } from './ui/editor/EditorPanel'
+import { Footer } from './ui/Footer'
 import { IssuesPanel } from './ui/editor/IssuesPanel'
 import { Header } from './ui/Header'
 import { PlayView } from './ui/play/PlayView'
@@ -15,11 +16,10 @@ import { useFontsReady } from './ui/useSheets'
 /** Regenerates (debounced) whenever generator settings change. */
 function useAutoGenerate() {
   const gen = useStore((s) => s.gen)
-  const clueMode = useStore((s) => s.style.clueMode)
   useEffect(() => {
     const t = setTimeout(() => void useStore.getState().generateNow(), 220)
     return () => clearTimeout(t)
-  }, [gen, clueMode])
+  }, [gen])
 }
 
 /** Opens a puzzle shared via "#p=…" and then cleans the URL. */
@@ -63,7 +63,7 @@ export default function App() {
       {view === 'play' ? (
         <PlayView />
       ) : (
-        <main className="mx-auto grid max-w-[1500px] items-start gap-6 px-4 pt-3 pb-16 sm:px-6 lg:grid-cols-[minmax(380px,460px)_minmax(0,1fr)]">
+        <main className="mx-auto grid max-w-[1500px] items-start gap-6 px-4 pt-3 pb-8 sm:px-6 lg:grid-cols-[minmax(380px,460px)_minmax(0,1fr)]">
           <div className="space-y-4 lg:sticky lg:top-3 lg:max-h-[calc(100dvh-1.5rem)] lg:overflow-y-auto lg:pr-2 lg:pb-3">
             <IssuesPanel />
             <EditorPanel />
@@ -79,6 +79,7 @@ export default function App() {
           </a>
         </main>
       )}
+      <Footer />
       <AboutDialog open={about} onClose={() => setAbout(false)} />
       <Toasts />
     </>

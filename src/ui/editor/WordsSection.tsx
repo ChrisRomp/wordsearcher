@@ -1,11 +1,10 @@
-import { BookOpen, Pin, Plus, Sparkles, Trash2, X } from 'lucide-react'
+import { BookOpen, Plus, Trash2, X } from 'lucide-react'
 import { useMemo, useState } from 'react'
 import { normalizeWord } from '../../core/normalize'
 import type { WordEntry } from '../../core/types'
 import { useStore } from '../../state/store'
-import { themeName } from '../../words/themes'
 import { useAllThemes } from '../useAllThemes'
-import { Dialog, Section, Stepper, Toggle } from '../primitives'
+import { Dialog, Section } from '../primitives'
 import { ThemeBrowser } from './ThemeBrowser'
 
 const SOURCE_STYLE: Record<WordEntry['source'], string> = {
@@ -16,6 +15,7 @@ const SOURCE_STYLE: Record<WordEntry['source'], string> = {
 
 
 function WordEditDialog({ word, onClose }: { word: WordEntry | null; onClose: () => void }) {
+  const clueMode = useStore((s) => s.style.clueMode)
   const updateWord = useStore((s) => s.updateWord)
   const removeWords = useStore((s) => s.removeWords)
   const [display, setDisplay] = useState(word?.display ?? '')
@@ -46,22 +46,24 @@ function WordEditDialog({ word, onClose }: { word: WordEntry | null; onClose: ()
               )}
             </p>
           </div>
-          <div>
-            <label className="label" htmlFor="edit-clue">
-              Clue <span className="normal-case tracking-normal text-muted">(used in clue mode)</span>
-            </label>
-            <textarea
-              id="edit-clue"
-              className="field min-h-20"
-              value={clue}
-              maxLength={200}
-              placeholder="e.g. A glowing ball of gas in the night sky"
-              onChange={(e) => setClue(e.target.value)}
-            />
-            {clue && n.token && clue.toUpperCase().replace(/[^A-Z]/g, '').includes(n.token) && (
-              <p className="mt-1 text-sm text-tomato-dark">Heads up: this clue gives away the answer.</p>
-            )}
-          </div>
+          {clueMode && (
+            <div>
+              <label className="label" htmlFor="edit-clue">
+                Clue <span className="normal-case tracking-normal text-muted">(used in clue mode)</span>
+              </label>
+              <textarea
+                id="edit-clue"
+                className="field min-h-20"
+                value={clue}
+                maxLength={200}
+                placeholder="e.g. A glowing ball of gas in the night sky"
+                onChange={(e) => setClue(e.target.value)}
+              />
+              {clue && n.token && clue.toUpperCase().replace(/[^A-Z]/g, '').includes(n.token) && (
+                <p className="mt-1 text-sm text-tomato-dark">Heads up: this clue gives away the answer.</p>
+              )}
+            </div>
+          )}
           <div className="flex items-center gap-2 pt-1">
             <button
               type="button"
@@ -88,18 +90,16 @@ function WordEditDialog({ word, onClose }: { word: WordEntry | null; onClose: ()
 
 export function WordsSection({ delay }: { delay?: number }) {
   const gen = useStore((s) => s.gen)
-  const doc = useStore((s) => s.doc)
   const issues = useStore((s) => s.issues)
   const inputErrors = useStore((s) => s.inputErrors)
   const clueMode = useStore((s) => s.style.clueMode)
-  const { addWordsFromText, removeWords, clearWords, dismissInputErrors, setGen, toggleTheme, pinPoolWords } = useStore.getState()
+  const { addWordsFromText, removeWords, clearWords, dismissInputErrors } = useStore.getState()
   const [text, setText] = useState('')
   const [editing, setEditing] = useState<WordEntry | null>(null)
   const [browser, setBrowser] = useState(false)
   const themes = useAllThemes()
 
   const flagged = useMemo(() => new Set(issues.flatMap((i) => i.wordIds)), [issues])
-  const poolCount = doc?.placements.filter((p) => p.fromPool).length ?? 0
 
   const submit = () => {
     if (!text.trim()) return
@@ -185,7 +185,7 @@ export function WordsSection({ delay }: { delay?: number }) {
                 <span
                   className={`group inline-flex items-center rounded-full border-2 text-sm font-semibold ${flagged.has(w.id) ? 'border-tomato bg-tomato/10' : `border-ink/15 ${SOURCE_STYLE[w.source]}`}`}
                 >
-                  <button type="button" className="py-1 pr-1 pl-3 hover:underline" onClick={() => setEditing(w)} title={w.clue ? `Clue: ${w.clue}` : 'Click to edit'}>
+                  <button type="button" className="py-1 pr-1 pl-3 hover:underline" onClick={() => setEditing(w)} title={clueMode && w.clue ? `Clue: ${w.clue}` : 'Click to edit'}>
                     {w.display}
                     {clueMode && !w.clue && <span className="ml-1 text-tomato-dark" title="Needs a clue">•</span>}
                   </button>
@@ -196,44 +196,6 @@ export function WordsSection({ delay }: { delay?: number }) {
               </li>
             ))}
           </ul>
-        )}
-      </div>
-
-      <div className="rounded-2xl border-2 border-ink/10 bg-paper/70 p-3.5">
-        <Toggle
-          checked={gen.autoFill && gen.themes.length > 0}
-          disabled={gen.themes.length === 0}
-          onChange={(v) => setGen({ autoFill: v })}
-          label={
-            <span className="inline-flex items-center gap-1.5">
-              <Sparkles size={15} className="text-sun" /> Auto-fill with theme words
-            </span>
-          }
-          hint={gen.themes.length === 0 ? 'Choose a theme to fill empty space with extra words.' : `Adds words until the grid is about ${Math.round(gen.density * 100)}% full.`}
-        />
-        {gen.themes.length > 0 && (
-          <div className="mt-3 space-y-3 pl-[3.25rem]">
-            <div className="flex flex-wrap gap-1.5">
-              {gen.themes.map((t) => (
-                <span key={`${t.kind}:${t.id}`} className="inline-flex items-center gap-1 rounded-full border-2 border-ink/15 bg-white py-0.5 pr-1 pl-2.5 text-sm font-semibold">
-                  {themeName(t, themes)}
-                  <button type="button" className="rounded-full p-0.5 text-muted hover:text-tomato-dark" onClick={() => toggleTheme(t, false)} aria-label={`Stop using ${themeName(t, themes)}`}>
-                    <X size={13} />
-                  </button>
-                </span>
-              ))}
-            </div>
-            <div className="flex items-center gap-3 text-sm">
-              <span className="font-semibold text-ink-soft">At most</span>
-              <Stepper label="words" value={gen.maxWords} min={1} max={150} onChange={(v) => setGen({ maxWords: v })} />
-              <span className="text-muted">words total</span>
-            </div>
-            {poolCount > 0 && gen.autoFill && (
-              <button type="button" className="btn btn-sm" onClick={pinPoolWords} title="Move the auto-filled words into your list so they stay put">
-                <Pin size={14} /> Keep these {poolCount} theme words
-              </button>
-            )}
-          </div>
         )}
       </div>
 

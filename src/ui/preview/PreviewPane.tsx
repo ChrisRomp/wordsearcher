@@ -1,6 +1,6 @@
 import { Eye, EyeOff, FileDown, Gamepad2, ImageDown, Printer, RefreshCw, Share2 } from 'lucide-react'
 import { useCallback, useState } from 'react'
-import { docDensity, docHash } from '../../doc/puzzleDoc'
+import { docDensity, docHash, puzzleId } from '../../doc/puzzleDoc'
 import { PageSvg } from '../../layout/PageSvg'
 import type { Page } from '../../layout/types'
 import { useStore } from '../../state/store'
@@ -120,7 +120,7 @@ export function PreviewPane({ fontsReady }: { fontsReady: boolean }) {
 
       {doc && (
         <p className="text-center font-display text-sm text-muted">
-          {doc.rows} × {doc.cols} · {doc.placements.length} words · {Math.round(docDensity(doc) * 100)}% full · puzzle <span className="font-semibold text-ink-soft">{doc.seed}</span>
+          {doc.rows} × {doc.cols} · {doc.placements.length} words · {Math.round(docDensity(doc) * 100)}% full · puzzle <span className="font-semibold text-ink-soft">{puzzleId(doc)}</span>
           {sheets?.puzzle.overflowed && ` · word list continues on ${sheets.puzzle.pages.length > 2 ? 'the next pages' : 'page 2'}`}
         </p>
       )}

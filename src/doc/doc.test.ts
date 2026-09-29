@@ -4,7 +4,7 @@ import { ALL_DIRECTIONS } from '../core/directions'
 import { generate } from '../core/generator'
 import { normalizeWord } from '../core/normalize'
 import { DEFAULT_STYLE, defaultGenSettings } from '../state/settings'
-import { createDoc, docHash, parseDoc, DocError, type PuzzleDoc } from './puzzleDoc'
+import { createDoc, docHash, parseDoc, puzzleId, DocError, type PuzzleDoc } from './puzzleDoc'
 import { decodeDoc, docFromHash, encodeDoc, shareUrl } from './share'
 
 function makeDoc(clueMode = false, n = 15, size = 15): PuzzleDoc {
@@ -71,13 +71,63 @@ describe('share links', () => {
     const evil = parseDoc({
       ...doc,
       style: { ...doc.style, titleColor: 'red;background:url(x)', title: 'x'.repeat(500), titleFont: 'comic' },
-      settings: { ...doc.settings, rows: 9999, directions: ['E', 'UP'], themes: [{ kind: 'dict', id: '../../etc' }] },
+      settings: { ...doc.settings, rows: 9999, directions: ['E', 'UP'] },
     })
     expect(evil.style.titleColor).toBe(DEFAULT_STYLE.titleColor)
     expect(evil.style.title.length).toBeLessThanOrEqual(120)
     expect(evil.style.titleFont).toBe('fredoka')
     expect(evil.settings.rows).toBeLessThanOrEqual(30)
     expect(evil.settings.directions).toEqual(['E'])
-    expect(evil.settings.themes).toEqual([])
+  })
+
+  it('round-trips and sanitizes auto-title provenance', () => {
+    const doc = makeDoc()
+    const autoTitle = 'Space Word Search'
+    expect(decodeDoc(encodeDoc({ ...doc, style: { ...doc.style, autoTitle } })).style.autoTitle).toBe(autoTitle)
+
+    expect(parseDoc({ ...doc, style: { ...doc.style, autoTitle: 'x'.repeat(500) } }).style.autoTitle).toHaveLength(120)
+    expect(parseDoc({ ...doc, style: { ...doc.style, autoTitle: 42 } }).style).not.toHaveProperty('autoTitle')
+    expect(parseDoc({ ...doc, style: { ...doc.style, autoTitle: '   ' } }).style).not.toHaveProperty('autoTitle')
+  })
+})
+
+describe('legacy auto-fill puzzles', () => {
+  it('folds auto-filled words into the word list without changing the grid', () => {
+    const doc = makeDoc()
+    const [first, ...rest] = doc.placements
+    const legacy = {
+      ...doc,
+      placements: [first, ...rest.map((p) => ({ ...p, fromPool: true }))],
+      settings: { ...doc.settings, words: doc.settings.words.filter((w) => w.token === first.token), autoFill: true, themes: [{ kind: 'curated', id: 'outer-space' }] },
+    }
+    const parsed = parseDoc(legacy)
+    expect(parsed.grid).toBe(doc.grid)
+    expect(parsed.placements.every((p) => !p.fromPool)).toBe(true)
+    expect(parsed.settings.words.map((w) => w.token).sort()).toEqual(doc.placements.map((p) => p.token).sort())
+    expect(parsed.settings).not.toHaveProperty('autoFill')
+    expect(puzzleId(parsed)).toBe(puzzleId(doc))
+  })
+})
+
+describe('puzzleId', () => {
+  it('is a short, vowel-free fingerprint of the finished grid', () => {
+    const doc = makeDoc()
+    const id = puzzleId(doc)
+    expect(id).toMatch(/^[bcdfghjkmnpqrstvwxz2-9]{6}$/)
+    expect(puzzleId(structuredClone(doc))).toBe(id)
+  })
+
+  it('ignores clue, title, and style edits so the answer key still matches', () => {
+    const doc = makeDoc()
+    const edited = { ...doc, style: { ...doc.style, title: 'Renamed', titleColor: '#000000' }, placements: doc.placements.map((p) => ({ ...p, clue: 'New clue' })) }
+    expect(puzzleId(edited)).toBe(puzzleId(doc))
+  })
+
+  it('changes when the grid or answers change, even with the same seed', () => {
+    const doc = makeDoc()
+    expect(makeDoc(false, 12).seed).toBe(doc.seed)
+    expect(puzzleId(makeDoc(false, 12))).not.toBe(puzzleId(doc))
+    const moved = { ...doc, placements: doc.placements.slice(1) }
+    expect(puzzleId(moved)).not.toBe(puzzleId(doc))
   })
 })

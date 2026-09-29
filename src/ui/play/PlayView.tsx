@@ -193,7 +193,7 @@ function PlayBoard({ doc, style }: { doc: PuzzleDoc; style: StyleSettings }) {
   const pct = placements.length ? Math.round((found.size / placements.length) * 100) : 0
 
   return (
-    <main className="mx-auto grid max-w-[1500px] items-start gap-6 px-4 pt-3 pb-16 sm:px-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+    <main className="mx-auto grid max-w-[1500px] items-start gap-6 px-4 pt-3 pb-8 sm:px-6 lg:grid-cols-[minmax(0,1fr)_360px]">
       <section className="card relative p-3 sm:p-4" aria-label="Puzzle">
         <div className="mb-3 flex flex-wrap items-center gap-2">
           <button type="button" className="btn btn-sm" onClick={() => setView('edit')}>
