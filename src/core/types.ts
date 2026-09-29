@@ -82,8 +82,9 @@ export interface ValidationIssue {
 
 /**
  * A verified way out of a capacity failure: a trial run with the same seed succeeded, so applying it
- * regenerates successfully. `grow` is the smallest larger grid found; `trim` means even the largest
- * grid failed, so these words (the ones that didn't fit there) must go.
+ * regenerates successfully. `grow` is the smallest larger grid found within the time budget. `trim`
+ * means even the largest grid failed; with exactly `removeIds` removed, the other words fit there. It's
+ * one working set, not the only one, and it may include words that were placed in some attempts.
  */
 export type FitSuggestion =
   | { kind: 'grow'; rows: number; cols: number }

@@ -7,7 +7,7 @@ import type { FitSuggestion, GenerateInput, GenerateResult, WordEntry } from './
  * Trial runs use the same seed with fewer restarts. A trial that succeeds is replayed exactly by a
  * full run (which only allows more restarts), so a suggestion built from one is safe to apply.
  */
-const TRIAL_RESTARTS = 16
+export const TRIAL_RESTARTS = 16
 const TRIAL_MS = 600
 /**
  * Auto-size trials get more time than the trials that verify a trim, so after the teacher removes the
@@ -53,20 +53,33 @@ function sizeRelated(res: Failure, input: GenerateInput): boolean {
   )
 }
 
-/** Smallest step in (lo, hi] whose trial succeeds, given that `hi` already has. */
+/**
+ * Smallest step in (lo, hi] whose trial succeeds, given that `hi` already has. Success isn't monotonic
+ * (a different size or word list changes the seeded placement choices), so a failure proves nothing
+ * about smaller steps. A binary search finds a verified candidate fast; the remaining time then tries
+ * every smaller untried step in ascending order. If the deadline cuts that short, the answer is still
+ * verified, just possibly not the smallest.
+ */
 function smallest(lo: number, hi: number, hiResult: GenerateResult, at: (k: number) => GenerateResult, deadline: number) {
-  let best = { k: hi, result: hiResult }
-  while (hi - lo > 1 && now() < deadline) {
-    const mid = (lo + hi) >> 1
-    const res = at(mid)
-    if (res.ok) {
-      hi = mid
-      best = { k: mid, result: res }
-    } else {
-      lo = mid
+  const tried = new Map<number, GenerateResult>([[hi, hiResult]])
+  const run = (k: number) => {
+    let res = tried.get(k)
+    if (!res) {
+      res = at(k)
+      tried.set(k, res)
     }
+    return res
   }
-  return best
+  let best = hi
+  for (let a = lo; best - a > 1 && now() < deadline; ) {
+    const mid = (a + best) >> 1
+    if (run(mid).ok) best = mid
+    else a = mid
+  }
+  for (let k = lo + 1; k < best && (tried.has(k) || now() < deadline); k++) {
+    if (run(k).ok) best = k
+  }
+  return { k: best, result: tried.get(best)! }
 }
 
 /** Shortest first; among equal lengths, the most recently added first. */
@@ -78,9 +91,10 @@ function shortestFirst(words: readonly WordEntry[]): WordEntry[] {
 }
 
 /**
- * Words to remove so the rest fit the largest grid. Repeatedly drops the words that didn't fit the
- * last trial there, then binary-searches back to the shortest removal that still worked. Returns null
- * if no trial succeeded before the deadline.
+ * A set of words whose removal lets the rest fit the largest grid, verified by a trial. Builds a removal
+ * order from the words each failed trial left out (plus the shortest words when too few are left out or
+ * time runs short), then keeps the shortest prefix of that order that worked. It's one working set, not
+ * necessarily the smallest: other subsets might work too. Returns null if no trial succeeded in time.
  */
 function trimToFit(input: GenerateInput, atMax: Failure, deadline: number): string[] | null {
   const order: string[] = []
@@ -112,7 +126,7 @@ function trimToFit(input: GenerateInput, atMax: Failure, deadline: number): stri
     const unplaced = new Set(res.unplaced)
     const ids = kept.filter((w) => unplaced.has(w.display)).map((w) => w.id)
     // Near the limit a trial may leave out only a word or two. Once time runs short, top up with the
-    // shortest words in growing steps so the search finishes; the binary search trims any overshoot.
+    // shortest words in growing steps so the search finishes; `smallest` trims any overshoot.
     const elapsed = (now() - started) / Math.max(1, deadline - started)
     const minStep = elapsed < 0.4 ? 1 : 2 ** Math.round((elapsed - 0.4) * 10)
     for (const w of shortestFirst(kept)) {
@@ -126,8 +140,9 @@ function trimToFit(input: GenerateInput, atMax: Failure, deadline: number): stri
 }
 
 /**
- * After a capacity failure at the input's size: the smallest larger grid that works (growing rows and
- * columns together, up to GRID_MAX), or, if even the largest grid fails, which words to remove.
+ * After a capacity failure at the input's size: the smallest larger grid whose trial succeeds (growing
+ * rows and columns together, up to GRID_MAX, and checking every size if time allows), or, if even the
+ * largest grid fails, a verified set of words to remove.
  */
 export function findFit(input: GenerateInput, failure: Failure, deadline = now() + TOTAL_MS): FitSuggestion | null {
   if (!sizeRelated(failure, input)) return null
@@ -158,7 +173,8 @@ export function suggestSize(words: readonly WordEntry[], density: number, min = 
 
 /**
  * Auto-size mode: starts from the density estimate and searches up to GRID_MAX for the smallest square
- * that fits. If even the largest grid fails, the failure carries a `trim` suggestion.
+ * that fits (checking every size if time allows). If even the largest grid fails, the failure carries
+ * a `trim` suggestion.
  */
 export function generateAutoSize(input: GenerateInput, min = 6): GenerateResult {
   const deadline = now() + TOTAL_MS

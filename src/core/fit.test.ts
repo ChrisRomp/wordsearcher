@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { CURATED_PACKS } from '../words/themes'
-import { findFit, generateAutoSize, generateWithFit, suggestSize } from './fit'
+import { TRIAL_RESTARTS, findFit, generateAutoSize, generateWithFit, suggestSize } from './fit'
 import { generate } from './generator'
 import { GRID_MAX } from './limits'
 import { normalizeWord } from './normalize'
@@ -49,6 +49,20 @@ describe('fit suggestions', () => {
     expect(fit.rows).toBe(fit.cols)
     expect(fit.rows).toBeGreaterThan(10)
     expect(fit.rows).toBeLessThan(GRID_MAX)
+    expect(generate({ ...input, rows: fit.rows, cols: fit.cols }).ok).toBe(true)
+  })
+
+  it('finds the smallest working size even when a bigger size fails', () => {
+    // With this seed, success isn't monotonic in size, so a plain binary search skips the smallest grid.
+    const input = base({ words: packWords(80), seed: 'c' })
+    const fit = fitOf(generateWithFit(input, false))
+    expect(fit).toMatchObject({ kind: 'grow' })
+    if (fit?.kind !== 'grow') return
+    const trialOk = (n: number) => generate({ ...input, rows: n, cols: n, budget: { restarts: TRIAL_RESTARTS } }).ok
+    for (let n = input.rows + 1; n < fit.rows; n++) expect(trialOk(n), `${n} × ${n}`).toBe(false)
+    expect(trialOk(fit.rows)).toBe(true)
+    const failsAbove = Array.from({ length: GRID_MAX - fit.rows }, (_, i) => fit.rows + 1 + i).filter((n) => !trialOk(n))
+    expect(failsAbove.length, 'this case should have a failing size above the smallest working one').toBeGreaterThan(0)
     expect(generate({ ...input, rows: fit.rows, cols: fit.cols }).ok).toBe(true)
   })
 
