@@ -3,7 +3,7 @@ import { createJSONStorage, persist } from 'zustand/middleware'
 import { normalizeWord, splitWordInput } from '../core/normalize'
 import { PRESETS, matchPreset, type PresetId } from '../core/presets'
 import { randomSeed } from '../core/rng'
-import type { GenerateInput, ValidationIssue, WordEntry } from '../core/types'
+import type { FitSuggestion, GenerateInput, ValidationIssue, WordEntry } from '../core/types'
 import { MAX_WORDS } from '../core/validate'
 import { createDoc, parseDoc, sanitizeSettings, sanitizeStyle, type PuzzleDoc } from '../doc/puzzleDoc'
 import { loadDictIndex, newWordId, shouldRetitle, themeTitle } from '../words/themes'
@@ -29,6 +29,10 @@ interface AppState {
   issues: ValidationIssue[]
   warnings: ValidationIssue[]
   failure: 'invalid-input' | 'budget-exhausted' | null
+  /** Verified fix for the last capacity failure (bigger grid, or words to remove). Read it via `currentFit()`. */
+  fit: FitSuggestion | null
+  /** settingsKey of the GenSettings the fit was verified against. */
+  fitKey: string | null
   view: View
   showSolution: boolean
   inputErrors: InputError[]
@@ -44,6 +48,8 @@ interface AppState {
   /** Sets the title to "[Theme] Word Search" unless the teacher typed their own title. */
   retitleForTheme(themeName: string): void
   allowNested(token: string): void
+  /** Applies `fit`: resizes the grid, or removes its words (and uses the largest grid unless auto-sizing). */
+  applyFit(): void
   regenerate(): void
   generateNow(): Promise<void>
   loadDoc(doc: PuzzleDoc): void
@@ -87,6 +93,8 @@ export const useStore = create<AppState>()(
       issues: [],
       warnings: [],
       failure: null,
+      fit: null,
+      fitKey: null,
       view: 'edit',
       showSolution: false,
       inputErrors: [],
@@ -206,6 +214,23 @@ export const useStore = create<AppState>()(
         }
       },
 
+      applyFit() {
+        const fit = currentFit(get())
+        if (!fit) return
+        if (fit.kind === 'grow') {
+          get().setGen({ rows: fit.rows, cols: fit.cols, autoSize: false })
+          return
+        }
+        const drop = new Set(fit.removeIds)
+        set((s) => ({
+          gen: {
+            ...s.gen,
+            words: s.gen.words.filter((w) => !drop.has(w.id)),
+            ...(s.gen.autoSize ? {} : { rows: fit.rows, cols: fit.cols }),
+          },
+        }))
+      },
+
       regenerate: () => get().setGen({ seed: randomSeed() }),
 
       async generateNow() {
@@ -213,7 +238,7 @@ export const useStore = create<AppState>()(
         const key = settingsKey(gen)
         const stale = () => settingsKey(get().gen) !== key
         if (key === get().docKey) {
-          if (get().status !== 'idle') set({ status: 'idle', issues: [], failure: null })
+          if (get().status !== 'idle') set({ status: 'idle', issues: [], failure: null, fit: null, fitKey: null })
           return
         }
         set({ status: 'generating' })
@@ -237,7 +262,7 @@ export const useStore = create<AppState>()(
           result = await runGenerate(input, gen.autoSize && gen.words.length > 0)
         } catch (e) {
           if (e instanceof CancelledError) return
-          set({ status: 'error', failure: 'budget-exhausted', issues: [{ code: 'over-capacity', severity: 'error', message: String((e as Error).message), wordIds: [] }] })
+          set({ status: 'error', failure: 'budget-exhausted', fit: null, fitKey: null, issues: [{ code: 'over-capacity', severity: 'error', message: String((e as Error).message), wordIds: [] }] })
           return
         }
         if (stale()) return
@@ -249,9 +274,12 @@ export const useStore = create<AppState>()(
             issues: [],
             warnings: result.warnings,
             failure: null,
+            fit: null,
+            fitKey: null,
           })
         } else {
-          set({ status: 'error', issues: result.issues, failure: result.reason, warnings: [] })
+          const fit = result.fit ?? null
+          set({ status: 'error', issues: result.issues, failure: result.reason, fit, fitKey: fit ? key : null, warnings: [] })
         }
       },
 
@@ -265,6 +293,8 @@ export const useStore = create<AppState>()(
           issues: [],
           warnings: [],
           failure: null,
+          fit: null,
+          fitKey: null,
           showSolution: false,
         })
       },
@@ -273,7 +303,7 @@ export const useStore = create<AppState>()(
       setShowSolution: (showSolution) => set({ showSolution }),
       dismissInputErrors: () => set({ inputErrors: [] }),
       reset: () =>
-        set({ gen: defaultGenSettings(), style: DEFAULT_STYLE, doc: null, docKey: null, issues: [], warnings: [], failure: null, status: 'idle' }),
+        set({ gen: defaultGenSettings(), style: DEFAULT_STYLE, doc: null, docKey: null, issues: [], warnings: [], failure: null, fit: null, fitKey: null, status: 'idle' }),
     }),
     {
       name: 'wordsearcher:v1',
@@ -307,6 +337,14 @@ export const useStore = create<AppState>()(
     },
   ),
 )
+
+/**
+ * The fit suggestion, only while the settings still match the ones it was verified against. Edits
+ * keep the old issues visible until the next run finishes, but a stale suggestion must not be applied.
+ */
+export function currentFit(s: Pick<AppState, 'fit' | 'fitKey' | 'gen'>): FitSuggestion | null {
+  return s.fit && s.fitKey === settingsKey(s.gen) ? s.fit : null
+}
 
 export function currentPreset(gen: GenSettings): PresetId | 'custom' {
   return matchPreset(gen)

@@ -203,6 +203,12 @@ function usableMask(input: GenerateInput): boolean[] {
   return out
 }
 
+function quoteList(items: readonly string[], max = 5): string {
+  const quoted = items.map((u) => `“${u}”`)
+  if (quoted.length <= max) return quoted.join(', ')
+  return `${quoted.slice(0, max).join(', ')} and ${quoted.length - max} more words`
+}
+
 export function generate(input: GenerateInput): GenerateResult {
   const t0 = now()
   const budget = { ...DEFAULT_BUDGET, ...input.budget }
@@ -345,7 +351,7 @@ export function generate(input: GenerateInput): GenerateResult {
     ? {
         code: 'over-capacity',
         severity: 'error',
-        message: `Couldn't fit ${unplaced.map((u) => `“${u}”`).join(', ')}. Try a bigger grid, more directions, allowing overlaps, or fewer words.`,
+        message: `Couldn't fit ${quoteList(unplaced)}. Try a bigger grid, more directions, allowing overlaps, or fewer words.`,
         wordIds: required.filter((w) => unplaced.includes(w.display)).map((w) => w.id),
       }
     : {
@@ -361,26 +367,4 @@ export function generate(input: GenerateInput): GenerateResult {
     unplaced,
     stats: { restarts: attempt, repairRounds: totalRepairs, ms: Math.round(now() - t0) },
   }
-}
-
-/** Smallest square grid likely to fit the words at the target density. */
-export function suggestSize(words: readonly WordEntry[], density: number, min = 6, max = 30): number {
-  const letters = words.reduce((n, w) => n + w.token.length, 0)
-  const longest = words.reduce((n, w) => Math.max(n, w.token.length), 0)
-  const d = Math.min(0.9, Math.max(0.15, density))
-  return Math.min(max, Math.max(min, longest, Math.ceil(Math.sqrt(letters / d))))
-}
-
-/** Auto-size mode: grow the square grid until the words fit (up to 3 steps). */
-export function generateAutoSize(input: GenerateInput, min = 6, max = 30): GenerateResult {
-  const start = suggestSize(input.words, input.density, min, max)
-  let last: GenerateResult | null = null
-  for (let n = start; n <= Math.min(max, start + 3); n++) {
-    const budget = { ...DEFAULT_BUDGET, ...input.budget }
-    last = generate({ ...input, rows: n, cols: n, budget: { ...budget, timeMs: budget.timeMs / 2 } })
-    if (last.ok) return last
-    if (last.reason === 'invalid-input' && !last.issues.some((i) => i.code === 'over-capacity' || i.code === 'too-long'))
-      return last
-  }
-  return last!
 }

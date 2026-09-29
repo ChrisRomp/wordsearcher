@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { ALL_DIRECTIONS, DIRECTIONS } from './directions'
-import { generate, generateAutoSize } from './generator'
+import { generate } from './generator'
 import { normalizeWord, reverse } from './normalize'
 import { createRng } from './rng'
 import { getBlocklist } from './safety'
@@ -266,6 +266,18 @@ describe('adversarial inputs', () => {
     expect(impossible.ok || impossible.reason === 'budget-exhausted').toBe(true)
   })
 
+  it('names at most five of the words that did not fit', () => {
+    const list = words(...'ALPHA BRAVO DELTA ECHO GOLF HOTEL INDIA JULIET KILO LIMA MIKE OSCAR PAPA QUEBEC ROMEO SIERRA TANGO'.split(' '))
+    const res = generate(base({ rows: 6, cols: 6, words: list, budget: { restarts: 2 } }))
+    expect(res.ok).toBe(false)
+    if (res.ok) return
+    expect(res.unplaced.length).toBeGreaterThan(5)
+    const msg = res.issues[0].message
+    expect(msg.match(/“/g)).toHaveLength(5)
+    expect(msg).toContain(`and ${res.unplaced.length - 5} more words.`)
+    expect(res.issues[0].wordIds).toHaveLength(res.unplaced.length)
+  })
+
   it('reports duplicates after normalization', () => {
     const res = generate(base({ words: words('Black Hole', 'blackhole', 'Star') }))
     expect(res).toMatchObject({ ok: false })
@@ -316,15 +328,6 @@ describe('pool / density', () => {
   it('respects maxWords', () => {
     const res = generate(base({ words: [], pool, density: 0.9, maxWords: 5 }))
     expect(res.ok && res.placements.length).toBe(5)
-  })
-})
-
-describe('auto size', () => {
-  it('grows to fit', () => {
-    const input = base({ words: words('ENCYCLOPEDIA', 'DICTIONARY', 'THESAURUS', 'ALMANAC', 'ATLAS', 'GLOSSARY') })
-    const res = generateAutoSize(input)
-    expect(res.ok).toBe(true)
-    if (res.ok) expect(res.grid.length).toBeGreaterThanOrEqual(12)
   })
 })
 

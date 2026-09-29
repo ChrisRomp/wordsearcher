@@ -8,19 +8,20 @@ import { DIRECTIONS } from '../core/directions'
 import { generate } from '../core/generator'
 import { normalizeWord } from '../core/normalize'
 import type { GenerateInput, WordEntry } from '../core/types'
-import { MAX_WORDS } from '../core/validate'
+import { MAX_WORDS, tokensConflict } from '../core/validate'
 import { createDoc, puzzleId } from '../doc/puzzleDoc'
 import { encodeDoc } from '../doc/share'
-import { DEFAULT_STYLE, defaultGenSettings } from '../state/settings'
+import { DEFAULT_STYLE, GRID_MAX, defaultGenSettings } from '../state/settings'
 import { usePlayStore } from '../state/playStore'
 import { useStore } from '../state/store'
+import { CURATED_PACKS } from '../words/themes'
 
 // jsdom has no Web Workers; run the generator in-process instead.
 vi.mock('../state/generatorClient', async () => {
-  const { generate, generateAutoSize } = await import('../core/generator')
+  const { generateWithFit } = await import('../core/fit')
   return {
     CancelledError: class CancelledError extends Error {},
-    runGenerate: async (input: GenerateInput, autoSize: boolean) => (autoSize ? generateAutoSize(input) : generate(input)),
+    runGenerate: async (input: GenerateInput, autoSize: boolean) => generateWithFit(input, autoSize),
   }
 })
 
@@ -44,6 +45,18 @@ function customWords(count: number): WordEntry[] {
     const suffix = `${String.fromCharCode(65 + Math.floor(i / 26))}${String.fromCharCode(65 + (i % 26))}`
     return { id: `existing-${i}`, display: `Word ${suffix}`, token: `WORD${suffix}`, source: 'custom' }
   })
+}
+
+/** Real theme words, skipping any that would conflict with an earlier one. */
+function packEntries(count: number): WordEntry[] {
+  const out: WordEntry[] = []
+  for (const pack of CURATED_PACKS)
+    for (const w of pack.words) {
+      const n = normalizeWord(w.w)
+      if (out.length < count && !out.some((o) => tokensConflict(o.token, n.token, true)))
+        out.push({ id: `${pack.id}:${n.token}`, display: n.display, token: n.token, source: 'curated' })
+    }
+  return out
 }
 
 describe('editor', () => {
@@ -184,6 +197,56 @@ describe('editor', () => {
       'href',
       'https://github.com/ChrisRomp/wordsearcher',
     )
+  })
+})
+
+describe('words that do not fit', () => {
+  it('suggests a grid size that is known to fit', { timeout: 20_000 }, async () => {
+    const user = userEvent.setup()
+    act(() => {
+      useStore.getState().setGen({ rows: 10, cols: 10, seed: 'fit' })
+      useStore.getState().addEntries(packEntries(40))
+    })
+    render(<App />)
+
+    const grow = await screen.findByRole('button', { name: /^Grid \d+ × \d+$/ }, { timeout: 8000 })
+    expect(screen.queryByRole('button', { name: 'Try again' })).not.toBeInTheDocument()
+    const size = Number(grow.textContent!.match(/\d+/)![0])
+    expect(size).toBeGreaterThan(10)
+    await user.click(grow)
+
+    await waitFor(() => expect(useStore.getState().doc?.rows).toBe(size), { timeout: 8000 })
+    expect(useStore.getState().issues).toEqual([])
+    expect(screen.queryByText(/to fix/)).not.toBeInTheDocument()
+  })
+
+  it('asks before removing the words that do not fit even the largest grid', { timeout: 30_000 }, async () => {
+    const user = userEvent.setup()
+    act(() => {
+      useStore.getState().setGen({ rows: 20, cols: 20, overlap: 'none', seed: 'fit' })
+      useStore.getState().addEntries(packEntries(MAX_WORDS))
+    })
+    render(<App />)
+
+    const openTrim = () => screen.findByRole('button', { name: /^Remove \d+ words…$/ }, { timeout: 8000 })
+    const count = Number((await openTrim()).textContent!.match(/\d+/)![0])
+    expect(screen.getByText(new RegExp(`We couldn’t fit all ${MAX_WORDS} words, even in the largest grid \\(${GRID_MAX} × ${GRID_MAX}\\)`))).toBeInTheDocument()
+
+    await user.click(await openTrim())
+    let dialog = await screen.findByRole('dialog')
+    expect(within(within(dialog).getByRole('list', { name: 'Words to remove' })).getAllByRole('listitem')).toHaveLength(count)
+    expect(dialog).toHaveTextContent(`The grid will change to ${GRID_MAX} × ${GRID_MAX}.`)
+    await user.click(within(dialog).getByRole('button', { name: 'Cancel' }))
+    expect(useStore.getState().gen.words).toHaveLength(MAX_WORDS)
+
+    await user.click(await openTrim())
+    dialog = await screen.findByRole('dialog')
+    await user.click(within(dialog).getByRole('button', { name: `Remove ${count} words` }))
+    expect(useStore.getState().gen.words).toHaveLength(MAX_WORDS - count)
+    expect(useStore.getState().gen).toMatchObject({ rows: GRID_MAX, cols: GRID_MAX })
+
+    await waitFor(() => expect(useStore.getState().doc?.placements).toHaveLength(MAX_WORDS - count), { timeout: 8000 })
+    expect(useStore.getState().issues).toEqual([])
   })
 })
 

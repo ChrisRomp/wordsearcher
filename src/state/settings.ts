@@ -53,8 +53,7 @@ export interface GenSettings {
   seed: string
 }
 
-export const GRID_MIN = 5
-export const GRID_MAX = 30
+export { GRID_MAX, GRID_MIN } from '../core/limits'
 
 export const DEFAULT_STYLE: StyleSettings = {
   title: 'My Word Search',
