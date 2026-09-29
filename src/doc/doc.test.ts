@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest'
 import { ALL_DIRECTIONS } from '../core/directions'
 import { generate } from '../core/generator'
 import { normalizeWord } from '../core/normalize'
-import { DEFAULT_STYLE, defaultGenSettings } from '../state/settings'
+import { DEFAULT_STYLE, GRID_MAX, defaultGenSettings } from '../state/settings'
 import { createDoc, docHash, parseDoc, puzzleId, DocError, type PuzzleDoc } from './puzzleDoc'
 import { decodeDoc, docFromHash, encodeDoc, shareUrl } from './share'
 
@@ -76,7 +76,7 @@ describe('share links', () => {
     expect(evil.style.titleColor).toBe(DEFAULT_STYLE.titleColor)
     expect(evil.style.title.length).toBeLessThanOrEqual(120)
     expect(evil.style.titleFont).toBe('fredoka')
-    expect(evil.settings.rows).toBeLessThanOrEqual(30)
+    expect(evil.settings.rows).toBeLessThanOrEqual(GRID_MAX)
     expect(evil.settings.directions).toEqual(['E'])
   })
 

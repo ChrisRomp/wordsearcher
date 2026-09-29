@@ -80,6 +80,15 @@ export interface ValidationIssue {
   nestable?: boolean
 }
 
+/**
+ * A verified way out of a capacity failure: a trial run with the same seed succeeded, so applying it
+ * regenerates successfully. `grow` is the smallest larger grid found; `trim` means even the largest
+ * grid failed, so these words (the ones that didn't fit there) must go.
+ */
+export type FitSuggestion =
+  | { kind: 'grow'; rows: number; cols: number }
+  | { kind: 'trim'; rows: number; cols: number; removeIds: string[] }
+
 export interface GenerateStats {
   density: number
   coveredCells: number
@@ -105,4 +114,5 @@ export type GenerateResult =
       /** Words that could not be placed in the best attempt (budget-exhausted only). */
       unplaced: string[]
       stats?: Partial<GenerateStats>
+      fit?: FitSuggestion
     }

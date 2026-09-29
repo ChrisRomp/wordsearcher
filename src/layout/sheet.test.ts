@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest'
 import { generate } from '../core/generator'
 import { ALL_DIRECTIONS } from '../core/directions'
 import { normalizeWord } from '../core/normalize'
-import { DEFAULT_STYLE, type StyleSettings } from '../state/settings'
+import { DEFAULT_STYLE, GRID_MAX, type StyleSettings } from '../state/settings'
 import type { FaceId } from './fonts'
 import { FACES } from './fonts'
 import { pagesToPdf } from './renderPdf'
@@ -164,6 +164,23 @@ describe('layoutSheet', () => {
       expect(numbers).toHaveLength(120)
       expect(numbers.at(-1)).toBe('120.')
     }
+  })
+
+  it('keeps the largest grid on the page for every paper size and orientation', () => {
+    const doc = sampleDoc(GRID_MAX, GRID_MAX)
+    for (const pageSize of ['letter', 'a4'] as const)
+      for (const orientation of ['portrait', 'landscape'] as const)
+        for (const clueMode of [false, true]) {
+          const { pages, grid } = layoutSheet(doc, style({ pageSize, orientation, clueMode }), approxMeasure)
+          const { width, height } = pages[0]
+          const size = grid.cell * GRID_MAX
+          const label = `${pageSize} ${orientation}${clueMode ? ' clues' : ''}`
+          expect(grid.cell, label).toBeGreaterThanOrEqual(10)
+          expect(grid.x, label).toBeGreaterThanOrEqual(36)
+          expect(grid.y, label).toBeGreaterThanOrEqual(0)
+          expect(grid.x + size, label).toBeLessThanOrEqual(width - 36)
+          expect(grid.y + size, label).toBeLessThanOrEqual(height - 36)
+        }
   })
 
   it('overflows a huge clue list onto a second page instead of shrinking the grid to nothing', () => {

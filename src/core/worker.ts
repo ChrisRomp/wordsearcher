@@ -1,5 +1,5 @@
 /// <reference lib="webworker" />
-import { generate, generateAutoSize } from './generator'
+import { generateWithFit } from './fit'
 import type { GenerateInput, GenerateResult } from './types'
 
 export interface WorkerRequest {
@@ -17,6 +17,6 @@ const ctx = self as unknown as { onmessage: (e: MessageEvent<WorkerRequest>) => 
 
 ctx.onmessage = (e) => {
   const { id, input, autoSize } = e.data
-  const result = autoSize ? generateAutoSize(input) : generate(input)
+  const result = generateWithFit(input, autoSize)
   ctx.postMessage({ id, result })
 }
