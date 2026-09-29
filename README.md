@@ -1,6 +1,11 @@
 # Word Searcher
 
+[![CI](https://github.com/ChrisRomp/wordsearcher/actions/workflows/ci.yml/badge.svg)](https://github.com/ChrisRomp/wordsearcher/actions/workflows/ci.yml)
+[![License: AGPL v3](https://img.shields.io/badge/License-AGPL_v3-blue.svg)](LICENSE)
+
 A free, kid-safe word search puzzle maker for teachers and families. It runs entirely in the browser: no accounts, no server, and nothing is uploaded.
+
+**Try it: <https://chrisromp.github.io/wordsearcher/>**
 
 ## Features
 
@@ -29,9 +34,11 @@ Requires Node 23.6+ (build scripts are run as TypeScript) and pnpm.
 ```sh
 pnpm install
 pnpm dev          # http://localhost:5173
-pnpm test         # vitest (generator, layout, docs, packs, dictionary helpers)
+pnpm test         # vitest: generator, layout, docs, packs, store, UI, dictionary helpers
 pnpm lint         # oxlint
+pnpm typecheck    # tsc -b
 pnpm build        # typecheck + production build to dist/
+pnpm check        # everything CI runs: lint, typecheck, tests, build
 ```
 
 ### Layout
@@ -57,9 +64,13 @@ pnpm build:dict        # public/dict/** from Open English WordNet 2025 + SCOWL
 
 Downloads are cached in `.cache/` (gitignored). Dictionary categories, deny lists (each with a reason), and filters live in `scripts/dict-categories.ts`. Review changes before shipping: automated filters alone are not enough for a K–8 audience.
 
-## Deploying
+## CI and deployment
 
-The app is a static site built with a relative base path, so `dist/` can be served from any subpath. `.github/workflows/deploy.yml` builds, tests, and publishes to GitHub Pages on pushes to `main`. To use it, enable Pages with the “GitHub Actions” source in the repo settings.
+`.github/workflows/ci.yml` runs lint, typecheck, tests, and a production build on every pull request and every push to `main`. When a push to `main` passes, it also deploys `dist/` to GitHub Pages. The site is built with a relative base path, so `dist/` can be served from any subpath.
+
+## License
+
+The app code is licensed under the [GNU Affero General Public License v3.0 or later](LICENSE). If you run a modified version for others over a network, you must offer them its source code. The word data and fonts below keep their own licenses.
 
 ## Data & font credits
 

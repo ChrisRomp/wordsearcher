@@ -17,6 +17,20 @@ export function AboutDialog({ open, onClose }: { open: boolean; onClose: () => v
           </p>
         </div>
         <div>
+          <h3 className="font-display text-lg font-semibold">Open source</h3>
+          <p className="text-ink-soft">
+            Word Searcher is free software under the{' '}
+            <a className="font-semibold text-sky underline" href="https://www.gnu.org/licenses/agpl-3.0.html" target="_blank" rel="noreferrer">
+              GNU AGPL v3
+            </a>
+            . The{' '}
+            <a className="font-semibold text-sky underline" href="https://github.com/ChrisRomp/wordsearcher" target="_blank" rel="noreferrer">
+              source code is on GitHub
+            </a>
+            .
+          </p>
+        </div>
+        <div>
           <h3 className="font-display text-lg font-semibold">Credits</h3>
           <ul className="list-disc space-y-1.5 pl-5 text-sm text-ink-soft">
             <li>

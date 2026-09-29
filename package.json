@@ -2,6 +2,16 @@
   "name": "wordsearcher",
   "private": true,
   "version": "0.0.0",
+  "description": "Free, kid-safe printable word search puzzle maker",
+  "license": "AGPL-3.0-or-later",
+  "homepage": "https://chrisromp.github.io/wordsearcher/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ChrisRomp/wordsearcher.git"
+  },
+  "bugs": {
+    "url": "https://github.com/ChrisRomp/wordsearcher/issues"
+  },
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,7 +22,8 @@
     "typecheck": "tsc -b",
     "preview": "vite preview",
     "build:blocklist": "node scripts/build-blocklist.ts",
-    "build:dict": "node scripts/build-dictionaries.ts"
+    "build:dict": "node scripts/build-dictionaries.ts",
+    "check": "pnpm lint && pnpm typecheck && pnpm test && vite build"
   },
   "dependencies": {
     "jspdf": "^4.2.1",
