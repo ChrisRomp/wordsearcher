@@ -1,6 +1,7 @@
 // @vitest-environment jsdom
 import { beforeEach, describe, expect, it } from 'vitest'
 import { generate } from '../core/generator'
+import type { DirectionId, WordEntry } from '../core/types'
 import { MAX_WORDS } from '../core/validate'
 import { createDoc } from '../doc/puzzleDoc'
 import { themeTitle } from '../words/themes'
@@ -10,6 +11,59 @@ beforeEach(() => {
   localStorage.clear()
   useStore.getState().reset()
 })
+
+function legacySettingsKey(gen: Record<string, unknown>, clueMode: boolean) {
+  const themes = gen.themes
+  return `${settingsKey(gen as unknown as Parameters<typeof settingsKey>[0])}${gen.autoFill && Array.isArray(themes) && themes.length > 0 ? `|clues:${clueMode ? 1 : 0}` : ''}`
+}
+
+function makeLegacyAutoFillState() {
+  const entered: WordEntry[] = [
+    { id: 'w-astronaut', display: 'Astronaut', token: 'ASTRONAUT', source: 'custom' },
+    { id: 'w-comet', display: 'Comet', token: 'COMET', source: 'custom' },
+    { id: 'w-galaxy', display: 'Galaxy', token: 'GALAXY', source: 'custom' },
+  ]
+  const pool: WordEntry[] = [
+    { id: 'w-nebula', display: 'Nebula', token: 'NEBULA', source: 'curated' },
+    { id: 'w-orbit', display: 'Orbit', token: 'ORBIT', source: 'curated' },
+    { id: 'w-rocket', display: 'Rocket', token: 'ROCKET', source: 'curated' },
+  ]
+  const settings = {
+    ...useStore.getState().gen,
+    words: [...entered, ...pool],
+    rows: 15,
+    cols: 15,
+    directions: ['E', 'S', 'SE', 'NE'] as DirectionId[],
+    overlap: 'allow' as const,
+    filler: 'frequency' as const,
+    density: 0.5,
+    seed: 'legacy-autofill',
+  }
+  const res = generate(settings)
+  if (!res.ok) throw new Error('generation failed')
+
+  const poolIds = new Set(pool.map((w) => w.id))
+  const legacyGen = {
+    ...settings,
+    words: entered,
+    autoFill: true,
+    themes: [{ kind: 'curated' as const, id: 'outer-space' }],
+    maxWords: 40,
+  }
+  const style = { ...useStore.getState().style, clueMode: true, title: 'Space!' }
+  const doc = createDoc({
+    grid: res.grid,
+    placements: res.placements.map((p) => (poolIds.has(p.wordId) ? { ...p, fromPool: true } : p)),
+    style,
+    settings: legacyGen,
+  })
+  return { doc, gen: legacyGen, style, entered, pool }
+}
+
+async function rehydrateLegacy(state: Record<string, unknown>) {
+  localStorage.setItem('wordsearcher:v1', JSON.stringify({ state, version: 1 }))
+  await useStore.persist.rehydrate()
+}
 
 describe('store', () => {
   it('adds pasted words, keeping phrases and reporting bad entries', () => {
@@ -60,6 +114,56 @@ describe('store', () => {
     const gen = useStore.getState().gen
     const reordered = Object.fromEntries(Object.entries(gen).reverse()) as typeof gen
     expect(settingsKey(reordered)).toBe(settingsKey(gen))
+  })
+
+  it('adopts auto-filled words from a current legacy document', async () => {
+    const legacy = makeLegacyAutoFillState()
+    await rehydrateLegacy({
+      gen: legacy.gen,
+      style: legacy.style,
+      doc: legacy.doc,
+      docKey: legacySettingsKey(legacy.gen, legacy.style.clueMode),
+    })
+
+    const state = useStore.getState()
+    expect(state.doc?.grid).toBe(legacy.doc.grid)
+    expect(state.gen.words.map((w) => w.token).sort()).toEqual(legacy.doc.placements.map((p) => p.token).sort())
+    expect(state.gen.words.some((w) => w.token === legacy.pool[0].token)).toBe(true)
+    expect(state.docKey).toBe(settingsKey(state.gen))
+  })
+
+  it('keeps edited settings when a legacy auto-fill document is stale', async () => {
+    const legacy = makeLegacyAutoFillState()
+    const edited: WordEntry = { id: 'w-edited', display: 'Satellite', token: 'SATELLITE', source: 'custom' }
+    const editedGen = { ...legacy.gen, words: [...legacy.gen.words, edited] }
+    await rehydrateLegacy({
+      gen: editedGen,
+      style: legacy.style,
+      doc: legacy.doc,
+      docKey: legacySettingsKey(legacy.gen, legacy.style.clueMode),
+    })
+
+    const state = useStore.getState()
+    expect(state.doc?.grid).toBe(legacy.doc.grid)
+    expect(state.gen.words.map((w) => w.token)).toEqual([...legacy.entered.map((w) => w.token), edited.token])
+    expect(state.gen.words.some((w) => w.token === legacy.pool[0].token)).toBe(false)
+    expect(state.gen).not.toHaveProperty('autoFill')
+    expect(state.gen).not.toHaveProperty('themes')
+    expect(state.gen).not.toHaveProperty('maxWords')
+    expect(state.docKey).toBeNull()
+  })
+
+  it('keeps edited settings when a current-format saved puzzle is stale', async () => {
+    const legacy = makeLegacyAutoFillState()
+    const { autoFill: _a, themes: _t, maxWords: _m, ...gen } = legacy.gen
+    const docGen = { ...gen, words: [...legacy.entered, ...legacy.pool] }
+    const doc = { ...legacy.doc, settings: docGen, placements: legacy.doc.placements.map((p) => ({ ...p, fromPool: false })) }
+    const edited: WordEntry = { id: 'w-edited', display: 'Satellite', token: 'SATELLITE', source: 'custom' }
+    await rehydrateLegacy({ gen: { ...docGen, words: [...docGen.words, edited] }, style: legacy.style, doc, docKey: null })
+
+    const state = useStore.getState()
+    expect(state.gen.words.map((w) => w.token)).toContain('SATELLITE')
+    expect(state.docKey).toBeNull()
   })
 
   it('applies presets and reports custom when tweaked', async () => {

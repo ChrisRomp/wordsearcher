@@ -69,6 +69,13 @@ export function settingsKey(gen: GenSettings): string {
   return stableStringify(gen)
 }
 
+function legacyAutoFillSettingsKey(rawGen: unknown, rawStyle: unknown): string | null {
+  if (!rawGen || typeof rawGen !== 'object' || (rawGen as { autoFill?: unknown }).autoFill !== true) return null
+  const themes = (rawGen as { themes?: unknown }).themes
+  const clueMode = !!(rawStyle && typeof rawStyle === 'object' && (rawStyle as { clueMode?: unknown }).clueMode === true)
+  return `${stableStringify(rawGen)}${Array.isArray(themes) && themes.length > 0 ? `|clues:${clueMode ? 1 : 0}` : ''}`
+}
+
 export const useStore = create<AppState>()(
   persist(
     (set, get) => ({
@@ -281,10 +288,12 @@ export const useStore = create<AppState>()(
         } catch {
           doc = null
         }
-        let gen = sanitizeSettings(p.gen)
-        // Theme auto-fill was removed; parseDoc folded auto-filled words into the saved puzzle's list,
-        // so keep that list rather than regenerating a different grid.
-        if (doc && (p.gen as { autoFill?: unknown } | undefined)?.autoFill === true) gen = doc.settings
+        const rawGen = p.gen
+        let gen = sanitizeSettings(rawGen)
+        // Theme auto-fill was removed; only adopt the doc's folded-in pool words when the legacy key
+        // proves that the saved puzzle was generated from the persisted settings.
+        const legacyKey = legacyAutoFillSettingsKey(rawGen, p.style)
+        if (doc && legacyKey !== null && p.docKey === legacyKey) gen = doc.settings
         // The saved puzzle is current if it was generated from exactly these settings.
         const key = settingsKey(gen)
         return {
