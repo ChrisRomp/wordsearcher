@@ -85,7 +85,13 @@ export const useStore = create<AppState>()(
       inputErrors: [],
 
       setGen: (patch) => set((s) => ({ gen: { ...s.gen, ...patch } })),
-      setStyle: (patch) => set((s) => ({ style: { ...s.style, ...patch } })),
+      setStyle: (patch) =>
+        set((s) => {
+          const style = { ...s.style, ...patch }
+          if ('title' in patch && !('autoTitle' in patch)) delete style.autoTitle
+          if (!style.autoTitle?.trim()) delete style.autoTitle
+          return { style }
+        }),
 
       applyPreset(id) {
         const p = PRESETS[id]
@@ -186,7 +192,11 @@ export const useStore = create<AppState>()(
         set((s) => ({ gen: { ...s.gen, allowNested: [...new Set([...s.gen.allowNested, token])] } })),
 
       retitleForTheme(themeName) {
-        if (shouldRetitle(get().style.title)) get().setStyle({ title: themeTitle(themeName) })
+        const { title, autoTitle } = get().style
+        if (shouldRetitle(title, autoTitle)) {
+          const nextTitle = themeTitle(themeName)
+          get().setStyle({ title: nextTitle, autoTitle: nextTitle })
+        }
       },
 
       regenerate: () => get().setGen({ seed: randomSeed() }),

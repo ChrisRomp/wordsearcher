@@ -3,6 +3,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { maxWordLength } from '../../core/directions'
 import { createRng, randomSeed } from '../../core/rng'
 import type { Level } from '../../core/types'
+import { MAX_WORDS } from '../../core/validate'
 import type { ThemeRef } from '../../state/settings'
 import { useStore } from '../../state/store'
 import { CURATED_PACKS, loadThemeWords, toEntry, type ThemeInfo, type ThemeWord } from '../../words/themes'
@@ -62,17 +63,24 @@ function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () =
   )
   // Words already in the list only matter when adding to it; when replacing, the list is cleared first.
   const visible = useMemo(() => (replacing ? candidates : candidates.filter((w) => !inList.has(w.token))), [candidates, replacing, inList])
-  const suggested = Math.max(5, Math.min(visible.length, Math.round((gen.rows * gen.cols * gen.density) / 6.5)))
+  const room = Math.max(0, MAX_WORDS - (replacing ? 0 : listSize))
+  const suggested = Math.min(visible.length, Math.max(5, Math.round((gen.rows * gen.cols * gen.density) / 6.5)))
+  const suggestedWithinRoom = Math.min(suggested, room)
 
   useEffect(() => {
     if (!words) return
     const rng = createRng(`${theme.ref.id}|${randomSeed()}`)
-    setSelected(new Set(rng.shuffle([...visible]).slice(0, suggested).map((w) => w.token)))
+    setSelected(new Set(rng.shuffle([...visible]).slice(0, suggestedWithinRoom).map((w) => w.token)))
     // Re-pick when the filters change, but keep the picks when toggling "replace".
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [candidates])
 
   const chosen = visible.filter((w) => selected?.has(w.token))
+  const overLimit = chosen.length > room
+  const overBy = chosen.length - room
+  const deselectMessage = `Deselect ${overBy} ${overBy === 1 ? 'word' : 'words'}.`
+  const allCount = Math.min(visible.length, room)
+  const allLabel = visible.length > room ? (room > 0 ? `First ${room}` : 'None fit') : 'All'
   const toggle = (token: string) =>
     setSelected((s) => {
       const next = new Set(s)
@@ -122,23 +130,41 @@ function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () =
               <span className="font-semibold">
                 {chosen.length} of {visible.length} selected
               </span>
-              <button type="button" className="font-semibold text-sky hover:underline" onClick={() => setSelected(new Set(visible.map((w) => w.token)))}>
-                All
+              <button
+                type="button"
+                className="font-semibold text-sky hover:underline disabled:cursor-not-allowed disabled:text-muted disabled:no-underline"
+                disabled={allCount === 0}
+                onClick={() => setSelected(new Set(visible.slice(0, allCount).map((w) => w.token)))}
+              >
+                {allLabel}
               </button>
               <button type="button" className="font-semibold text-sky hover:underline" onClick={() => setSelected(new Set())}>
                 None
               </button>
               <button
                 type="button"
-                className="inline-flex items-center gap-1 font-semibold text-sky hover:underline"
+                className="inline-flex items-center gap-1 font-semibold text-sky hover:underline disabled:cursor-not-allowed disabled:text-muted disabled:no-underline"
+                disabled={suggestedWithinRoom === 0}
                 onClick={() => {
                   const rng = createRng(randomSeed())
-                  setSelected(new Set(rng.shuffle([...visible]).slice(0, suggested).map((w) => w.token)))
+                  setSelected(new Set(rng.shuffle([...visible]).slice(0, suggestedWithinRoom).map((w) => w.token)))
                 }}
               >
-                <Shuffle size={13} /> Pick {suggested} for me
+                <Shuffle size={13} /> Pick {suggestedWithinRoom} for me
               </button>
             </div>
+            {overLimit && (
+              <p role="alert" className="mb-3 rounded-xl bg-sun-soft px-3 py-2 text-sm font-semibold text-tomato-dark">
+                {replacing
+                  ? `A puzzle can have at most ${MAX_WORDS} words. ${deselectMessage}`
+                  : `A puzzle can have at most ${MAX_WORDS} words, so you can add ${room} more. ${deselectMessage}`}
+              </p>
+            )}
+            {!overLimit && room === 0 && (
+              <p role="alert" className="mb-3 rounded-xl bg-sun-soft px-3 py-2 text-sm font-semibold text-tomato-dark">
+                Your list already has {MAX_WORDS} words, the most a puzzle can have. Check “Replace my current list” to use these words instead.
+              </p>
+            )}
             <ul className="flex flex-wrap gap-1.5">
               {visible.map((w) => {
                 const on = selected?.has(w.token) ?? false
@@ -178,12 +204,14 @@ function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () =
         <button
           type="button"
           className="btn btn-primary"
-          disabled={chosen.length === 0}
+          disabled={chosen.length === 0 || overLimit}
           onClick={() => {
             if (replacing) clearWords()
-            addEntries(chosen.map((w) => toEntry(w, theme.ref)))
-            retitleForTheme(theme.name)
-            onDone()
+            const added = addEntries(chosen.map((w) => toEntry(w, theme.ref)))
+            if (added > 0) {
+              retitleForTheme(theme.name)
+              onDone()
+            }
           }}
         >
           {replacing ? `Replace list with ${chosen.length} words` : `Add ${chosen.length} words to my list`}

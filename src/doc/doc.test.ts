@@ -79,6 +79,16 @@ describe('share links', () => {
     expect(evil.settings.rows).toBeLessThanOrEqual(30)
     expect(evil.settings.directions).toEqual(['E'])
   })
+
+  it('round-trips and sanitizes auto-title provenance', () => {
+    const doc = makeDoc()
+    const autoTitle = 'Space Word Search'
+    expect(decodeDoc(encodeDoc({ ...doc, style: { ...doc.style, autoTitle } })).style.autoTitle).toBe(autoTitle)
+
+    expect(parseDoc({ ...doc, style: { ...doc.style, autoTitle: 'x'.repeat(500) } }).style.autoTitle).toHaveLength(120)
+    expect(parseDoc({ ...doc, style: { ...doc.style, autoTitle: 42 } }).style).not.toHaveProperty('autoTitle')
+    expect(parseDoc({ ...doc, style: { ...doc.style, autoTitle: '   ' } }).style).not.toHaveProperty('autoTitle')
+  })
 })
 
 describe('legacy auto-fill puzzles', () => {

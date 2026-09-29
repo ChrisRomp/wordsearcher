@@ -133,7 +133,7 @@ function record(v: unknown): Record<string, unknown> {
 export function sanitizeStyle(raw: unknown): StyleSettings {
   const s = record(raw)
   const d = DEFAULT_STYLE
-  return {
+  const style: StyleSettings = {
     title: str(s.title, LIMITS.title, d.title),
     titleFont: oneOf(s.titleFont, ['fredoka', 'nunito', 'patrick', 'atkinson', 'bree'], d.titleFont),
     titleColor: typeof s.titleColor === 'string' && /^#[0-9a-f]{6}$/i.test(s.titleColor) ? s.titleColor : d.titleColor,
@@ -148,6 +148,9 @@ export function sanitizeStyle(raw: unknown): StyleSettings {
     orientation: oneOf(s.orientation, ['portrait', 'landscape'], d.orientation),
     answerKey: bool(s.answerKey, d.answerKey),
   }
+  const autoTitle = str(s.autoTitle, LIMITS.title).trim()
+  if (autoTitle) style.autoTitle = autoTitle
+  return style
 }
 
 export function sanitizeSettings(raw: unknown): GenSettings {
