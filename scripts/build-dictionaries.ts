@@ -833,7 +833,7 @@ public/dict total: ${formatBytes(directorySize(dictDir))}
 }
 
 function escapeMd(input: string): string {
-  return input.replace(/\|/g, '\\|').replace(/\n/g, ' ')
+  return input.replace(/\\/g, '\\\\').replace(/\|/g, '\\|').replace(/\n/g, ' ')
 }
 
 function directorySize(path: string): number {
