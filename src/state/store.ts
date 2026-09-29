@@ -29,8 +29,10 @@ interface AppState {
   issues: ValidationIssue[]
   warnings: ValidationIssue[]
   failure: 'invalid-input' | 'budget-exhausted' | null
-  /** Verified fix for the current capacity failure (bigger grid, or words to remove). */
+  /** Verified fix for the last capacity failure (bigger grid, or words to remove). Read it via `currentFit()`. */
   fit: FitSuggestion | null
+  /** settingsKey of the GenSettings the fit was verified against. */
+  fitKey: string | null
   view: View
   showSolution: boolean
   inputErrors: InputError[]
@@ -92,6 +94,7 @@ export const useStore = create<AppState>()(
       warnings: [],
       failure: null,
       fit: null,
+      fitKey: null,
       view: 'edit',
       showSolution: false,
       inputErrors: [],
@@ -212,7 +215,7 @@ export const useStore = create<AppState>()(
       },
 
       applyFit() {
-        const { fit } = get()
+        const fit = currentFit(get())
         if (!fit) return
         if (fit.kind === 'grow') {
           get().setGen({ rows: fit.rows, cols: fit.cols, autoSize: false })
@@ -235,7 +238,7 @@ export const useStore = create<AppState>()(
         const key = settingsKey(gen)
         const stale = () => settingsKey(get().gen) !== key
         if (key === get().docKey) {
-          if (get().status !== 'idle') set({ status: 'idle', issues: [], failure: null, fit: null })
+          if (get().status !== 'idle') set({ status: 'idle', issues: [], failure: null, fit: null, fitKey: null })
           return
         }
         set({ status: 'generating' })
@@ -259,7 +262,7 @@ export const useStore = create<AppState>()(
           result = await runGenerate(input, gen.autoSize && gen.words.length > 0)
         } catch (e) {
           if (e instanceof CancelledError) return
-          set({ status: 'error', failure: 'budget-exhausted', fit: null, issues: [{ code: 'over-capacity', severity: 'error', message: String((e as Error).message), wordIds: [] }] })
+          set({ status: 'error', failure: 'budget-exhausted', fit: null, fitKey: null, issues: [{ code: 'over-capacity', severity: 'error', message: String((e as Error).message), wordIds: [] }] })
           return
         }
         if (stale()) return
@@ -272,9 +275,11 @@ export const useStore = create<AppState>()(
             warnings: result.warnings,
             failure: null,
             fit: null,
+            fitKey: null,
           })
         } else {
-          set({ status: 'error', issues: result.issues, failure: result.reason, fit: result.fit ?? null, warnings: [] })
+          const fit = result.fit ?? null
+          set({ status: 'error', issues: result.issues, failure: result.reason, fit, fitKey: fit ? key : null, warnings: [] })
         }
       },
 
@@ -289,6 +294,7 @@ export const useStore = create<AppState>()(
           warnings: [],
           failure: null,
           fit: null,
+          fitKey: null,
           showSolution: false,
         })
       },
@@ -297,7 +303,7 @@ export const useStore = create<AppState>()(
       setShowSolution: (showSolution) => set({ showSolution }),
       dismissInputErrors: () => set({ inputErrors: [] }),
       reset: () =>
-        set({ gen: defaultGenSettings(), style: DEFAULT_STYLE, doc: null, docKey: null, issues: [], warnings: [], failure: null, fit: null, status: 'idle' }),
+        set({ gen: defaultGenSettings(), style: DEFAULT_STYLE, doc: null, docKey: null, issues: [], warnings: [], failure: null, fit: null, fitKey: null, status: 'idle' }),
     }),
     {
       name: 'wordsearcher:v1',
@@ -331,6 +337,14 @@ export const useStore = create<AppState>()(
     },
   ),
 )
+
+/**
+ * The fit suggestion, only while the settings still match the ones it was verified against. Edits
+ * keep the old issues visible until the next run finishes, but a stale suggestion must not be applied.
+ */
+export function currentFit(s: Pick<AppState, 'fit' | 'fitKey' | 'gen'>): FitSuggestion | null {
+  return s.fit && s.fitKey === settingsKey(s.gen) ? s.fit : null
+}
 
 export function currentPreset(gen: GenSettings): PresetId | 'custom' {
   return matchPreset(gen)

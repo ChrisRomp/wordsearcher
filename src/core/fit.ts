@@ -14,7 +14,12 @@ const TRIAL_MS = 600
  * suggested words, timing jitter can't stop auto-size from replaying the verified success.
  */
 const AUTO_TRIAL_MS = TRIAL_MS * 2
-/** Target wall-clock time for a whole generate-and-suggest call; the search always gets at least MIN_SEARCH_MS. */
+/**
+ * Latency budget for a whole call, shared by the initial run and the search. If the initial full-budget
+ * run was slow, the search still gets MIN_SEARCH_MS, so the worst case is the generator's own time
+ * budget plus MIN_SEARCH_MS (and one placement attempt, since generate() checks its clock between
+ * attempts). MIN_SEARCH_MS exceeds TRIAL_MS so the first trial at the largest grid always gets its full time.
+ */
 const TOTAL_MS = 3000
 const MIN_SEARCH_MS = 1000
 /** Without overlaps, trim until words cover at most this share of the largest grid before trying. */
@@ -24,9 +29,11 @@ type Failure = Extract<GenerateResult, { ok: false }>
 
 const now = () => (globalThis.performance ? globalThis.performance.now() : Date.now())
 
-function trial(input: GenerateInput, rows: number, cols: number, words: WordEntry[] = input.words, timeMs = TRIAL_MS): GenerateResult {
+/** A reduced-budget run that never plans to run past `deadline`. */
+function trial(input: GenerateInput, deadline: number, rows: number, cols: number, words: WordEntry[] = input.words, timeMs = TRIAL_MS): GenerateResult {
   const full = { ...DEFAULT_BUDGET, ...input.budget }
-  const budget = { ...full, restarts: Math.min(full.restarts, TRIAL_RESTARTS), timeMs: Math.min(full.timeMs, timeMs) }
+  const left = Math.max(1, deadline - now())
+  const budget = { ...full, restarts: Math.min(full.restarts, TRIAL_RESTARTS), timeMs: Math.min(full.timeMs, timeMs, left) }
   return generate({ ...input, rows, cols, words, budget })
 }
 
@@ -81,7 +88,7 @@ function trimToFit(input: GenerateInput, atMax: Failure, deadline: number): stri
     const drop = new Set(order.slice(0, count))
     return input.words.filter((w) => !drop.has(w.id))
   }
-  const at = (count: number) => trial(input, GRID_MAX, GRID_MAX, without(count))
+  const at = (count: number) => trial(input, deadline, GRID_MAX, GRID_MAX, without(count))
 
   if (input.overlap === 'none') {
     // Every letter needs its own square, so drop short words until there's room to place the rest.
@@ -130,9 +137,9 @@ export function findFit(input: GenerateInput, failure: Failure, deadline = now()
 
   let atMax: GenerateResult = failure
   if (steps > 0) {
-    atMax = trial(input, GRID_MAX, GRID_MAX)
+    atMax = trial(input, deadline, GRID_MAX, GRID_MAX)
     if (atMax.ok) {
-      const [r, c] = size(smallest(0, steps, atMax, (k) => trial(input, ...size(k)), deadline).k)
+      const [r, c] = size(smallest(0, steps, atMax, (k) => trial(input, deadline, ...size(k)), deadline).k)
       return { kind: 'grow', rows: r, cols: c }
     }
     if (!sizeRelated(atMax, input)) return null
@@ -156,7 +163,7 @@ export function suggestSize(words: readonly WordEntry[], density: number, min = 
 export function generateAutoSize(input: GenerateInput, min = 6): GenerateResult {
   const deadline = now() + TOTAL_MS
   const start = suggestSize(input.words, input.density, min, GRID_MAX)
-  const at = (n: number) => trial(input, n, n, input.words, AUTO_TRIAL_MS)
+  const at = (n: number) => trial(input, deadline, n, n, input.words, AUTO_TRIAL_MS)
   const first = at(start)
   if (first.ok || !sizeRelated(first, input)) return first
 

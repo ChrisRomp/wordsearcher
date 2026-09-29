@@ -1,9 +1,8 @@
 import { AlertTriangle, Info } from 'lucide-react'
 import { useState } from 'react'
-import { maxWordLength } from '../../core/directions'
 import type { FitSuggestion, ValidationIssue, WordEntry } from '../../core/types'
 import { GRID_MAX } from '../../state/settings'
-import { useStore } from '../../state/store'
+import { currentFit, useStore } from '../../state/store'
 import { Dialog } from '../primitives'
 
 interface Action {
@@ -32,11 +31,6 @@ function actionsFor(issue: ValidationIssue, ctx: FitContext): Action[] {
     const w = word(id)
     return w ? { label: `Remove ${w.display}`, run: () => s.removeWords([id]) } : null
   }
-  const bigger = (need: number): Action | null => {
-    const target = Math.min(GRID_MAX, Math.max(need, Math.max(gen.rows, gen.cols) + 3))
-    if (gen.rows >= GRID_MAX && gen.cols >= GRID_MAX) return null
-    return { label: `Grid ${target} × ${target}`, run: () => s.setGen({ rows: target, cols: target, autoSize: false }) }
-  }
   const fitAction = (): Action | null => {
     const { fit } = ctx
     if (!ctx.showFit || !fit) return null
@@ -56,16 +50,11 @@ function actionsFor(issue: ValidationIssue, ctx: FitContext): Action[] {
       list.push(...issue.wordIds.slice(0, 2).map(remove))
       list.push({ label: 'No backwards words', run: () => s.setGen({ directions: gen.directions.filter((d) => ['E', 'S', 'SE', 'NE'].includes(d)) }) })
       break
-    case 'too-long': {
-      const w = word(issue.wordIds[0])
-      if (ctx.fit) list.push(fitAction())
-      else if (w && w.token.length <= GRID_MAX) {
-        const fitsNow = maxWordLength(GRID_MAX, GRID_MAX, gen.directions)
-        if (w.token.length <= fitsNow) list.push(bigger(w.token.length))
-      }
+    case 'too-long':
+      // Only a verified size; none is offered while other errors block the search.
+      list.push(fitAction())
       list.push(remove(issue.wordIds[0]))
       break
-    }
     case 'duplicate':
       list.push({ label: 'Remove duplicates', run: () => s.removeWords(issue.wordIds.slice(1)) })
       break
@@ -86,9 +75,8 @@ function actionsFor(issue: ValidationIssue, ctx: FitContext): Action[] {
   return list.filter((a): a is Action => !!a)
 }
 
-function TrimDialog({ open, words, onClose }: { open: boolean; words: WordEntry[]; onClose: () => void }) {
+function TrimDialog({ open, fit, words, onClose }: { open: boolean; fit: FitSuggestion | null; words: WordEntry[]; onClose: () => void }) {
   const gen = useStore((s) => s.gen)
-  const fit = useStore((s) => s.fit)
   const applyFit = useStore((s) => s.applyFit)
   const resize = fit?.kind === 'trim' && !gen.autoSize && (gen.rows !== fit.rows || gen.cols !== fit.cols)
   const kept = gen.words.length - words.length
@@ -131,7 +119,7 @@ export function IssuesPanel() {
   const issues = useStore((s) => s.issues).filter((i) => i.code !== 'empty')
   const warnings = useStore((s) => s.warnings)
   const hasDoc = useStore((s) => !!s.doc)
-  const fit = useStore((s) => s.fit)
+  const fit = useStore(currentFit)
   const words = useStore((s) => s.gen.words)
   // The fit being confirmed; a newer run replaces `fit`, which closes the dialog instead of reusing it.
   const [confirming, setConfirming] = useState<FitSuggestion | null>(null)
@@ -174,7 +162,7 @@ export function IssuesPanel() {
           </ul>
         </div>
       )}
-      <TrimDialog open={!!fit && confirming === fit && trimWords.length > 0} words={trimWords} onClose={() => setConfirming(null)} />
+      <TrimDialog open={!!fit && confirming === fit && trimWords.length > 0} fit={fit} words={trimWords} onClose={() => setConfirming(null)} />
       {warnings.map((w, i) => (
         <div key={i} className="flex items-start gap-2 rounded-2xl border-2 border-sun bg-sun-soft/60 p-3 text-sm">
           <Info size={16} className="mt-0.5 shrink-0" />
