@@ -54,9 +54,13 @@ describe('issues panel', () => {
     useStore.getState().setGen({ autoSize: true })
     render(<IssuesPanel />)
     fail(['Apple'], 'budget-exhausted', { kind: 'trim', rows: 35, cols: 35, removeIds: ['Grape'] })
+    expect(screen.getByText(/^We couldn’t fit all/)).toHaveTextContent(
+      'We couldn’t fit all 4 words, even in the largest grid (35 × 35). We checked that removing 1 of them lets the rest fit.',
+    )
 
     await user.click(screen.getByRole('button', { name: 'Remove 1 word…' }))
     const dialog = screen.getByRole('dialog')
+    expect(dialog).toHaveTextContent('We couldn’t fit all 4 words, even in the largest grid (35 × 35). We checked that the other 3 words fit without this one.')
     expect(dialog).toHaveTextContent('Grape')
     expect(dialog).not.toHaveTextContent('The grid will change')
     await user.click(screen.getByRole('button', { name: 'Remove 1 word' }))

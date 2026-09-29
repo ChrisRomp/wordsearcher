@@ -230,7 +230,7 @@ describe('words that do not fit', () => {
 
     const openTrim = () => screen.findByRole('button', { name: /^Remove \d+ words…$/ }, { timeout: 8000 })
     const count = Number((await openTrim()).textContent!.match(/\d+/)![0])
-    expect(screen.getByText(new RegExp(`Even the largest grid \\(${GRID_MAX} × ${GRID_MAX}\\) can’t fit all ${MAX_WORDS} words`))).toBeInTheDocument()
+    expect(screen.getByText(new RegExp(`We couldn’t fit all ${MAX_WORDS} words, even in the largest grid \\(${GRID_MAX} × ${GRID_MAX}\\)`))).toBeInTheDocument()
 
     await user.click(await openTrim())
     let dialog = await screen.findByRole('dialog')

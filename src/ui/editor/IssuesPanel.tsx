@@ -84,8 +84,8 @@ function TrimDialog({ open, fit, words, onClose }: { open: boolean; fit: FitSugg
     <Dialog open={open} onClose={onClose} title={`Remove ${plural(words.length)}?`}>
       <div className="space-y-4 p-5">
         <p className="text-sm">
-          Even the largest grid ({GRID_MAX} × {GRID_MAX}) can’t fit all {plural(gen.words.length)}. We checked that the other {plural(kept)} fit
-          without {words.length === 1 ? 'this one' : 'these'}.
+          We couldn’t fit all {plural(gen.words.length)}, even in the largest grid ({GRID_MAX} × {GRID_MAX}). We checked that the other{' '}
+          {plural(kept)} fit without {words.length === 1 ? 'this one' : 'these'}.
           {resize && ` The grid will change to ${fit.rows} × ${fit.cols}.`}
         </p>
         <ul aria-label="Words to remove" className="flex max-h-64 flex-wrap gap-1.5 overflow-y-auto">
@@ -145,8 +145,8 @@ export function IssuesPanel() {
                 <p>{issue.message}</p>
                 {i === fitIndex && fit?.kind === 'trim' && trimWords.length > 0 && (
                   <p className="mt-1 text-muted">
-                    Even the largest grid ({GRID_MAX} × {GRID_MAX}) can’t fit all {plural(words.length)}. We checked that removing {trimWords.length} of them lets
-                    the rest fit.
+                    We couldn’t fit all {plural(words.length)}, even in the largest grid ({GRID_MAX} × {GRID_MAX}). We checked that removing{' '}
+                    {trimWords.length} of them lets the rest fit.
                   </p>
                 )}
                 <div className="mt-1.5 flex flex-wrap gap-1.5">

@@ -141,8 +141,8 @@ function trimToFit(input: GenerateInput, atMax: Failure, deadline: number): stri
 
 /**
  * After a capacity failure at the input's size: the smallest larger grid whose trial succeeds (growing
- * rows and columns together, up to GRID_MAX, and checking every size if time allows), or, if even the
- * largest grid fails, a verified set of words to remove.
+ * rows and columns together, up to GRID_MAX, and checking every size if time allows), or, if the trial
+ * at the largest grid fails too, a verified set of words to remove.
  */
 export function findFit(input: GenerateInput, failure: Failure, deadline = now() + TOTAL_MS): FitSuggestion | null {
   if (!sizeRelated(failure, input)) return null
@@ -173,8 +173,8 @@ export function suggestSize(words: readonly WordEntry[], density: number, min = 
 
 /**
  * Auto-size mode: starts from the density estimate and searches up to GRID_MAX for the smallest square
- * that fits (checking every size if time allows). If even the largest grid fails, the failure carries
- * a `trim` suggestion.
+ * that fits (checking every size if time allows). If the trial at the largest grid fails too, the
+ * failure carries a `trim` suggestion.
  */
 export function generateAutoSize(input: GenerateInput, min = 6): GenerateResult {
   const deadline = now() + TOTAL_MS

@@ -11,7 +11,7 @@ A free, kid-safe word search puzzle maker for teachers and families. It runs ent
 
 - **Words:** type or paste your own (phrases like “Black Hole” stay together), pick from 30 hand-written classroom theme packs, or browse 42 “Kinds of…” dictionary lists (dog breeds, trees, tools…). Picking a theme replaces your list by default and titles the puzzle after it.
 - **Difficulty:** Easy / Medium / Hard presets that set directions (any of 8), overlap (none / some / lots), and filler letters (random / natural / tricky decoys). Every setting can be overridden.
-- **Grid:** 5–35 rows × columns, or let it pick the smallest square that fits a target fill level. If the words don't fit, it suggests a grid size it has checked will work, or, when even the largest grid is too small, which words to remove.
+- **Grid:** 5–35 rows × columns, or let it pick the smallest square that fits a target fill level. If the words don't fit, it suggests a grid size it has checked will work, or, when it can't fit them even in the largest grid, which words to remove (also checked).
 - **Worksheet:** title font/color/size, grid letter font, upper/lowercase, word list order (A–Z, as entered, by length, or hidden), optional name/date lines and instructions (turning them off gives the space to the puzzle), Letter/A4, portrait/landscape.
 - **Output:** print, vector PDF (embedded fonts), PNG, and an optional answer-key page. Each sheet shows a short puzzle ID, a fingerprint of the grid, so worksheets and answer keys can be matched.
 - **Share:** the whole puzzle is encoded in the link (or saved as a `.wordsearch.json` file), so recipients always get exactly the same grid.
