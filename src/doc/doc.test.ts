@@ -71,14 +71,31 @@ describe('share links', () => {
     const evil = parseDoc({
       ...doc,
       style: { ...doc.style, titleColor: 'red;background:url(x)', title: 'x'.repeat(500), titleFont: 'comic' },
-      settings: { ...doc.settings, rows: 9999, directions: ['E', 'UP'], themes: [{ kind: 'dict', id: '../../etc' }] },
+      settings: { ...doc.settings, rows: 9999, directions: ['E', 'UP'] },
     })
     expect(evil.style.titleColor).toBe(DEFAULT_STYLE.titleColor)
     expect(evil.style.title.length).toBeLessThanOrEqual(120)
     expect(evil.style.titleFont).toBe('fredoka')
     expect(evil.settings.rows).toBeLessThanOrEqual(30)
     expect(evil.settings.directions).toEqual(['E'])
-    expect(evil.settings.themes).toEqual([])
+  })
+})
+
+describe('legacy auto-fill puzzles', () => {
+  it('folds auto-filled words into the word list without changing the grid', () => {
+    const doc = makeDoc()
+    const [first, ...rest] = doc.placements
+    const legacy = {
+      ...doc,
+      placements: [first, ...rest.map((p) => ({ ...p, fromPool: true }))],
+      settings: { ...doc.settings, words: doc.settings.words.filter((w) => w.token === first.token), autoFill: true, themes: [{ kind: 'curated', id: 'outer-space' }] },
+    }
+    const parsed = parseDoc(legacy)
+    expect(parsed.grid).toBe(doc.grid)
+    expect(parsed.placements.every((p) => !p.fromPool)).toBe(true)
+    expect(parsed.settings.words.map((w) => w.token).sort()).toEqual(doc.placements.map((p) => p.token).sort())
+    expect(parsed.settings).not.toHaveProperty('autoFill')
+    expect(puzzleId(parsed)).toBe(puzzleId(doc))
   })
 })
 

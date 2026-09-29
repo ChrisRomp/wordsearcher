@@ -1,4 +1,4 @@
-import { ArrowLeft, Check, Search, Shuffle, Sparkles } from 'lucide-react'
+import { ArrowLeft, Check, Search, Shuffle } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { maxWordLength } from '../../core/directions'
 import { createRng, randomSeed } from '../../core/rng'
@@ -13,14 +13,12 @@ const LEVEL_LABELS: Record<ThemeRef['kind'], Record<Level, string>> = {
   dict: { 1: 'Common', 2: 'Less common', 3: 'Rare' },
 }
 
-const sameRef = (a: ThemeRef, b: ThemeRef) => a.kind === b.kind && a.id === b.id
-
-function ThemeCard({ theme, onOpen, active }: { theme: ThemeInfo; onOpen: () => void; active: boolean }) {
+function ThemeCard({ theme, onOpen }: { theme: ThemeInfo; onOpen: () => void }) {
   return (
     <button
       type="button"
       onClick={onOpen}
-      className={`group relative flex items-center gap-3 rounded-2xl border-2 bg-white p-3 text-left transition-[transform,border-color] hover:-translate-y-0.5 hover:border-ink ${active ? 'border-teal' : 'border-ink/15'}`}
+      className="group relative flex items-center gap-3 rounded-2xl border-2 border-ink/15 bg-white p-3 text-left transition-[transform,border-color] hover:-translate-y-0.5 hover:border-ink"
     >
       <span className="grid size-11 shrink-0 place-items-center rounded-xl bg-paper text-2xl" aria-hidden>
         {theme.emoji}
@@ -31,18 +29,13 @@ function ThemeCard({ theme, onOpen, active }: { theme: ThemeInfo; onOpen: () => 
           {theme.count} words{theme.description ? ` · ${theme.description}` : ''}
         </span>
       </span>
-      {active && (
-        <span className="absolute -top-2 -right-2 grid size-6 place-items-center rounded-full border-2 border-ink bg-teal text-white" title="Used for auto-fill">
-          <Sparkles size={12} />
-        </span>
-      )}
     </button>
   )
 }
 
 function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () => void; onDone: () => void }) {
   const gen = useStore((s) => s.gen)
-  const { addEntries, clearWords, toggleTheme, setGen, retitleForTheme } = useStore.getState()
+  const { addEntries, clearWords, retitleForTheme } = useStore.getState()
   const [words, setWords] = useState<ThemeWord[] | null>(null)
   const [error, setError] = useState<string | null>(null)
   const [levels, setLevels] = useState<Level[]>(gen.levels)
@@ -52,7 +45,6 @@ function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () =
   const replacing = replace && listSize > 0
   const maxFit = Math.min(gen.maxLen, maxWordLength(gen.rows, gen.cols, gen.directions.length ? gen.directions : ['E']))
   const inList = useMemo(() => new Set(gen.words.map((w) => w.token)), [gen.words])
-  const active = gen.themes.some((t) => sameRef(t, theme.ref))
 
   useEffect(() => {
     let alive = true
@@ -171,21 +163,6 @@ function ThemeDetail({ theme, onBack, onDone }: { theme: ThemeInfo; onBack: () =
       </div>
 
       <footer className="flex flex-wrap items-center gap-x-3 gap-y-2 border-t-2 border-ink/10 bg-white px-5 py-3">
-        <button
-          type="button"
-          className={`btn btn-sm ${active ? 'btn-teal' : ''}`}
-          onClick={() => {
-            toggleTheme(theme.ref, !active)
-            if (!active) {
-              setGen({ autoFill: true })
-              // The theme is the whole puzzle when there are no other words.
-              if (listSize === 0) retitleForTheme(theme.name)
-            }
-          }}
-          title="Fill leftover space with random words from this theme each time you regenerate"
-        >
-          <Sparkles size={14} /> {active ? 'Using for auto-fill' : 'Use for auto-fill'}
-        </button>
         <span className="flex-1" />
         {listSize > 0 && (
           <label className="inline-flex cursor-pointer items-center gap-2 text-sm font-semibold text-ink-soft select-none">
@@ -220,7 +197,6 @@ export function ThemeBrowser({ open, onClose, themes }: { open: boolean; onClose
   const [tab, setTab] = useState<ThemeRef['kind']>('curated')
   const [query, setQuery] = useState('')
   const [openTheme, setOpenTheme] = useState<ThemeInfo | null>(null)
-  const activeThemes = useStore((s) => s.gen.themes)
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase()
@@ -280,7 +256,7 @@ export function ThemeBrowser({ open, onClose, themes }: { open: boolean; onClose
                   <h3 className="mb-2 font-display text-sm font-semibold tracking-wide text-muted uppercase">{group}</h3>
                   <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
                     {list.map((t) => (
-                      <ThemeCard key={t.ref.id} theme={t} onOpen={() => setOpenTheme(t)} active={activeThemes.some((a) => sameRef(a, t.ref))} />
+                      <ThemeCard key={t.ref.id} theme={t} onOpen={() => setOpenTheme(t)} />
                     ))}
                   </div>
                 </div>

@@ -6,9 +6,9 @@ import { randomSeed } from '../core/rng'
 import type { GenerateInput, ValidationIssue, WordEntry } from '../core/types'
 import { MAX_WORDS } from '../core/validate'
 import { createDoc, parseDoc, sanitizeSettings, sanitizeStyle, type PuzzleDoc } from '../doc/puzzleDoc'
-import { loadDictIndex, loadThemeWords, newWordId, shouldRetitle, themeTitle, toEntry } from '../words/themes'
+import { loadDictIndex, newWordId, shouldRetitle, themeTitle } from '../words/themes'
 import { CancelledError, runGenerate } from './generatorClient'
-import { DEFAULT_STYLE, defaultGenSettings, type GenSettings, type StyleSettings, type ThemeRef } from './settings'
+import { DEFAULT_STYLE, defaultGenSettings, type GenSettings, type StyleSettings } from './settings'
 
 export type Status = 'idle' | 'generating' | 'error'
 export type View = 'edit' | 'play'
@@ -23,7 +23,7 @@ interface AppState {
   style: StyleSettings
   /** Last successfully generated puzzle (kept visible while edits are invalid). */
   doc: PuzzleDoc | null
-  /** JSON of the GenSettings that produced `doc`. */
+  /** settingsKey of the GenSettings that produced `doc`. */
   docKey: string | null
   status: Status
   issues: ValidationIssue[]
@@ -41,8 +41,6 @@ interface AppState {
   updateWord(id: string, patch: Partial<Pick<WordEntry, 'display' | 'clue'>>): void
   removeWords(ids: string[]): void
   clearWords(): void
-  pinPoolWords(): void
-  toggleTheme(ref: ThemeRef, on?: boolean): void
   /** Sets the title to "[Theme] Word Search" unless the teacher typed their own title. */
   retitleForTheme(themeName: string): void
   allowNested(token: string): void
@@ -66,34 +64,9 @@ function stableStringify(v: unknown): string {
   return JSON.stringify(v)
 }
 
-const usesPool = (gen: GenSettings) => gen.autoFill && gen.themes.length > 0
-
-/**
- * Identity of everything that feeds the generator (property-order independent). Clue mode only
- * matters when auto-filling, because then only words with clues are drawn from themes.
- */
-export function settingsKey(gen: GenSettings, clueMode: boolean): string {
-  return stableStringify(gen) + (usesPool(gen) ? `|clues:${clueMode ? 1 : 0}` : '')
-}
-
-async function buildPool(gen: GenSettings, clueMode: boolean): Promise<{ pool: WordEntry[]; data?: string }> {
-  if (!usesPool(gen)) return { pool: [] }
-  const levels = new Set(gen.levels)
-  const pool: WordEntry[] = []
-  let usesDict = false
-  for (const ref of gen.themes) {
-    try {
-      const words = await loadThemeWords(ref)
-      if (ref.kind === 'dict') usesDict = true
-      for (const w of words)
-        if (levels.has(w.level) && w.token.length >= gen.minLen && w.token.length <= gen.maxLen && (!clueMode || w.clue))
-          pool.push(toEntry(w, ref))
-    } catch {
-      // A missing word list shouldn't block the rest of the pool.
-    }
-  }
-  const data = usesDict ? (await loadDictIndex())?.version : undefined
-  return { pool, data }
+/** Identity of everything that feeds the generator (property-order independent). */
+export function settingsKey(gen: GenSettings): string {
+  return stableStringify(gen)
 }
 
 export const useStore = create<AppState>()(
@@ -158,7 +131,7 @@ export const useStore = create<AppState>()(
       },
 
       updateWord(id, patch) {
-        const wasCurrent = !!get().doc && get().docKey === settingsKey(get().gen, get().style.clueMode)
+        const wasCurrent = !!get().doc && get().docKey === settingsKey(get().gen)
         set((s) => ({
           gen: {
             ...s.gen,
@@ -183,7 +156,7 @@ export const useStore = create<AppState>()(
         // Clue-only edits don't change the grid; patch the current doc so the sheet updates without
         // regenerating. Only safe when the doc was generated from the settings being edited.
         if (patch.display === undefined && wasCurrent) {
-          const { doc, gen, style } = get()
+          const { doc, gen } = get()
           const word = gen.words.find((w) => w.id === id)
           set({
             doc: {
@@ -197,7 +170,7 @@ export const useStore = create<AppState>()(
                 return next
               }),
             },
-            docKey: settingsKey(gen, style.clueMode),
+            docKey: settingsKey(gen),
           })
         }
       },
@@ -209,43 +182,6 @@ export const useStore = create<AppState>()(
 
       clearWords: () => set((s) => ({ gen: { ...s.gen, words: [], allowNested: [] } })),
 
-      pinPoolWords() {
-        const { doc } = get()
-        if (!doc) return
-        const wasCurrent = get().docKey === settingsKey(get().gen, get().style.clueMode)
-        const pooled = doc.placements.filter((p) => p.fromPool)
-        const entries: WordEntry[] = pooled.map((p) => ({
-          id: p.wordId,
-          display: p.display,
-          token: p.token,
-          source: p.source,
-          ...(p.clue ? { clue: p.clue } : {}),
-        }))
-        get().addEntries(entries)
-        get().setGen({ autoFill: false })
-        // Keep the current layout: the pinned words are exactly the ones already in the grid.
-        const { gen, style } = get()
-        if (wasCurrent && gen.words.length === doc.placements.length) {
-          set({
-            doc: { ...doc, settings: gen, placements: doc.placements.map((p) => ({ ...p, fromPool: false })) },
-            docKey: settingsKey(gen, style.clueMode),
-          })
-        }
-      },
-
-      toggleTheme(ref, on) {
-        set((s) => {
-          const has = s.gen.themes.some((t) => t.kind === ref.kind && t.id === ref.id)
-          const want = on ?? !has
-          const themes = want
-            ? has
-              ? s.gen.themes
-              : [...s.gen.themes, ref]
-            : s.gen.themes.filter((t) => !(t.kind === ref.kind && t.id === ref.id))
-          return { gen: { ...s.gen, themes, autoFill: themes.length > 0 ? s.gen.autoFill || want : false } }
-        })
-      },
-
       allowNested: (token) =>
         set((s) => ({ gen: { ...s.gen, allowNested: [...new Set([...s.gen.allowNested, token])] } })),
 
@@ -256,27 +192,26 @@ export const useStore = create<AppState>()(
       regenerate: () => get().setGen({ seed: randomSeed() }),
 
       async generateNow() {
-        const { gen, style } = get()
-        const key = settingsKey(gen, style.clueMode)
-        const stale = () => settingsKey(get().gen, get().style.clueMode) !== key
+        const { gen } = get()
+        const key = settingsKey(gen)
+        const stale = () => settingsKey(get().gen) !== key
         if (key === get().docKey) {
           if (get().status !== 'idle') set({ status: 'idle', issues: [], failure: null })
           return
         }
         set({ status: 'generating' })
-        const { pool, data } = await buildPool(gen, style.clueMode)
-        // Settings changed while loading word lists; a newer run owns the worker now.
+        // Record which dictionary data the words came from, for reproducibility.
+        const data = gen.words.some((w) => w.source === 'dict') ? (await loadDictIndex())?.version : undefined
+        // Settings changed while waiting; a newer run owns the worker now.
         if (stale()) return
         const input: GenerateInput = {
           rows: gen.rows,
           cols: gen.cols,
           words: gen.words,
-          pool,
           directions: gen.directions,
           overlap: gen.overlap,
           filler: gen.filler,
           density: gen.density,
-          maxWords: gen.autoFill ? Math.max(gen.maxWords, gen.words.length) : undefined,
           allowNested: gen.allowNested,
           seed: gen.seed,
         }
@@ -308,7 +243,7 @@ export const useStore = create<AppState>()(
           doc,
           gen: doc.settings,
           style: doc.style,
-          docKey: settingsKey(doc.settings, doc.style.clueMode),
+          docKey: settingsKey(doc.settings),
           status: 'idle',
           issues: [],
           warnings: [],
@@ -336,15 +271,18 @@ export const useStore = create<AppState>()(
         } catch {
           doc = null
         }
-        const gen = sanitizeSettings(p.gen)
-        const style = sanitizeStyle(p.style)
-        const key = settingsKey(gen, style.clueMode)
+        let gen = sanitizeSettings(p.gen)
+        // Theme auto-fill was removed; parseDoc folded auto-filled words into the saved puzzle's list,
+        // so keep that list rather than regenerating a different grid.
+        if (doc && (p.gen as { autoFill?: unknown } | undefined)?.autoFill === true) gen = doc.settings
+        // The saved puzzle is current if it was generated from exactly these settings.
+        const key = settingsKey(gen)
         return {
           ...current,
           gen,
-          style,
+          style: sanitizeStyle(p.style),
           doc,
-          docKey: doc && p.docKey === key ? key : null,
+          docKey: doc && settingsKey(doc.settings) === key ? key : null,
         }
       },
     },

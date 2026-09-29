@@ -1,6 +1,6 @@
 // @vitest-environment jsdom
 import '../test/dom'
-import { cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
+import { act, cleanup, fireEvent, render, screen, waitFor, within } from '@testing-library/react'
 import userEvent, { type UserEvent } from '@testing-library/user-event'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import App from '../App'
@@ -132,6 +132,18 @@ describe('editor', () => {
     expect(tokens.slice(0, 2)).toEqual(['APPLE', 'BANANA'])
     expect(tokens.length).toBeGreaterThan(2)
     expect(screen.getByLabelText('Title')).toHaveValue('Week 5 Words')
+  })
+
+  it('has a footer link to the source repo', () => {
+    render(<App />)
+    expect(screen.getByRole('link', { name: 'Source on GitHub' })).toHaveAttribute('href', 'https://github.com/ChrisRomp/wordsearcher')
+  })
+
+  it('hides clue mode unless a puzzle already uses it', () => {
+    render(<App />)
+    expect(screen.queryByRole('switch', { name: /Clue mode/ })).not.toBeInTheDocument()
+    act(() => useStore.getState().setStyle({ clueMode: true }))
+    expect(screen.getByRole('switch', { name: /Clue mode/ })).toBeChecked()
   })
 
   it('links to the source code (AGPL)', async () => {

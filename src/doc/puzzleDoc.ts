@@ -187,19 +187,28 @@ export function sanitizeSettings(raw: unknown): GenSettings {
     minLen: int(s.minLen, 2, 30, d.minLen),
     maxLen: int(s.maxLen, 2, 30, d.maxLen),
     levels: levels.length ? [...new Set(levels)] : d.levels,
-    themes: Array.isArray(s.themes)
-      ? s.themes.slice(0, 20).flatMap((t) => {
-          const o = record(t)
-          const id = str(o.id, 60)
-          return /^[a-z0-9-]+$/.test(id) ? [{ kind: oneOf(o.kind, ['curated', 'dict'] as const, 'curated'), id }] : []
-        })
-      : d.themes,
-    autoFill: bool(s.autoFill, d.autoFill),
-    maxWords: int(s.maxWords, 1, 150, d.maxWords),
     allowNested: Array.isArray(s.allowNested)
       ? s.allowNested.filter((x): x is string => typeof x === 'string' && /^[A-Z]{1,40}$/.test(x)).slice(0, 100)
       : d.allowNested,
     seed: str(s.seed, 40, d.seed) || d.seed,
+  }
+}
+
+/**
+ * Puzzles made with the old theme auto-fill feature have placements that aren't in the word list.
+ * Fold them into the list so the puzzle can be edited without losing words.
+ */
+function adoptPoolWords(doc: PuzzleDoc): void {
+  const listed = new Set(doc.settings.words.map((w) => w.token))
+  const extra = doc.placements.filter((p) => !listed.has(p.token))
+  if (extra.length === 0 && !doc.placements.some((p) => p.fromPool)) return
+  doc.placements = doc.placements.map((p) => ({ ...p, fromPool: false }))
+  doc.settings = {
+    ...doc.settings,
+    words: [
+      ...doc.settings.words,
+      ...extra.map((p) => ({ id: p.wordId, display: p.display, token: p.token, source: p.source, ...(p.clue ? { clue: p.clue } : {}) })),
+    ],
   }
 }
 
@@ -252,6 +261,7 @@ export function parseDoc(raw: unknown): PuzzleDoc {
     settings: sanitizeSettings(o.settings),
     createdAt: typeof o.createdAt === 'number' ? o.createdAt : Date.now(),
   }
+  adoptPoolWords(doc)
   if (typeof o.data === 'string') doc.data = str(o.data, 60)
   return doc
 }

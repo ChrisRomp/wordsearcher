@@ -81,9 +81,7 @@ export function fromCompact(raw: Record<string, unknown>): unknown {
     if (typeof w[7] === 'number' && w[7] >= 0) p.nestedIn = `w${w[7]}`
     return p
   })
-  const words: WordEntry[] = placements
-    .filter((p) => !p.fromPool)
-    .map((p) => ({ id: p.wordId!, display: p.display!, token: p.token!, source: p.source!, ...(p.clue ? { clue: p.clue } : {}) }))
+  const words: WordEntry[] = placements.map((p) => ({ id: p.wordId!, display: p.display!, token: p.token!, source: p.source!, ...(p.clue ? { clue: p.clue } : {}) }))
   const set = raw.set && typeof raw.set === 'object' ? raw.set : {}
   const st = raw.st && typeof raw.st === 'object' ? raw.st : {}
   return {

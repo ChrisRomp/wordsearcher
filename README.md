@@ -9,12 +9,11 @@ A free, kid-safe word search puzzle maker for teachers and families. It runs ent
 
 ## Features
 
-- **Words:** type or paste your own (phrases like “Black Hole” stay together), pick from 30 hand-written classroom theme packs, or browse 42 “Kinds of…” dictionary lists (dog breeds, trees, tools…).
-- **Auto-fill:** fill leftover space with theme words until the grid reaches a target density.
+- **Words:** type or paste your own (phrases like “Black Hole” stay together), pick from 30 hand-written classroom theme packs, or browse 42 “Kinds of…” dictionary lists (dog breeds, trees, tools…). Picking a theme replaces your list by default and titles the puzzle after it.
 - **Difficulty:** Easy / Medium / Hard presets that set directions (any of 8), overlap (none / some / lots), and filler letters (random / natural / tricky decoys). Every setting can be overridden.
-- **Grid:** 5–30 rows × columns, or let it pick the smallest square that fits.
-- **Worksheet:** title font/color/size, grid letter font, upper/lowercase, word list order (A–Z, as entered, by length, or hidden), **clue mode** (show clues instead of words), name/date lines, instructions, Letter/A4, portrait/landscape.
-- **Output:** print, vector PDF (embedded fonts), PNG, and an optional answer-key page.
+- **Grid:** 5–30 rows × columns, or let it pick the smallest square that fits a target fill level.
+- **Worksheet:** title font/color/size, grid letter font, upper/lowercase, word list order (A–Z, as entered, by length, or hidden), optional name/date lines and instructions (turning them off gives the space to the puzzle), Letter/A4, portrait/landscape.
+- **Output:** print, vector PDF (embedded fonts), PNG, and an optional answer-key page. Each sheet shows a short puzzle ID, a fingerprint of the grid, so worksheets and answer keys can be matched.
 - **Share:** the whole puzzle is encoded in the link (or saved as a `.wordsearch.json` file), so recipients always get exactly the same grid.
 - **Play:** solve in the browser with mouse, touch (drag or tap-tap), or keyboard (arrows + Enter). Includes a timer and saved progress.
 

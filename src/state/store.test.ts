@@ -32,13 +32,13 @@ describe('store', () => {
     const { gen } = useStore.getState()
     const res = generate({ ...gen, words: gen.words })
     if (!res.ok) throw new Error('gen failed')
-    useStore.setState({ doc: createDoc({ grid: res.grid, placements: res.placements, style: s.style, settings: gen }), docKey: settingsKey(gen, false) })
+    useStore.setState({ doc: createDoc({ grid: res.grid, placements: res.placements, style: s.style, settings: gen }), docKey: settingsKey(gen) })
     const before = useStore.getState().doc!.grid
     useStore.getState().updateWord(gen.words[0].id, { clue: 'A red fruit' })
     const after = useStore.getState()
     expect(after.doc!.grid).toBe(before)
     expect(after.doc!.placements.find((p) => p.wordId === gen.words[0].id)?.clue).toBe('A red fruit')
-    expect(after.docKey).toBe(settingsKey(after.gen, false))
+    expect(after.docKey).toBe(settingsKey(after.gen))
     expect(after.doc!.settings.words.find((w) => w.id === gen.words[0].id)?.clue).toBe('A red fruit')
   })
 
@@ -48,18 +48,18 @@ describe('store', () => {
     const { gen } = useStore.getState()
     const res = generate({ ...gen, words: gen.words })
     if (!res.ok) throw new Error('gen failed')
-    useStore.setState({ doc: createDoc({ grid: res.grid, placements: res.placements, style: s.style, settings: gen }), docKey: settingsKey(gen, false) })
+    useStore.setState({ doc: createDoc({ grid: res.grid, placements: res.placements, style: s.style, settings: gen }), docKey: settingsKey(gen) })
     useStore.getState().addWordsFromText('supercalifragilistic')
     const staleKey = useStore.getState().docKey
     useStore.getState().updateWord(gen.words[0].id, { clue: 'A red fruit' })
     expect(useStore.getState().docKey).toBe(staleKey)
-    expect(useStore.getState().docKey).not.toBe(settingsKey(useStore.getState().gen, false))
+    expect(useStore.getState().docKey).not.toBe(settingsKey(useStore.getState().gen))
   })
 
   it('settings key ignores property order', () => {
     const gen = useStore.getState().gen
     const reordered = Object.fromEntries(Object.entries(gen).reverse()) as typeof gen
-    expect(settingsKey(reordered, false)).toBe(settingsKey(gen, false))
+    expect(settingsKey(reordered)).toBe(settingsKey(gen))
   })
 
   it('applies presets and reports custom when tweaked', async () => {

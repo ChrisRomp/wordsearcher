@@ -25,21 +25,24 @@ export function SheetSection({ delay }: { delay?: number }) {
         />
       </div>
 
-      <Toggle
-        checked={style.clueMode}
-        onChange={(v) => setStyle({ clueMode: v })}
-        label="Clue mode"
-        hint={
-          style.clueMode && missing.length > 0 ? (
-            <span className="text-tomato-dark">
-              {missing.length} word{missing.length > 1 ? 's need' : ' needs'} a clue: {missing.slice(0, 4).join(', ')}
-              {missing.length > 4 ? '…' : ''}. Click a word to add one.
-            </span>
-          ) : (
-            'Show clues instead of the words, and kids work out what to find.'
-          )
-        }
-      />
+      {/* Clue mode is hidden for now. It only shows up so it can be turned off on puzzles that already use it. */}
+      {style.clueMode && (
+        <Toggle
+          checked={style.clueMode}
+          onChange={(v) => setStyle({ clueMode: v })}
+          label="Clue mode"
+          hint={
+            style.clueMode && missing.length > 0 ? (
+              <span className="text-tomato-dark">
+                {missing.length} word{missing.length > 1 ? 's need' : ' needs'} a clue: {missing.slice(0, 4).join(', ')}
+                {missing.length > 4 ? '…' : ''}. Click a word to add one.
+              </span>
+            ) : (
+              'Show clues instead of the words, and kids work out what to find.'
+            )
+          }
+        />
+      )}
 
       <div className="flex flex-wrap gap-x-6 gap-y-4">
         <div>

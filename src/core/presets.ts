@@ -9,7 +9,7 @@ export interface DifficultySettings {
   filler: FillerMode
   rows: number
   cols: number
-  /** Word-length range for theme/auto-fill words. */
+  /** Word-length range for words picked from theme packs. */
   minLen: number
   maxLen: number
   /** Commonness levels allowed for theme words (1 = most common). */

@@ -123,6 +123,17 @@ describe('layoutSheet', () => {
     }
   })
 
+  it('gives the name/date space to the puzzle when those lines are off', () => {
+    const doc = sampleDoc()
+    const withLines = layoutSheet(doc, style({ nameDate: true }), approxMeasure)
+    const without = layoutSheet(doc, style({ nameDate: false }), approxMeasure)
+    const texts = (l: typeof withLines) => l.pages[0].prims.flatMap((p) => (p.k === 'text' ? [p.text] : []))
+    expect(texts(withLines)).toContain('Name:')
+    expect(texts(without)).not.toContain('Name:')
+    expect(without.grid.y).toBeLessThan(withLines.grid.y)
+    expect(without.grid.cell).toBeGreaterThan(withLines.grid.cell)
+  })
+
   it('draws one capsule per answer on the key only', () => {
     const doc = sampleDoc()
     const puzzle = layoutSheet(doc, style(), approxMeasure)

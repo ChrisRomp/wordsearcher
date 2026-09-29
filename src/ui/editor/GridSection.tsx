@@ -11,7 +11,7 @@ export function GridSection({ delay }: { delay?: number }) {
   const setGen = useStore((s) => s.setGen)
   const [linked, setLinked] = useState(gen.rows === gen.cols)
   const pct = Math.round(gen.density * 100)
-  const fixedList = !gen.autoSize && !(gen.autoFill && gen.themes.length > 0)
+  const fixedSize = !gen.autoSize
   const docCovered = doc ? Math.round(docDensity(doc) * 100) : null
 
   return (
@@ -47,7 +47,7 @@ export function GridSection({ delay }: { delay?: number }) {
             How full
           </label>
           <span className="font-display text-sm font-semibold tabular-nums">
-            {fixedList ? (docCovered !== null ? `${docCovered}% full` : '—') : `aim for ${pct}%`}
+            {fixedSize ? (docCovered !== null ? `${docCovered}% full` : '—') : `aim for ${pct}%`}
           </span>
         </div>
         <input
@@ -57,14 +57,14 @@ export function GridSection({ delay }: { delay?: number }) {
           max={85}
           step={5}
           value={pct}
-          disabled={fixedList}
+          disabled={fixedSize}
           onChange={(e) => setGen({ density: Number(e.target.value) / 100 })}
           className="w-full accent-[var(--color-sun)] disabled:opacity-40"
         />
         <p className="mt-1 text-xs text-muted">
-          {fixedList
-            ? 'Your words and grid size set how full the puzzle is. Turn on auto-size or theme auto-fill to aim for a target.'
-            : `Share of squares covered by words.${!fixedList && docCovered !== null ? ` Current puzzle: ${docCovered}%.` : ''} More filler letters make a puzzle harder.`}
+          {fixedSize
+            ? 'Your words and grid size set how full the puzzle is. Turn on “Pick the size for me” to aim for a target.'
+            : `Share of squares covered by words.${!fixedSize && docCovered !== null ? ` Current puzzle: ${docCovered}%.` : ''} More filler letters make a puzzle harder.`}
         </p>
       </div>
     </Section>
